@@ -40,7 +40,7 @@ export function SettingsPanel({
   onToolVisibilityChange = () => {},
   toolbarPosition = "top",
   onToolbarPositionChange = () => {},
-  premiumPopupsEnabled = true,
+  premiumPopupsEnabled = false,
   onPremiumPopupsToggle = () => {},
 }: SettingsPanelProps) {
   const [themeMode, setThemeMode] = useState<ThemeMode>("system");
