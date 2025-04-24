@@ -263,7 +263,7 @@ export function TextArrowToolPopup({
             {isColorPickerOpen && (
               <div
                 className={cn(
-                  "absolute top-full left-0 mt-2 p-2 rounded-lg shadow-lg z-50 grid grid-cols-6 gap-1",
+                  "absolute top-full left-0 mt-2 p-2 rounded-lg shadow-lg z-50 grid grid-cols-6  gap-4 w-[240px]",
                   isDarkMode
                     ? "bg-[#2C2C2E] border border-[#3A3A3C]"
                     : "bg-white border border-gray-200",

@@ -141,14 +141,15 @@ export function WatermarkToolPopup({
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-[#2C2C2E] border border-[#3A3A3C] ",
         isDarkMode ? "bg-[#2C2C2E] text-white" : "bg-white text-black ",
         isToolbarBottom && isWatermarkEnabled && "-mt-[150px]",
+        isToolbarLeft && isWatermarkEnabled && "-mt-[130px]",
         isToolbarLeft && "ml-[100px]",
         isToolbarBottom && "-mt-4"
       )}
       style={{
         top: ` ${position.top}px`,
-        left: `${isToolbarLeft ? "0" : "50%"}`,
+        left: `${isToolbarLeft ? "0" : position.left}px`,
         transform: `${isToolbarLeft ? "translateX(0)" : "translateX(-50%)"}`,
-        maxWidth: isToolbarLeft ? "200px" : "300px",
+        maxWidth: isToolbarLeft ? "200px" : "250px",
         width: "100%",
       }}
     >

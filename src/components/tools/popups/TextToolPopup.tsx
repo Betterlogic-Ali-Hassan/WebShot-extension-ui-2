@@ -1063,7 +1063,7 @@ export function TextToolPopup({
       <div className='p-3'>
         <div
           className={cn(
-            "flex items-center gap-4 flex-wrap",
+            "flex items-center gap-4 ",
             isToolbarLeft && "flex-col items-start"
           )}
         >
@@ -1398,10 +1398,11 @@ export function TextToolPopup({
           {/* Close Button */}
           <Button
             className={cn(
-              "h-8 w-8 rounded-full ml-auto transition-colors duration-200 justify-center absolute top-0 right-0.5",
+              "h-8 w-8 rounded-full ml-auto transition-colors duration-200 justify-center ",
               isDarkMode
                 ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                : "hover:bg-gray-100"
+                : "hover:bg-gray-100",
+              isToolbarLeft && "absolute top-0 right-0.5"
             )}
             onClick={onClose}
           >
