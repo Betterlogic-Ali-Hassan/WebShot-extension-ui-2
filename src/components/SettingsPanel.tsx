@@ -298,7 +298,7 @@ export function SettingsPanel({
                 )}
               </button>
 
-              <button
+              {/* <button
                 onClick={(e) => handleToolbarPositionChange(e, "left")}
                 type='button'
                 className={cn(
@@ -322,7 +322,7 @@ export function SettingsPanel({
                     <Check className='h-2 w-2 text-white' />
                   </div>
                 )}
-              </button>
+              </button> */}
 
               <button
                 onClick={(e) => handleToolbarPositionChange(e, "bottom")}
