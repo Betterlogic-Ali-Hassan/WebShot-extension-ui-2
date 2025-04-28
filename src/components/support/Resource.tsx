@@ -15,7 +15,7 @@ export function ResourcesSection() {
           href='#'
           className='card flex flex-col items-center text-center hover:bg-btn-hover hover:shadow-sm transition duration-200 bg-card border border-border rounded-xl p-6'
         >
-          <div className='icon-container mb-4 p-3'>
+          <div className='icon-container mb-4 p-3 bg-border rounded-full'>
             <FileQuestion className='h-8 w-8' />
           </div>
           <h3 className='font-semibold text-lg mb-2 text-text'>
@@ -30,7 +30,7 @@ export function ResourcesSection() {
           href='#'
           className='card flex flex-col items-center text-center hover:bg-btn-hover hover:shadow-sm transition duration-200 bg-card border border-border rounded-xl p-6'
         >
-          <div className='icon-container mb-4 p-3'>
+          <div className='icon-container mb-4 p-3 bg-border rounded-full'>
             <Bug className='h-8 w-8' />
           </div>
           <h3 className='font-semibold text-lg mb-2 text-text'>Bug Reports</h3>
@@ -43,7 +43,7 @@ export function ResourcesSection() {
           href='#'
           className='card flex flex-col items-center text-center hover:bg-btn-hover hover:shadow-sm transition duration-200 bg-card border border-border rounded-xl p-6'
         >
-          <div className='icon-container mb-4 p-3'>
+          <div className='icon-container mb-4 p-3 bg-border rounded-full'>
             <Lightbulb className='h-8 w-8' />
           </div>
           <h3 className='font-semibold text-lg mb-2 text-text'>
