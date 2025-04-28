@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import Tooltip from "../ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface UserAvatarDropdownProps {
   userName?: string;
@@ -31,6 +31,7 @@ export function UserAvatarDropdown({
 }: UserAvatarDropdownProps) {
   const { toolbarPosition } = useImageEditor();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -128,6 +129,7 @@ export function UserAvatarDropdown({
 
   // Menu action handlers
   const handleMenuAction = (action: string) => {
+    navigate(action);
     setIsOpen(false);
     console.log(`Action: ${action}`);
     // Implement actual navigation/actions here
@@ -214,7 +216,7 @@ export function UserAvatarDropdown({
 
                 <div className='flex items-center mt-3 space-x-2'>
                   <button
-                    onClick={() => handleMenuAction("manage-plan")}
+                    onClick={() => handleMenuAction("/subscription")}
                     className='flex-1 text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-info text-text-primary hover:bg-info-hover'
                   >
                     <CreditCard className='h-4 w-4 mr-2' />
@@ -235,16 +237,15 @@ export function UserAvatarDropdown({
 
           {/* Menu Items */}
           <nav className='py-1' aria-label='User menu'>
-            <Link
-              to={"/profile"}
-              onClick={() => handleMenuAction("profile")}
+            <button
+              onClick={() => handleMenuAction("/profile")}
               className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
               role='menuitem'
             >
               <User className='h-5 w-5 mr-3 opacity-70' />
               <span>Profile Settings</span>
               <ChevronRight className='h-5 w-5 ml-auto opacity-50' />
-            </Link>
+            </button>
 
             <button
               onClick={() => handleMenuAction("uploads")}

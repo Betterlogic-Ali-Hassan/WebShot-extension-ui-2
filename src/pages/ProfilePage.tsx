@@ -1,5 +1,6 @@
 import { NotificationsSection } from "@/components/profile/Notification";
 import { PersonalInfoSection } from "@/components/profile/PersonalInfo";
+import { ProfileLayout } from "@/components/profile/ProfileLayout";
 import { SecuritySection } from "@/components/profile/Security";
 import { toast } from "react-toastify";
 
@@ -33,10 +34,13 @@ export default function ProfilePage() {
   };
 
   return (
-    <main className='max-h-screen overflow-y-auto max-w-4xl mx-auto py-8 px-4 sm:px-6 no-scrollbar'>
-      <PersonalInfoSection onSave={handlePersonalInfoSave} />
-      <SecuritySection onSave={handleSecuritySave} />
-      <NotificationsSection onSave={handleNotificationsSave} />
-    </main>
+    <div className='max-h-screen overflow-y-auto '>
+      <ProfileLayout />
+      <main className=' max-w-[1100px] mx-auto py-8 px-4 sm:px-6 '>
+        <PersonalInfoSection onSave={handlePersonalInfoSave} />
+        <SecuritySection onSave={handleSecuritySave} />
+        <NotificationsSection onSave={handleNotificationsSave} />
+      </main>
+    </div>
   );
 }
