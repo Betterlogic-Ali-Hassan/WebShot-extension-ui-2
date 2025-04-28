@@ -6,13 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-interface StickersToolPopupProps {
-  position: { top: number; left: number; width: number };
-  isDarkMode: boolean;
-  onClose: () => void;
-  toolbarPosition: "top" | "left" | "bottom";
-}
+import { useImageEditor } from "@/context/ImageContext";
 
 // Define proper types for stickers
 interface BaseSticker {
@@ -31,12 +25,12 @@ interface SvgSticker extends BaseSticker {
 
 type Sticker = TextSticker | SvgSticker;
 
-export function StickersToolPopup({
-  position,
-  isDarkMode,
-  onClose,
-  toolbarPosition,
-}: StickersToolPopupProps) {
+export function StickersToolPopup() {
+  const {
+    popupPosition: position,
+    handleClosePopup: onClose,
+    toolbarPosition,
+  } = useImageEditor();
   // Ref for popup positioning
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -348,8 +342,7 @@ export function StickersToolPopup({
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-[#2C2C2E] border border-[#3A3A3C]",
-        isDarkMode ? "text-white" : "text-gray-900",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
         isToolbarLeft && "ml-[100px]",
         isToolbarBottom && "-mt-[440px] "
       )}
@@ -362,24 +355,15 @@ export function StickersToolPopup({
     >
       <div>
         {/* Header with title and close button */}
-        <div className='p-3 flex items-center justify-between border-b border-opacity-30 border-gray-500/30'>
+        <div className='p-3 flex items-center justify-between border-b border-opacity-30 border-border/30'>
           <div className='flex items-center gap-2'>
             <span className='text-lg'>🎭</span>
-            <h3
-              className={cn(
-                "text-sm font-bold",
-                isDarkMode ? "text-gray-200" : "text-gray-800"
-              )}
-            >
-              Stickers
-            </h3>
+            <h3 className='text-sm font-bold text-text'>Stickers</h3>
           </div>
           <Button
             className={cn(
               "h-7 w-7 rounded-full transition-colors duration-200 justify-center",
-              isDarkMode
-                ? "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
-                : "hover:bg-gray-100"
+              "hover:bg-hover"
             )}
             onClick={onClose}
           >
@@ -389,7 +373,7 @@ export function StickersToolPopup({
         </div>
 
         {/* Category tabs - improved with pill style */}
-        <div className='p-2 border-b border-opacity-30 border-gray-500/30 relative group'>
+        <div className='p-2 border-b border-opacity-30 border-border/30 relative group'>
           {/* Left arrow - only visible on hover */}
           <button
             onClick={() => {
@@ -397,13 +381,7 @@ export function StickersToolPopup({
               if (container)
                 container.scrollBy({ left: -100, behavior: "smooth" });
             }}
-            className='absolute left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200'
-            style={{
-              background: isDarkMode
-                ? "rgba(60, 60, 60, 0.8)"
-                : "rgba(255, 255, 255, 0.8)",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
-            }}
+            className='absolute left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-background/80 shadow-sm'
           >
             <svg
               width='16'
@@ -437,12 +415,8 @@ export function StickersToolPopup({
                   className={cn(
                     "px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200",
                     activeCategory === category.id
-                      ? isDarkMode
-                        ? "bg-[#3A3A3C] text-white shadow-sm"
-                        : "bg-gray-200 text-black shadow-sm"
-                      : isDarkMode
-                      ? "text-gray-400 hover:text-gray-300 hover:bg-[#2C2C2E]"
-                      : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+                      ? "bg-hover text-text shadow-sm"
+                      : "text-text/60 hover:text-text hover:bg-hover"
                   )}
                   onClick={() => setActiveCategory(category.id)}
                 >
@@ -459,13 +433,7 @@ export function StickersToolPopup({
               if (container)
                 container.scrollBy({ left: 100, behavior: "smooth" });
             }}
-            className='absolute right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200'
-            style={{
-              background: isDarkMode
-                ? "rgba(60, 60, 60, 0.8)"
-                : "rgba(255, 255, 255, 0.8)",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
-            }}
+            className='absolute right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-background/80 shadow-sm'
           >
             <svg
               width='16'
@@ -487,20 +455,12 @@ export function StickersToolPopup({
 
         {/* Search input */}
         <div className='px-2 py-1.5'>
-          <div
-            className={cn(
-              "flex items-center gap-2 px-2 py-1.5 rounded-md",
-              isDarkMode ? "bg-[#3A3A3C]" : "bg-gray-100"
-            )}
-          >
+          <div className='flex items-center gap-2 px-2 py-1.5 rounded-md bg-hover'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 20 20'
               fill='currentColor'
-              className={cn(
-                "w-4 h-4",
-                isDarkMode ? "text-gray-400" : "text-gray-500"
-              )}
+              className='w-4 h-4 text-text/50'
             >
               <path
                 fillRule='evenodd'
@@ -513,22 +473,12 @@ export function StickersToolPopup({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder='Search stickers...'
-              className={cn(
-                "bg-transparent border-none outline-none text-xs w-full",
-                isDarkMode
-                  ? "text-white placeholder:text-gray-500"
-                  : "text-gray-800 placeholder:text-gray-400"
-              )}
+              className='bg-transparent border-none outline-none text-xs w-full text-text placeholder:text-text/50'
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className={cn(
-                  "text-xs",
-                  isDarkMode
-                    ? "text-gray-400 hover:text-white"
-                    : "text-gray-500 hover:text-gray-800"
-                )}
+                className='text-xs text-text/60 hover:text-text'
               >
                 <X className='h-3.5 w-3.5' />
               </button>
@@ -538,7 +488,7 @@ export function StickersToolPopup({
 
         {/* Stickers grid with improved layout */}
         <div
-          className={cn("max-h-[250px] overflow-y-auto px-2 py-1")}
+          className='max-h-[250px] overflow-y-auto px-2 py-1'
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -555,12 +505,7 @@ export function StickersToolPopup({
               />
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className={cn(
-                  "w-full py-2 px-3 rounded-lg border-2 border-dashed flex items-center justify-center gap-2 transition-colors",
-                  isDarkMode
-                    ? "border-gray-700 hover:border-gray-500 text-gray-400"
-                    : "border-gray-300 hover:border-gray-400 text-gray-600"
-                )}
+                className='w-full py-2 px-3 rounded-lg border-2 border-dashed flex items-center justify-center gap-2 transition-colors border-border/70 hover:border-border text-text/70'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -598,9 +543,7 @@ export function StickersToolPopup({
                     key={index}
                     className={cn(
                       "aspect-square flex items-center justify-center text-xl rounded-lg transition-all duration-200 hover:scale-110 focus:outline-none relative",
-                      isDarkMode
-                        ? "bg-[#3A3A3C]/50 hover:bg-[#3A3A3C]"
-                        : "bg-gray-100/50 hover:bg-gray-200"
+                      "bg-hover "
                     )}
                     title={item.name}
                     onClick={() => {
@@ -631,12 +574,7 @@ export function StickersToolPopup({
                         {activeCategory === "custom" && "id" in item && (
                           <button
                             onClick={(e) => deleteCustomSticker(item.id, e)}
-                            className={cn(
-                              "absolute -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity",
-                              isDarkMode
-                                ? "bg-red-600 text-white"
-                                : "bg-red-500 text-white"
-                            )}
+                            className='absolute -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-red-500 text-white'
                             aria-label='Delete sticker'
                           >
                             <X className='h-2.5 w-2.5' />
@@ -648,14 +586,7 @@ export function StickersToolPopup({
                     {searchQuery &&
                       item.category &&
                       item.category !== activeCategory && (
-                        <div
-                          className={cn(
-                            "absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 text-[8px] rounded-full",
-                            isDarkMode
-                              ? "bg-[#3A3A3C] text-white"
-                              : "bg-gray-200 text-gray-700"
-                          )}
-                        >
+                        <div className='absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 text-[8px] rounded-full bg-searchbar text-text'>
                           {item.category.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -683,19 +614,9 @@ export function StickersToolPopup({
               })
             ) : (
               <div className='col-span-5 py-8 text-center'>
-                <p
-                  className={cn(
-                    "text-sm",
-                    isDarkMode ? "text-gray-400" : "text-gray-500"
-                  )}
-                >
-                  No stickers found
-                </p>
+                <p className='text-sm text-text/60'>No stickers found</p>
                 <button
-                  className={cn(
-                    "text-xs mt-2",
-                    isDarkMode ? "text-[#007AFF]" : "text-blue-600"
-                  )}
+                  className='text-xs mt-2 text-info'
                   onClick={() => setSearchQuery("")}
                 >
                   Clear search
@@ -706,23 +627,10 @@ export function StickersToolPopup({
         </div>
 
         {/* Footer with recent stickers - improved styling */}
-        <div className='p-2 border-t border-opacity-30 border-gray-500/30'>
+        <div className='p-2 border-t border-opacity-30 border-border/30'>
           <div className='flex items-center justify-between mb-1.5'>
-            <p
-              className={cn(
-                "text-xs font-medium",
-                isDarkMode ? "text-gray-300" : "text-gray-700"
-              )}
-            >
-              Recently Used
-            </p>
-            <button
-              onClick={clearRecentStickers}
-              className={cn(
-                "text-xs",
-                isDarkMode ? "text-[#007AFF]" : "text-blue-600"
-              )}
-            >
+            <p className='text-xs font-medium text-text'>Recently Used</p>
+            <button onClick={clearRecentStickers} className='text-xs text-info'>
               Clear
             </button>
           </div>
@@ -733,9 +641,7 @@ export function StickersToolPopup({
                   key={index}
                   className={cn(
                     "h-9 w-9 flex items-center justify-center text-lg rounded-lg transition-all duration-200 hover:scale-110 relative",
-                    isDarkMode
-                      ? "bg-[#2C2C2E]/70 hover:bg-[#3A3A3C]"
-                      : "bg-gray-100/70 hover:bg-gray-200"
+                    "bg-hover "
                   )}
                   onClick={() => {
                     // Toggle selection
@@ -766,14 +672,7 @@ export function StickersToolPopup({
                 </button>
               ))
             ) : (
-              <p
-                className={cn(
-                  "text-xs italic",
-                  isDarkMode ? "text-gray-500" : "text-gray-400"
-                )}
-              >
-                No recent stickers
-              </p>
+              <p className='text-xs italic text-text/50'>No recent stickers</p>
             )}
           </div>
         </div>

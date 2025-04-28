@@ -9,16 +9,11 @@ import { useState } from "react";
 import Separator from "./ui/Separator";
 
 interface CaptureCardProps {
-  isDarkMode: boolean;
   onCapture: () => void;
   onUpload: () => void;
 }
 
-export function CaptureCard({
-  isDarkMode,
-  onCapture,
-  onUpload,
-}: CaptureCardProps) {
+export function CaptureCard({ onCapture, onUpload }: CaptureCardProps) {
   const [isDragging, setIsDragging] = useState(false);
 
   // Handle drag events
@@ -35,18 +30,11 @@ export function CaptureCard({
     e.preventDefault();
     setIsDragging(false);
 
-    // In a real implementation, we would handle the file here
-    // But for now, we just call onUpload to trigger the file input
     onUpload();
   };
 
   return (
-    <div
-      className={cn(
-        "w-full max-w-md p-6 rounded-[20px] shadow-lg transition-all duration-300",
-        isDarkMode ? "bg-[#2C2C2E]" : "bg-white shadow-md"
-      )}
-    >
+    <div className='w-full max-w-md p-6 rounded-[20px] shadow-lg transition-all duration-300 bg-background border border-border'>
       <h2 className='text-xl font-semibold text-center mb-6'>
         Capture Screenshot from URL
       </h2>
@@ -55,34 +43,21 @@ export function CaptureCard({
         <input
           type='url'
           placeholder='https://example.com'
-          className={cn(
-            "rounded-xl h-10 border-none w-full px-3 py-2 text-gray-900 placeholder:text-gray-400 focus:outline-none text-sm",
-            isDarkMode ? "bg-[#3A3A3C] text-white" : "bg-gray-100 text-black"
-          )}
+          className='rounded-xl h-10 border-none w-full px-3 py-2 bg-hover text-text focus:outline-none text-sm'
         />
 
         <Button
           onClick={onCapture}
-          className='w-full rounded-xl h-10 bg-[#007AFF] hover:bg-[#0071EB] text-white justify-center'
+          className='w-full rounded-xl h-10 bg-info hover:opacity-80 text-text-primary justify-center'
         >
           <FileImage className='mr-2 h-4 w-4' />
           Capture Screenshot
         </Button>
 
         <div className='flex items-center gap-2 my-4 px-2'>
-          <Separator
-            className={cn(
-              "h-[1px] w-[45%]",
-              isDarkMode ? "bg-gray-700" : "bg-gray-200"
-            )}
-          />
-          <span className='text-sm text-gray-500'>OR</span>
-          <Separator
-            className={cn(
-              "h-[1px] w-[45%] ",
-              isDarkMode ? "bg-gray-700" : "bg-gray-200"
-            )}
-          />
+          <Separator className='h-[1px] w-[45%] bg-border' />
+          <span className='text-sm text-foreground'>OR</span>
+          <Separator className='h-[1px] w-[45%] bg-border' />
         </div>
 
         <div
@@ -90,14 +65,9 @@ export function CaptureCard({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={cn(
-            "w-full rounded-xl h-32 border-dashed border-2 transition-all duration-200 flex flex-col items-center justify-center gap-2",
-            isDarkMode
-              ? "border-gray-600 hover:border-gray-500 text-gray-300"
-              : "border-gray-300 hover:border-gray-400 text-gray-700",
-            isDragging &&
-              (isDarkMode
-                ? "bg-[#3A3A3C] border-[#007AFF]"
-                : "bg-gray-50 border-[#007AFF]")
+            "w-full rounded-xl h-32 border-dashed border-2 transition-all duration-200 flex flex-col items-center justify-center gap-2 border-border hover:border-hover",
+
+            isDragging && "bg-background border-info"
           )}
         >
           <Upload className='h-8 w-8 opacity-70' />
@@ -105,10 +75,7 @@ export function CaptureCard({
             <p className='font-medium'>Drop image here or</p>
             <Button
               onClick={onUpload}
-              className={cn(
-                "p-0 h-auto justify-center w-full",
-                isDarkMode ? "text-[#007AFF]" : "text-[#0071EB]"
-              )}
+              className='p-0 h-auto justify-center w-full text-info'
             >
               browse files
             </Button>

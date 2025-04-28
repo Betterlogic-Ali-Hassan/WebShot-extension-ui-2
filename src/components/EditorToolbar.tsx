@@ -25,46 +25,26 @@ import Button from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 import Tooltip from "./ui/toolip";
+import { useImageEditor } from "@/context/ImageContext";
 
 // Update the EditorToolbar interface to include the logo prop
 interface EditorToolbarProps {
-  activeTool: string | null;
-  onToolChange: (
-    tool: string,
-    buttonRect: DOMRect | null,
-    isPremium?: boolean
-  ) => void;
-  isDarkMode: boolean;
-  toolVisibility: Record<string, boolean>;
-  toolbarPosition: "top" | "left" | "bottom";
   settingsButton?: React.ReactNode;
-  selectedShape?: "square" | "rounded" | "circle" | "star";
-  selectedArrowStyle?:
-    | "arrow-line"
-    | "arrow-curve"
-    | "double-arrow"
-    | "line"
-    | "curve-line"
-    | "dotted-line";
-  selectedPencilTool?: "pencil" | "brush" | "highlighter";
-  selectedTextArrowType?: "text-arrow" | "page-text";
   logo?: React.ReactNode;
 }
 
 // Update the EditorToolbar component to include the logo parameter
-export function EditorToolbar({
-  activeTool,
-  onToolChange,
-  isDarkMode,
-  toolVisibility,
-  toolbarPosition,
-  settingsButton,
-  selectedShape = "square",
-  selectedArrowStyle = "arrow-line",
-  selectedPencilTool = "pencil",
-  selectedTextArrowType = "text-arrow",
-  logo,
-}: EditorToolbarProps) {
+export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
+  const {
+    toolbarPosition,
+    selectedShape = "square",
+    selectedArrowStyle = "arrow-line",
+    selectedPencilTool = "pencil",
+    selectedTextArrowType = "text-arrow",
+    toolVisibility,
+    activeTool,
+    handleToolChange: onToolChange,
+  } = useImageEditor();
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   // Update the renderToolIcon function to add premium indicators to specific tools
@@ -363,25 +343,13 @@ export function EditorToolbar({
   if (toolbarPosition === "left") {
     return (
       <>
-        <div
-          className={cn(
-            "fixed left-0 top-0 h-full z-50 shadow-md transition-all duration-300 animate-fade-in-left",
-            isDarkMode
-              ? "bg-[#1C1C1E] border-r border-[#3A3A3C]"
-              : "bg-white border-r border-gray-200"
-          )}
-        >
+        <div className='fixed left-0 top-0 h-full z-50 shadow-md transition-all duration-300 animate-fade-in-left bg-background border-r border-border'>
           <div className='h-full py-4  px-3 flex flex-col items-center gap-8 overflow-y-auto no-scrollbar '>
             {/* Top section - logo and settings */}
             <div className='flex flex-col items-center gap-4'>
               {logo && (
-                <div
-                  className={cn(
-                    "flex items-center justify-center w-8 h-8 rounded-lg mb-2 mt-6",
-                    isDarkMode ? "bg-blue-500" : "bg-blue-600"
-                  )}
-                >
-                  <Camera className='h-5 w-5 text-white' />
+                <div className='flex items-center justify-center w-8 h-8 rounded-lg mb-2 mt-6 bg-card'>
+                  <Camera className='h-5 w-5 text-text' />
                 </div>
               )}
               <div className='flex items-center gap-2 flex-col'>
@@ -390,12 +358,7 @@ export function EditorToolbar({
             </div>
 
             {/* Center section - tools */}
-            <div
-              className={cn(
-                "flex flex-col items-center gap-2 py-3 px-2 rounded-xl transition-all duration-300 min-[1600px]:fixed min-[1600px]:top-1/2 min-[1600px]:-translate-y-1/2",
-                isDarkMode ? "bg-[#2C2C2E]" : "bg-gray-50"
-              )}
-            >
+            <div className='flex flex-col items-center gap-2 bg-card py-3 px-2 rounded-xl transition-all duration-300 min-[1600px]:fixed min-[1600px]:top-1/2 min-[1600px]:-translate-y-1/2'>
               {visibleTools.map((tool) => (
                 <Tooltip
                   key={tool.id}
@@ -406,12 +369,8 @@ export function EditorToolbar({
                   <Button
                     ref={(el) => (buttonRefs.current[tool.id] = el)}
                     className={cn(
-                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10",
-                      activeTool === tool.id &&
-                        (isDarkMode
-                          ? "bg-[#3A3A3C] text-white"
-                          : "bg-gray-200 text-black"),
-                      isDarkMode && "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
+                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 hover:bg-hover bg-background",
+                      activeTool === tool.id && "bg-hover"
                     )}
                     onClick={() => handleToolClick(tool.id)}
                   >
@@ -431,14 +390,7 @@ export function EditorToolbar({
   } else if (toolbarPosition === "bottom") {
     return (
       <>
-        <div
-          className={cn(
-            "fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 shadow-lg rounded-full transition-all duration-300 animate-fade-in-bottom",
-            isDarkMode
-              ? "bg-[#1C1C1E] border border-[#3A3A3C]"
-              : "bg-white border border-gray-200"
-          )}
-        >
+        <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 shadow-lg rounded-full transition-all duration-300 animate-fade-in-bottom bg-background border border-border'>
           <div className='px-4 py-2 flex items-center justify-between'>
             {/* Left section - logo, settings and theme toggle */}
             <div className='flex items-center gap-3 mr-2'>
@@ -447,12 +399,7 @@ export function EditorToolbar({
             </div>
 
             {/* Center section - tools */}
-            <div
-              className={cn(
-                "flex items-center justify-center gap-1 rounded-[20px] px-3 py-2 transition-all duration-300",
-                isDarkMode ? "bg-[#2C2C2E]" : "bg-gray-50"
-              )}
-            >
+            <div className='flex items-center justify-center gap-1 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text'>
               {visibleTools.map((tool) => (
                 <Tooltip
                   key={tool.id}
@@ -463,12 +410,8 @@ export function EditorToolbar({
                   <Button
                     ref={(el) => (buttonRefs.current[tool.id] = el)}
                     className={cn(
-                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10",
-                      activeTool === tool.id &&
-                        (isDarkMode
-                          ? "bg-[#3A3A3C] text-white"
-                          : "bg-gray-200 text-black"),
-                      isDarkMode && "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
+                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 bg-background hover:bg-hover",
+                      activeTool === tool.id && "bg-hover"
                     )}
                     onClick={() => handleToolClick(tool.id)}
                   >
@@ -489,23 +432,13 @@ export function EditorToolbar({
 
   // Default: Top position
   return (
-    <div
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 animate-fade-in-top",
-        isDarkMode ? "bg-[#1C1C1E]" : "bg-white"
-      )}
-    >
+    <div className='fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 animate-fade-in-top bg-background border-b border-border'>
       <div className='max-w-screen-2xl mx-auto px-4 py-2 flex items-center justify-between'>
         {/* Left section - logo */}
         <div className='flex items-center min-w-24'>{logo}</div>
 
         {/* Center section - tools */}
-        <div
-          className={cn(
-            "flex items-center justify-center gap-1 rounded-[20px] px-3 py-2 transition-all duration-300",
-            isDarkMode ? "bg-[#2C2C2E]" : "bg-gray-50"
-          )}
-        >
+        <div className='flex items-center justify-center gap-1 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text'>
           {visibleTools.map((tool) => (
             <Tooltip
               key={tool.id}
@@ -516,12 +449,8 @@ export function EditorToolbar({
               <Button
                 ref={(el) => (buttonRefs.current[tool.id] = el)}
                 className={cn(
-                  "rounded-xl transition-all duration-200 hover:scale-110 min-w-10",
-                  activeTool === tool.id &&
-                    (isDarkMode
-                      ? "bg-[#3A3A3C] text-white"
-                      : "bg-gray-200 text-black"),
-                  isDarkMode && "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
+                  "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 hover:bg-hover bg-background",
+                  activeTool === tool.id && "bg-hover"
                 )}
                 onClick={() => handleToolClick(tool.id)}
               >

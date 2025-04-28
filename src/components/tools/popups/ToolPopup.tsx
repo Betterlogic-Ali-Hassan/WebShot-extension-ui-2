@@ -11,29 +11,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Toggle } from "@/components/ui/toggle";
-import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
-interface ToolPopupProps {
-  tool: string;
-  position: { top: number; left: number; width: number };
-  isDarkMode: boolean;
-  onClose: () => void;
-}
-
-export function ToolPopup({
-  tool,
-  position,
-  isDarkMode,
-  onClose,
-}: ToolPopupProps) {
+export function ToolPopup() {
+  const {
+    popupPosition: position,
+    handleClosePopup: onClose,
+    activeTool: tool,
+  } = useImageEditor();
   return (
     <div
-      className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 overflow-hidden",
-        isDarkMode
-          ? "bg-[#2C2C2E] border border-[#3A3A3C]"
-          : "bg-white border border-gray-200"
-      )}
+      className='fixed z-40 rounded-xl shadow-lg transition-all duration-200 overflow-hidden bg-background border-border'
       style={{
         top: `${position.top}px`,
         left: `${Math.max(16, position.left - 100 + position.width / 2)}px`,
@@ -242,10 +230,7 @@ export function ToolPopup({
               ].map((emoji) => (
                 <button
                   key={emoji}
-                  className={cn(
-                    "w-8 h-8 flex items-center justify-center rounded-lg text-xl",
-                    isDarkMode ? "hover:bg-[#3A3A3C]" : "hover:bg-gray-100"
-                  )}
+                  className='w-8 h-8 flex items-center justify-center rounded-lg text-xl hover:bg-hover'
                 >
                   {emoji}
                 </button>

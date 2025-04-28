@@ -5,21 +5,14 @@ import { X, Download } from "lucide-react";
 import Button from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
-interface BorderToolPopupProps {
-  position: { top: number; left: number; width: number };
-  isDarkMode: boolean;
-  onClose: () => void;
-  toolbarPosition: "top" | "left" | "bottom";
-}
-
-export function BorderToolPopup({
-  position,
-  isDarkMode,
-  onClose,
-  toolbarPosition,
-}: BorderToolPopupProps) {
-  // State for border controls
+export function BorderToolPopup() {
+  const {
+    popupPosition: position,
+    handleClosePopup: onClose,
+    toolbarPosition,
+  } = useImageEditor();
   const [padding, setPadding] = useState(Math.min(20, 100));
   const [backgroundType, setBackgroundType] = useState<"solid" | "gradient">(
     "gradient"
@@ -180,8 +173,7 @@ export function BorderToolPopup({
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-[#2C2C2E] border border-[#3A3A3C]",
-        isDarkMode ? "bg-[#2C2C2E] text-white" : "bg-white text-black",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
         isToolbarLeft && "ml-[100px]",
         isToolbarBottom && "-mt-[440px] "
       )}
@@ -197,21 +189,12 @@ export function BorderToolPopup({
     >
       <div className='p-3 max-h-[470px] overflow-y-auto no-scrollbar'>
         {/* Add header with title and close button */}
-        <div className='flex items-center justify-between border-b border-opacity-30 border-gray-500/30 mb-4 pb-2'>
-          <h3
-            className={cn(
-              "text-sm font-medium",
-              isDarkMode ? "text-gray-200" : "text-gray-800"
-            )}
-          >
-            Border
-          </h3>
+        <div className='flex items-center justify-between border-b border-opacity-30 border-border mb-4 pb-2'>
+          <h3 className='text-sm font-medium text-text'>Border</h3>
           <Button
             className={cn(
               "h-7 w-7 rounded-full transition-colors duration-200 justify-center",
-              isDarkMode
-                ? "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
-                : "hover:bg-gray-100"
+              "hover:bg-hover"
             )}
             onClick={onClose}
           >
@@ -229,16 +212,9 @@ export function BorderToolPopup({
               background: currentPresets[selectedPreset],
             }}
           >
-            <div
-              className={cn(
-                "w-full h-[80px] rounded-md flex items-center justify-center backdrop-blur-sm",
-                isDarkMode ? "bg-[#1C1C1E]/90" : "bg-white/90"
-              )}
-            >
+            <div className='w-full h-[80px] rounded-md flex items-center justify-center backdrop-blur-sm bg-background/90'>
               <div className='text-center text-xs'>
-                <p className={isDarkMode ? "text-gray-300" : "text-gray-600"}>
-                  Screenshot preview
-                </p>
+                <p className='text-text/70'>Screenshot preview</p>
               </div>
             </div>
           </div>
@@ -248,22 +224,8 @@ export function BorderToolPopup({
           {/* Padding control */}
           <div className='mb-4'>
             <div className='flex items-center justify-between mb-2'>
-              <span
-                className={cn(
-                  "text-xs font-medium",
-                  isDarkMode ? "text-gray-300" : "text-gray-700"
-                )}
-              >
-                Padding
-              </span>
-              <span
-                className={cn(
-                  "text-xs font-medium px-2 py-0.5 rounded-full",
-                  isDarkMode
-                    ? "bg-[#3A3A3C] text-white"
-                    : "bg-gray-100 text-gray-700"
-                )}
-              >
+              <span className='text-xs font-medium text-text'>Padding</span>
+              <span className='text-xs font-medium px-2 py-0.5 rounded-full bg-searchbar text-text'>
                 {padding}px
               </span>
             </div>
@@ -276,36 +238,11 @@ export function BorderToolPopup({
                 onValueChange={handlePaddingChange}
               />
               <div className='absolute w-full flex justify-between px-1 mt-1.5'>
-                <div
-                  className={cn(
-                    "w-0.5 h-1",
-                    isDarkMode ? "bg-gray-500" : "bg-gray-400"
-                  )}
-                ></div>
-                <div
-                  className={cn(
-                    "w-0.5 h-1",
-                    isDarkMode ? "bg-gray-500" : "bg-gray-400"
-                  )}
-                ></div>
-                <div
-                  className={cn(
-                    "w-0.5 h-1",
-                    isDarkMode ? "bg-gray-500" : "bg-gray-400"
-                  )}
-                ></div>
-                <div
-                  className={cn(
-                    "w-0.5 h-1",
-                    isDarkMode ? "bg-gray-500" : "bg-gray-400"
-                  )}
-                ></div>
-                <div
-                  className={cn(
-                    "w-0.5 h-1",
-                    isDarkMode ? "bg-gray-500" : "bg-gray-400"
-                  )}
-                ></div>
+                <div className='w-0.5 h-1 bg-border'></div>
+                <div className='w-0.5 h-1 bg-border'></div>
+                <div className='w-0.5 h-1 bg-border'></div>
+                <div className='w-0.5 h-1 bg-border'></div>
+                <div className='w-0.5 h-1 bg-border'></div>
               </div>
               <div className='flex justify-between mt-3 text-[10px] text-gray-500'>
                 <span>0</span>
@@ -317,30 +254,16 @@ export function BorderToolPopup({
           {/* Background type selector */}
           <div className='mb-4'>
             <div className='flex items-center justify-between mb-1.5'>
-              <span
-                className={cn(
-                  "text-xs font-medium",
-                  isDarkMode ? "text-gray-300" : "text-gray-700"
-                )}
-              >
-                Background
-              </span>
+              <span className='text-xs font-medium text-text'>Background</span>
             </div>
-            <div
-              className={cn(
-                "flex rounded-lg p-0.5 text-xs font-medium w-full",
-                isDarkMode ? "bg-[#3A3A3C]" : "bg-gray-100"
-              )}
-            >
+            <div className='flex rounded-lg p-0.5 text-xs font-medium w-full bg-background'>
               <button
                 onClick={() => handleBackgroundTypeChange("solid")}
                 className={cn(
                   "flex-1 py-1.5 px-3 rounded-md transition-all duration-200",
                   backgroundType === "solid"
-                    ? isDarkMode
-                      ? "bg-[#505050] text-white shadow-sm"
-                      : "bg-white text-black shadow-sm"
-                    : "text-gray-500"
+                    ? "bg-hover text-text shadow-sm"
+                    : "text-text/50"
                 )}
               >
                 Solid
@@ -350,10 +273,8 @@ export function BorderToolPopup({
                 className={cn(
                   "flex-1 py-1.5 px-3 rounded-md transition-all duration-200",
                   backgroundType === "gradient"
-                    ? isDarkMode
-                      ? "bg-[#505050] text-white shadow-sm"
-                      : "bg-white text-black shadow-sm"
-                    : "text-gray-500"
+                    ? "bg-hover text-text shadow-sm"
+                    : "text-text/50"
                 )}
               >
                 Gradient
@@ -371,9 +292,7 @@ export function BorderToolPopup({
                 }}
                 className={cn(
                   "h-6 w-6 flex items-center justify-center rounded-full mr-1",
-                  isDarkMode
-                    ? "bg-[#3A3A3C] hover:bg-[#4A4A4C] text-gray-300"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                  "bg-searchbar hover:bg-hover text-text"
                 )}
                 disabled={selectedPreset === 0}
               >
@@ -412,13 +331,9 @@ export function BorderToolPopup({
                           selectedPreset === actualIndex
                             ? "ring-1.5 ring-offset-1"
                             : "ring-0.5 ring-inset",
-                          isDarkMode
-                            ? selectedPreset === actualIndex
-                              ? "ring-white ring-offset-[#1C1C1E]"
-                              : "ring-[#3A3A3C]"
-                            : selectedPreset === actualIndex
-                            ? "ring-black ring-offset-white"
-                            : "ring-gray-200"
+                          selectedPreset === actualIndex
+                            ? "ring-text ring-offset-background"
+                            : "ring-border"
                         )}
                         style={{
                           background: preset,
@@ -441,9 +356,7 @@ export function BorderToolPopup({
                 }}
                 className={cn(
                   "h-6 w-6 flex items-center justify-center rounded-full ml-1",
-                  isDarkMode
-                    ? "bg-[#3A3A3C] hover:bg-[#4A4A4C] text-gray-300"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                  "bg-searchbar hover:bg-hover text-text"
                 )}
                 disabled={
                   Math.floor(selectedPreset / 6) >=
@@ -485,14 +398,7 @@ export function BorderToolPopup({
           </div>
 
           {/* Save button - styled to match other tools */}
-          <Button
-            className={cn(
-              "w-full rounded-md text-xs py-1.5 px-4 h-8 transition-all duration-200 font-medium justify-center",
-              isDarkMode
-                ? "bg-[#007AFF] hover:bg-[#0071EB] text-white"
-                : "bg-[#007AFF] hover:bg-[#0071EB] text-white"
-            )}
-          >
+          <Button className='w-full rounded-md text-xs py-1.5 px-4 h-8 transition-all duration-200 font-medium justify-center bg-info hover:bg-info-hover text-text-primary'>
             <Download className='h-4 w-4 mr-1.5' />
             Save Image
           </Button>

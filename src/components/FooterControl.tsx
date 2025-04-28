@@ -30,16 +30,10 @@ import {
 import { cn } from "@/lib/utils";
 import { toast } from "react-toastify";
 import Tooltip from "./ui/toolip";
+import { useImageEditor } from "@/context/ImageContext";
 
-interface FooterControlsProps {
-  isDarkMode: boolean;
-  toolbarPosition: "top" | "left" | "bottom";
-}
-
-export function FooterControls({
-  isDarkMode,
-  toolbarPosition,
-}: FooterControlsProps) {
+export function FooterControls() {
+  const { toolbarPosition } = useImageEditor();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
@@ -95,12 +89,7 @@ export function FooterControls({
         <div className={cn("flex justify-center", isToolbarBottom && "hidden")}>
           <Button
             onClick={toggleCollapse}
-            className={cn(
-              "rounded-t-lg rounded-b-none border-t border-l border-r mb-[-1px] transition-colors",
-              isDarkMode
-                ? "bg-[#2C2C2E] border-[#3A3A3C] hover:bg-[#3A3A3C]"
-                : "bg-white border-gray-200 hover:bg-gray-50"
-            )}
+            className='rounded-t-lg rounded-b-none border-t border-l border-r mb-[-1px] transition-colors bg-card border-border hover:bg-hover'
           >
             {isCollapsed ? (
               <ChevronUp className='h-4 w-4 flex-shrink-0' />
@@ -117,9 +106,7 @@ export function FooterControls({
         <div
           className={cn(
             "w-full transition-all duration-300 ease-in-out border-t shadow-lg",
-            isDarkMode
-              ? "bg-[#2C2C2E] border-[#3A3A3C]"
-              : "bg-white border-gray-200",
+            "bg-background border-border",
             isCollapsed
               ? "max-h-0 overflow-hidden opacity-0"
               : "max-h-24 opacity-100 py-3"
@@ -130,16 +117,14 @@ export function FooterControls({
             <div
               className={cn(
                 "flex items-center gap-2 p-2 rounded-full transition-all duration-300",
-                isDarkMode ? "bg-[#3A3A3C]" : "bg-gray-100"
+                "bg-searchbar"
               )}
             >
               <Tooltip id='undo' content='Undo'>
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    isDarkMode
-                      ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-200"
+                    "hover:bg-btn-hover hover:text-foreground"
                   )}
                 >
                   <Undo2 className='h-4 w-4 flex-shrink-0' />
@@ -151,9 +136,7 @@ export function FooterControls({
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    isDarkMode
-                      ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-200"
+                    "hover:bg-btn-hover hover:text-foreground"
                   )}
                 >
                   <Redo2 className='h-4 w-4 flex-shrink-0' />
@@ -165,9 +148,7 @@ export function FooterControls({
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    isDarkMode
-                      ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-200"
+                    "hover:bg-btn-hover hover:text-foreground"
                   )}
                 >
                   <RotateCcw className='h-4 w-4 flex-shrink-0' />
@@ -179,9 +160,7 @@ export function FooterControls({
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    isDarkMode
-                      ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-200",
+                    "hover:bg-btn-hover hover:text-foreground",
                     isDeleting && "animate-delete-shake"
                   )}
                   onClick={handleDeleteClick}
@@ -201,16 +180,14 @@ export function FooterControls({
             <div
               className={cn(
                 "flex items-center gap-2 p-2 rounded-full transition-all duration-300",
-                isDarkMode ? "bg-[#3A3A3C]" : "bg-gray-100"
+                "bg-searchbar"
               )}
             >
               <Tooltip id='Copy to Clipboard' content='Copy to Clipboard'>
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    isDarkMode
-                      ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-200"
+                    "hover:bg-btn-hover hover:text-foreground"
                   )}
                   onClick={handleCopyToClipboard}
                 >
@@ -225,9 +202,7 @@ export function FooterControls({
                     <Button
                       className={cn(
                         "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                        isDarkMode
-                          ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                          : "hover:bg-gray-200"
+                        "hover:bg-btn-hover hover:text-foreground"
                       )}
                     >
                       <Download className='h-4 w-4 flex-shrink-0' />
@@ -239,17 +214,13 @@ export function FooterControls({
                   align='center'
                   className={cn(
                     "min-w-[8rem] rounded-xl p-1.5",
-                    isDarkMode
-                      ? "bg-[#2C2C2E] text-[#F2F2F7] border-[#3A3A3C]"
-                      : "bg-white border-gray-200"
+                    "bg-card text-foreground border-border"
                   )}
                 >
                   <DropdownMenuItem
                     className={cn(
                       "rounded-lg cursor-pointer flex items-center gap-2.5 px-3 py-2 transition-all duration-150",
-                      isDarkMode
-                        ? "hover:bg-[#3A3A3A] focus:bg-[#3A3A3A] active:bg-[#4A4A4C]"
-                        : "hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
+                      "hover:bg-hover focus:bg-hover active:bg-btn-hover"
                     )}
                     onClick={() => handleSaveAs("PNG")}
                   >
@@ -259,9 +230,7 @@ export function FooterControls({
                   <DropdownMenuItem
                     className={cn(
                       "rounded-lg cursor-pointer flex items-center gap-2.5 px-3 py-2 transition-all duration-150",
-                      isDarkMode
-                        ? "hover:bg-[#3A3A3A] focus:bg-[#3A3A3A] active:bg-[#4A4A4C]"
-                        : "hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
+                      "hover:bg-hover focus:bg-hover active:bg-btn-hover"
                     )}
                     onClick={() => handleSaveAs("JPG")}
                   >
@@ -271,9 +240,7 @@ export function FooterControls({
                   <DropdownMenuItem
                     className={cn(
                       "rounded-lg cursor-pointer flex items-center gap-2.5 px-3 py-2 transition-all duration-150",
-                      isDarkMode
-                        ? "hover:bg-[#3A3A3A] focus:bg-[#3A3A3A] active:bg-[#4A4A4C]"
-                        : "hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
+                      "hover:bg-hover focus:bg-hover active:bg-btn-hover"
                     )}
                     onClick={() => handleSaveAs("PDF")}
                   >
@@ -287,9 +254,7 @@ export function FooterControls({
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    isDarkMode
-                      ? "hover:bg-[#4A4A4C] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-200"
+                    "hover:bg-btn-hover hover:text-foreground"
                   )}
                   onClick={handleUpload}
                   disabled={isUploading}
@@ -313,9 +278,7 @@ export function FooterControls({
             onClick={toggleCollapse}
             className={cn(
               "rounded-b-lg rounded-t-none border-b border-l border-r mb-[-1px] transition-colors",
-              isDarkMode
-                ? "bg-[#2C2C2E] border-[#3A3A3C] hover:bg-[#3A3A3C]"
-                : "bg-white border-gray-200 hover:bg-gray-50"
+              "bg-card border-border hover:bg-hover"
             )}
           >
             {isCollapsed ? (
@@ -337,9 +300,7 @@ export function FooterControls({
             className={cn(
               "w-[420px] min-h-[220px] p-5 rounded-2xl shadow-lg transition-all duration-300 flex flex-col",
               "border border-opacity-10",
-              isDarkMode
-                ? "bg-[#2C2C2E] text-[#F2F2F7] border-white"
-                : "bg-white text-[#111111] border-black"
+              "bg-card text-foreground border-border"
             )}
           >
             <div className='flex justify-between items-start mb-4'>
@@ -362,9 +323,7 @@ export function FooterControls({
                 }}
                 className={cn(
                   "rounded-full p-1.5 transition-colors justify-center",
-                  isDarkMode
-                    ? "hover:bg-[#3A3A3A] text-[#999] hover:text-white"
-                    : "hover:bg-gray-100 text-[#777] hover:text-black"
+                  "hover:bg-hover text-[#999] hover:text-white"
                 )}
                 aria-label='Close'
               >
@@ -377,7 +336,7 @@ export function FooterControls({
                 <div
                   className={cn(
                     "flex items-center rounded-lg overflow-hidden",
-                    isDarkMode ? "bg-[#3A3A3C]" : "bg-gray-100"
+                    "bg-searchbar"
                   )}
                 >
                   <input
@@ -386,9 +345,7 @@ export function FooterControls({
                     value={isUploading ? "Preparing link..." : shareableLink}
                     className={cn(
                       "flex-1 px-3 py-2.5 text-sm border-none outline-none w-full",
-                      isDarkMode
-                        ? "bg-[#3A3A3C] text-white"
-                        : "bg-gray-100 text-gray-800"
+                      "bg-searchbar text-white"
                     )}
                     onClick={(e) => {
                       if (!isUploading) {
@@ -400,7 +357,6 @@ export function FooterControls({
                   {!isUploading && (
                     <CopyButton
                       textToCopy={shareableLink}
-                      isDarkMode={isDarkMode}
                       onCopy={() => toast("Link copied to clipboard!")}
                     />
                   )}
@@ -414,7 +370,7 @@ export function FooterControls({
                   <div
                     className={cn(
                       "h-1.5 rounded-full overflow-hidden bg-opacity-20",
-                      isDarkMode ? "bg-white/20" : "bg-gray-200"
+                      "bg-border"
                     )}
                   >
                     <div
@@ -431,9 +387,7 @@ export function FooterControls({
                 <Button
                   className={cn(
                     "rounded-full px-4 py-2 transition-colors duration-200 flex items-center gap-2",
-                    isDarkMode
-                      ? "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
-                      : "hover:bg-gray-100"
+                    "hover:bg-btn-hover hover:text-foreground"
                   )}
                   onClick={handleCopyLink}
                 >
@@ -452,11 +406,9 @@ export function FooterControls({
 // Copy button component with animation
 function CopyButton({
   textToCopy,
-  isDarkMode,
   onCopy,
 }: {
   textToCopy: string;
-  isDarkMode: boolean;
   onCopy: () => void;
 }) {
   const [copied, setCopied] = useState(false);
@@ -478,9 +430,7 @@ function CopyButton({
         "px-3 py-1 mr-1 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1",
         copied
           ? "bg-green-500/20 text-green-500"
-          : isDarkMode
-          ? "bg-[#4A4A4C] hover:bg-[#5A5A5C] text-white"
-          : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+          : "bg-btn-hover hover:bg-hover text-foreground"
       )}
     >
       {copied ? (

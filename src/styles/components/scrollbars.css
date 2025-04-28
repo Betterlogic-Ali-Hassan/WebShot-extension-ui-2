@@ -1,0 +1,17 @@
+.number-tool-dropdown::-webkit-scrollbar {
+  display: none;
+}
+.number-tool-dropdown {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

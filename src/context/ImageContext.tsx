@@ -8,6 +8,7 @@ import {
   useRef,
   useEffect,
   RefObject,
+  Ref,
 } from "react";
 import { toast } from "react-toastify";
 
@@ -35,7 +36,7 @@ type ImageEditorContextType = {
   premiumFeatureName: string;
   premiumPopupsEnabled: boolean;
   toolbarRef: RefObject<HTMLDivElement | null>;
-  fileInputRef: RefObject<HTMLDivElement | null>;
+  fileInputRef: Ref<HTMLInputElement> | undefined;
 
   // Methods
   handleFileUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;

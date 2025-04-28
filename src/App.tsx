@@ -1,10 +1,16 @@
 import { ScreenshotEditor } from "./components/ScreenShotEditor";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { ImageEditorProvider } from "./context/ImageContext";
 
 function App() {
   return (
-    <main className='min-h-screen bg-[#1C1C1E] text-[#F2F2F7] flex flex-col items-center justify-center p-4'>
-      <ScreenshotEditor />
-    </main>
+    <ThemeProvider>
+      <ImageEditorProvider>
+        <main className='min-h-screen bg-background text-text flex flex-col items-center justify-center p-4'>
+          <ScreenshotEditor />
+        </main>
+      </ImageEditorProvider>
+    </ThemeProvider>
   );
 }
 

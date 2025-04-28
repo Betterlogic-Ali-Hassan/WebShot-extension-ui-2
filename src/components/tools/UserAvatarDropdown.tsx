@@ -11,31 +11,24 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Tooltip from "../ui/toolip";
+import { useImageEditor } from "@/context/ImageContext";
 
 interface UserAvatarDropdownProps {
-  isDarkMode: boolean;
   userName?: string;
   userEmail?: string;
   userAvatar?: string;
   subscriptionPlan?: "Free" | "Pro" | "Team" | "Enterprise";
   renewalDate?: string;
-  onProfileClick?: () => void;
-  onManageUploadsClick?: () => void;
-  onHelpClick?: () => void;
-  onLogoutClick?: () => void;
-  onManagePlanClick?: () => void;
-  toolbarPosition: "top" | "left" | "bottom";
 }
 
 export function UserAvatarDropdown({
-  isDarkMode,
   userName = "John Doe",
   userEmail = "john@example.com",
   userAvatar,
   subscriptionPlan = "Pro",
   renewalDate = "Sep 20, 2025",
-  toolbarPosition,
 }: UserAvatarDropdownProps) {
+  const { toolbarPosition } = useImageEditor();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -127,12 +120,7 @@ export function UserAvatarDropdown({
       <Tooltip id='user-avatar' content={"Profile"}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            "flex items-center justify-center rounded-full w-9 h-9 transition-colors",
-            isDarkMode
-              ? "bg-[#2C2C2E] hover:bg-[#3A3A3C] text-white"
-              : "bg-gray-100 hover:bg-gray-200 text-gray-800"
-          )}
+          className='flex items-center justify-center rounded-full w-9 h-9 transition-colors bg-card bg-btn-hover'
           aria-expanded={isOpen}
           aria-haspopup='true'
         >
@@ -153,10 +141,7 @@ export function UserAvatarDropdown({
         <div
           className={cn(
             "fixed mt-2 w-72 rounded-xl shadow-xl py-3 z-50 border backdrop-blur-lg transform transition-all duration-300 ease-out",
-            "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98",
-            isDarkMode
-              ? "bg-[#1C1C1E]/90 border-[#2C2C2E] text-[#F2F2F7] shadow-[0_8px_30px_rgb(0,0,0,0.25)]"
-              : "bg-white/95 border-gray-200 text-gray-800 shadow-[0_8px_30px_rgba(0,0,0,0.08)]",
+            "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98 bg-background border border-border text-text shadow-sm",
             toolbarPosition === "left"
               ? "left-0 ml-[100px] "
               : toolbarPosition === "bottom"
@@ -172,14 +157,7 @@ export function UserAvatarDropdown({
 
           {/* Subscription Info */}
           <div className='px-4 py-3'>
-            <div
-              className={cn(
-                "rounded-lg overflow-hidden",
-                isDarkMode
-                  ? "bg-gradient-to-br from-[#2C2C2E] to-[#1C1C1E] border border-[#3A3A3C]"
-                  : "bg-gradient-to-br from-gray-50 to-white border border-gray-100 shadow-sm"
-              )}
-            >
+            <div className='rounded-lg overflow-hidden bg-background border border-border'>
               {/* Plan header with gradient accent */}
               <div
                 className={cn(
@@ -217,14 +195,7 @@ export function UserAvatarDropdown({
                       <p className='text-base font-medium flex items-center'>
                         {subscriptionPlan} Plan
                         {subscriptionPlan === "Pro" && (
-                          <span
-                            className={cn(
-                              "ml-2 text-xs px-1.5 py-0.5 rounded-full",
-                              isDarkMode
-                                ? "bg-blue-900/30 text-blue-300"
-                                : "bg-blue-100 text-blue-700"
-                            )}
-                          >
+                          <span className='ml-2 text-xs px-1.5 py-0.5 rounded-full bg-info text-text-primary'>
                             Active
                           </span>
                         )}
@@ -239,12 +210,7 @@ export function UserAvatarDropdown({
                 <div className='flex items-center mt-3 space-x-2'>
                   <button
                     onClick={handleManagePlanClick}
-                    className={cn(
-                      "flex-1 text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200",
-                      isDarkMode
-                        ? "bg-blue-500 hover:bg-blue-400 text-white shadow-sm hover:shadow-md hover:shadow-blue-500/20 hover:scale-[1.02]"
-                        : "bg-blue-600 hover:bg-blue-500 text-white shadow-sm hover:shadow-md hover:shadow-blue-500/20 hover:scale-[1.02]"
-                    )}
+                    className='flex-1 text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-info bg-info-hover'
                   >
                     <CreditCard className='h-4 w-4 mr-2' />
                     Manage Plan
@@ -252,12 +218,7 @@ export function UserAvatarDropdown({
 
                   <button
                     // onClick={() => router.push("/subscription/billing")}
-                    className={cn(
-                      "text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200",
-                      isDarkMode
-                        ? "bg-[#2C2C2E] hover:bg-[#3A3A3C] text-white"
-                        : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                    )}
+                    className='text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-card hover:bg-hover'
                   >
                     <ChevronRight className='h-4 w-4' />
                   </button>
@@ -270,10 +231,7 @@ export function UserAvatarDropdown({
           <div className='py-1'>
             <button
               onClick={handleProfileClick}
-              className={cn(
-                "flex items-center w-full px-5 py-2.5 text-base transition-colors",
-                isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-gray-100"
-              )}
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
             >
               <User className='h-5 w-5 mr-3 opacity-70' />
               <span>Profile Settings</span>
@@ -282,10 +240,7 @@ export function UserAvatarDropdown({
 
             <button
               onClick={handleManageUploadsClick}
-              className={cn(
-                "flex items-center w-full px-5 py-2.5 text-base transition-colors",
-                isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-gray-100"
-              )}
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
             >
               <ImageIcon className='h-5 w-5 mr-3 opacity-70' />
               <span>Manage Uploads</span>
@@ -294,10 +249,7 @@ export function UserAvatarDropdown({
 
             <button
               onClick={handleHelpClick}
-              className={cn(
-                "flex items-center w-full px-5 py-2.5 text-base transition-colors",
-                isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-gray-100"
-              )}
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors'
             >
               <LifeBuoy className='h-5 w-5 mr-3 opacity-70' />
               <span>Help & Support</span>
@@ -308,12 +260,7 @@ export function UserAvatarDropdown({
 
             <button
               onClick={handleLogoutClick}
-              className={cn(
-                "flex items-center w-full px-5 py-2.5 text-base transition-colors",
-                isDarkMode
-                  ? "hover:bg-[#2C2C2E] text-red-400"
-                  : "hover:bg-gray-100 text-red-500"
-              )}
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover text-error'
             >
               <LogOut className='h-5 w-5 mr-3 opacity-70' />
               <span>Log Out</span>

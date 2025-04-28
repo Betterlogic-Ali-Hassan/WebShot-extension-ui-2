@@ -1,0 +1,36 @@
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  * {
+    font-family: "Geist", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  input,
+  button,
+  label {
+    color: var(--text-color);
+  }
+  input,
+  textarea {
+    font-weight: 400 !important;
+  }
+
+  html,
+  body {
+    overflow: hidden;
+  }
+}
+button {
+  cursor: pointer;
+}

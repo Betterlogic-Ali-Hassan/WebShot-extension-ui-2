@@ -8,13 +8,7 @@ import Button from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
-
-interface WatermarkToolPopupProps {
-  position: { top: number; left: number; width: number };
-  isDarkMode: boolean;
-  onClose: () => void;
-  toolbarPosition: "top" | "left" | "bottom";
-}
+import { useImageEditor } from "@/context/ImageContext";
 
 type WatermarkPosition =
   | "Top Left"
@@ -23,12 +17,12 @@ type WatermarkPosition =
   | "Bottom Right"
   | "Center";
 
-export function WatermarkToolPopup({
-  position,
-  isDarkMode,
-  onClose,
-  toolbarPosition,
-}: WatermarkToolPopupProps) {
+export function WatermarkToolPopup() {
+  const {
+    popupPosition: position,
+    toolbarPosition,
+    handleClosePopup: onClose,
+  } = useImageEditor();
   // State for watermark controls
   const [isWatermarkEnabled, setIsWatermarkEnabled] = useState(false);
   const [watermarkImage, setWatermarkImage] = useState<string | null>(null);
@@ -138,8 +132,7 @@ export function WatermarkToolPopup({
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-[#2C2C2E] border border-[#3A3A3C] ",
-        isDarkMode ? "bg-[#2C2C2E] text-white" : "bg-white text-black ",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
         isToolbarBottom && isWatermarkEnabled && "-mt-[150px]",
         isToolbarLeft && isWatermarkEnabled && "-mt-[130px]",
         isToolbarLeft && "ml-[100px]",
@@ -156,26 +149,14 @@ export function WatermarkToolPopup({
       <div className='p-3'>
         {/* Watermark Toggle */}
         <div className='flex items-center justify-between'>
-          <span
-            className={cn(
-              "text-sm font-medium",
-              isDarkMode ? "text-gray-300" : "text-gray-700"
-            )}
-          >
-            Watermark
-          </span>
+          <span className='text-sm font-medium text-text'>Watermark</span>
           <div className='flex items-center gap-2'>
             <Switch
               checked={isWatermarkEnabled}
               onCheckedChange={setIsWatermarkEnabled}
             />
             <Button
-              className={cn(
-                "h-7 w-7 rounded-full ml-1 justify-center",
-                isDarkMode
-                  ? "hover:bg-[#3A3A3C] text-gray-300"
-                  : "hover:bg-gray-100 text-gray-700"
-              )}
+              className='h-7 w-7 rounded-full ml-1 justify-center hover:bg-hover text-text'
               onClick={onClose}
             >
               <X className='h-4 w-4 flex-shrink-0' />
@@ -198,12 +179,7 @@ export function WatermarkToolPopup({
               {!watermarkImage ? (
                 <button
                   onClick={handleUploadClick}
-                  className={cn(
-                    "w-full border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center transition-colors",
-                    isDarkMode
-                      ? "border-gray-700 hover:border-gray-600 text-gray-400"
-                      : "border-gray-300 hover:border-gray-400 text-gray-500"
-                  )}
+                  className='w-full border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center transition-colors border-border/70 hover:border-border text-text/70'
                 >
                   <Upload className='h-6 w-6 mb-2' />
                   <span className='text-sm'>Upload Image</span>
@@ -217,14 +193,7 @@ export function WatermarkToolPopup({
                     style={{ opacity: watermarkOpacity / 100 }}
                   />
                   {imageSize && (
-                    <div
-                      className={cn(
-                        "absolute bottom-2 right-2 px-2 py-1 text-xs rounded-md bg-opacity-70",
-                        isDarkMode
-                          ? "bg-black text-white"
-                          : "bg-white text-black"
-                      )}
-                    >
+                    <div className='absolute bottom-2 right-2 px-2 py-1 text-xs rounded-md bg-background/70 text-text'>
                       {imageSize.width} × {imageSize.height}px
                     </div>
                   )}
@@ -233,12 +202,7 @@ export function WatermarkToolPopup({
                       setWatermarkImage(null);
                       setImageSize(null);
                     }}
-                    className={cn(
-                      "absolute top-1 right-1 h-6 w-6 p-0 rounded-full",
-                      isDarkMode
-                        ? "bg-black/50 hover:bg-black/70"
-                        : "bg-white/70 hover:bg-white/90"
-                    )}
+                    className='absolute top-1 right-1 h-6 w-6 p-0 rounded-full bg-background/70 hover:bg-background/90'
                   >
                     <Trash2 className='h-3 w-3' />
                     <span className='sr-only'>Remove watermark</span>
@@ -251,12 +215,7 @@ export function WatermarkToolPopup({
               <>
                 {/* Position Selector */}
                 <div className='mb-4'>
-                  <label
-                    className={cn(
-                      "block text-sm font-medium mb-1.5",
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    )}
-                  >
+                  <label className='block text-sm font-medium mb-1.5 text-text'>
                     Position
                   </label>
                   <div className='relative' ref={positionDropdownRef}>
@@ -264,37 +223,21 @@ export function WatermarkToolPopup({
                       onClick={() =>
                         setIsPositionDropdownOpen(!isPositionDropdownOpen)
                       }
-                      className={cn(
-                        "flex items-center justify-between w-full px-3 py-2 text-left border rounded-md transition-colors",
-                        isDarkMode
-                          ? "bg-[#2C2C2E] border-[#3A3A3C] hover:border-[#4A4A4C]"
-                          : "bg-white border-gray-200 hover:border-gray-300"
-                      )}
+                      className='flex items-center justify-between w-full px-3 py-2 text-left border rounded-md transition-colors bg-card border-border hover:border-border/80'
                     >
                       <span>{watermarkPosition}</span>
                       <ChevronDown className='h-4 w-4 opacity-50' />
                     </button>
 
                     {isPositionDropdownOpen && (
-                      <div
-                        className={cn(
-                          "absolute z-10 w-full mt-1 rounded-md shadow-lg",
-                          isDarkMode
-                            ? "bg-[#2C2C2E] border border-[#3A3A3C]"
-                            : "bg-white border border-gray-200"
-                        )}
-                      >
+                      <div className='absolute z-10 w-full mt-1 rounded-md shadow-lg bg-card border border-border'>
                         <div className='py-1'>
                           {positionOptions.map((option) => (
                             <button
                               key={option}
                               className={cn(
-                                "block w-full px-3 py-2 text-left text-sm transition-colors",
-                                isDarkMode
-                                  ? "hover:bg-[#3A3A3C] text-gray-300"
-                                  : "hover:bg-gray-100 text-gray-700",
-                                watermarkPosition === option &&
-                                  (isDarkMode ? "bg-[#3A3A3C]" : "bg-gray-100")
+                                "block w-full px-3 py-2 text-left text-sm transition-colors hover:bg-hover text-text",
+                                watermarkPosition === option && "bg-hover"
                               )}
                               onClick={() => {
                                 setWatermarkPosition(option);
@@ -313,22 +256,10 @@ export function WatermarkToolPopup({
                 {/* Size Slider */}
                 <div className='mb-4'>
                   <div className='flex items-center justify-between mb-1.5'>
-                    <label
-                      className={cn(
-                        "text-sm font-medium",
-                        isDarkMode ? "text-[#f3f4f6]" : "text-[#1f2937]"
-                      )}
-                    >
+                    <label className='text-sm font-medium text-text'>
                       Size
                     </label>
-                    <span
-                      className={cn(
-                        "text-xs font-medium px-2 py-0.5 rounded-full",
-                        isDarkMode
-                          ? "bg-[#374151] text-[#f3f4f6]"
-                          : "bg-[#e5e7eb] text-[#1f2937]"
-                      )}
-                    >
+                    <span className='text-xs font-medium px-2 py-0.5 rounded-full bg-searchbar text-text'>
                       {watermarkSize}%
                     </span>
                   </div>
@@ -341,36 +272,11 @@ export function WatermarkToolPopup({
                       onValueChange={handleSizeChange}
                     />
                     <div className='absolute w-full flex justify-between px-1 mt-1.5'>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
                     </div>
                   </div>
                 </div>
@@ -378,22 +284,10 @@ export function WatermarkToolPopup({
                 {/* Opacity Slider */}
                 <div className='mb-4'>
                   <div className='flex items-center justify-between mb-1.5'>
-                    <label
-                      className={cn(
-                        "text-sm font-medium",
-                        isDarkMode ? "text-[#f3f4f6]" : "text-[#1f2937]"
-                      )}
-                    >
+                    <label className='text-sm font-medium text-text'>
                       Opacity
                     </label>
-                    <span
-                      className={cn(
-                        "text-xs font-medium px-2 py-0.5 rounded-full",
-                        isDarkMode
-                          ? "bg-[#374151] text-[#f3f4f6]"
-                          : "bg-[#e5e7eb] text-[#1f2937]"
-                      )}
-                    >
+                    <span className='text-xs font-medium px-2 py-0.5 rounded-full bg-searchbar text-text'>
                       {watermarkOpacity}%
                     </span>
                   </div>
@@ -406,36 +300,11 @@ export function WatermarkToolPopup({
                       onValueChange={handleOpacityChange}
                     />
                     <div className='absolute w-full flex justify-between px-1 mt-1.5'>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
-                      <div
-                        className={cn(
-                          "w-0.5 h-1",
-                          isDarkMode ? "bg-[#6b7280]" : "bg-[#9ca3af]"
-                        )}
-                      ></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
+                      <div className='w-0.5 h-1 bg-border'></div>
                     </div>
                   </div>
                 </div>

@@ -3,23 +3,16 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { useImageEditor } from "@/context/ImageContext";
 
 interface ImageViewerProps {
-  imageUrl: string | null;
-  isDarkMode: boolean;
   disableWheelZoom?: boolean;
   showZoomControls?: boolean;
   fitToContainer?: boolean;
 }
 
-export function ImageViewer({
-  imageUrl,
-  isDarkMode,
-  //   disableWheelZoom = true,
-  showZoomControls = true,
-}: //   fitToContainer = true,
-ImageViewerProps) {
-  // Zoom state
+export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
+  const { uploadedImage: imageUrl } = useImageEditor();
   const [zoomLevel, setZoomLevel] = useState(1);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
@@ -43,23 +36,10 @@ ImageViewerProps) {
     setZoomLevel(initialScale);
   };
 
+  // This is the function that handles the expand/collapse functionality
   const toggleHeightExpand = () => {
     setIsHeightExpanded((prev) => !prev);
   };
-
-  // Handle mouse wheel zoom
-  //   const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
-  //     if (disableWheelZoom) return;
-
-  //     if (e.deltaY < 0) {
-  //       setZoomLevel((prev) => Math.min(prev + 0.1, 5));
-  //     } else {
-  //       setZoomLevel((prev) => Math.max(prev - 0.1, 0.1));
-  //     }
-
-  //     // Prevent default scrolling behavior when zooming
-  //     e.preventDefault();
-  //   };
 
   // Update container and image size on load and resize
   useEffect(() => {
@@ -119,7 +99,7 @@ ImageViewerProps) {
       <div
         className={cn(
           "w-full h-full rounded-xl flex items-center justify-center",
-          isDarkMode ? "bg-[#2C2C2E]" : "bg-[#f4f4f4]"
+          "bg-card"
         )}
       >
         <p className='text-center text-gray-500'>
@@ -140,7 +120,7 @@ ImageViewerProps) {
           "overflow-auto rounded-xl p-0 w-full transition-all duration-500 ease-in-out",
           isHeightExpanded ? "h-[calc(100vh-100px)]" : "h-full",
           isImageSmall ? "flex items-center justify-center" : "block",
-          isDarkMode ? "bg-[#2C2C2E]" : "bg-[#f4f4f4]"
+          "bg-card"
         )}
       >
         <img
@@ -169,9 +149,7 @@ ImageViewerProps) {
               onClick={toggleHeightExpand}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white hover:bg-[#4A4A4C]"
-                  : "bg-white text-black hover:bg-gray-100"
+                "bg-searchbar text-foreground hover:bg-btn-hover"
               )}
               aria-label={isHeightExpanded ? "Collapse view" : "Expand view"}
             >
@@ -208,23 +186,20 @@ ImageViewerProps) {
             <div
               className={cn(
                 "absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white"
-                  : "bg-white text-black shadow-md"
+                "bg-searchbar text-foreground shadow-md"
               )}
             >
               {isHeightExpanded ? "Collapse view" : "Expand view"}
             </div>
           </div>
 
+          {/* Other zoom controls */}
           <div className='group relative'>
             <button
               onClick={zoomIn}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white hover:bg-[#4A4A4C]"
-                  : "bg-white text-black hover:bg-gray-100"
+                "bg-searchbar text-foreground hover:bg-btn-hover"
               )}
               aria-label='Zoom in'
             >
@@ -233,9 +208,7 @@ ImageViewerProps) {
             <div
               className={cn(
                 "absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white"
-                  : "bg-white text-black shadow-md"
+                "bg-searchbar text-foreground shadow-md"
               )}
             >
               Zoom in
@@ -247,9 +220,7 @@ ImageViewerProps) {
               onClick={zoomOut}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white hover:bg-[#4A4A4C]"
-                  : "bg-white text-black hover:bg-gray-100"
+                "bg-searchbar text-foreground hover:bg-btn-hover"
               )}
               aria-label='Zoom out'
             >
@@ -258,9 +229,7 @@ ImageViewerProps) {
             <div
               className={cn(
                 "absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white"
-                  : "bg-white text-black shadow-md"
+                "bg-searchbar text-foreground shadow-md"
               )}
             >
               Zoom out
@@ -272,9 +241,7 @@ ImageViewerProps) {
               onClick={resetZoom}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white hover:bg-[#4A4A4C]"
-                  : "bg-white text-black hover:bg-gray-100",
+                "bg-searchbar text-foreground hover:bg-btn-hover",
                 zoomLevel === initialScale ? "opacity-50" : "opacity-100"
               )}
               aria-label='Reset zoom'
@@ -285,9 +252,7 @@ ImageViewerProps) {
             <div
               className={cn(
                 "absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-white"
-                  : "bg-white text-black shadow-md"
+                "bg-searchbar text-foreground shadow-md"
               )}
             >
               Reset zoom
@@ -298,9 +263,7 @@ ImageViewerProps) {
           <div
             className={cn(
               "px-2 py-1 rounded-md text-xs font-medium text-center",
-              isDarkMode
-                ? "bg-[#3A3A3C] text-white"
-                : "bg-white text-black shadow-lg"
+              "bg-searchbar text-foreground shadow-lg"
             )}
           >
             {Math.round(zoomLevel * 100)}%

@@ -5,20 +5,14 @@ import { X } from "lucide-react";
 import Button from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
-interface BlurToolPopupProps {
-  position: { top: number; left: number; width: number };
-  isDarkMode: boolean;
-  onClose: () => void;
-  toolbarPosition: "top" | "left" | "bottom";
-}
-
-export function BlurToolPopup({
-  position,
-  isDarkMode,
-  onClose,
-  toolbarPosition,
-}: BlurToolPopupProps) {
+export function BlurToolPopup() {
+  const {
+    popupPosition: position,
+    handleClosePopup: onClose,
+    toolbarPosition,
+  } = useImageEditor();
   const [blurIntensity, setBlurIntensity] = useState(5);
   const popupRef = useRef<HTMLDivElement>(null);
   const isToolbarLeft = toolbarPosition === "left";
@@ -49,8 +43,7 @@ export function BlurToolPopup({
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-[#2C2C2E] border border-[#3A3A3C]",
-        isDarkMode ? "bg-[#2C2C2E] text-white" : "bg-white text-black",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
         isToolbarBottom && "-mt-6",
         isToolbarLeft && "ml-[100px]"
       )}
@@ -83,9 +76,7 @@ export function BlurToolPopup({
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded h-6 flex items-center",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-[#f3f4f6]"
-                  : "bg-[#e5e7eb] text-[#1f2937]"
+                "bg-hover"
               )}
             >
               Low
@@ -104,9 +95,7 @@ export function BlurToolPopup({
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded h-6 flex items-center",
-                isDarkMode
-                  ? "bg-[#3A3A3C] text-[#f3f4f6]"
-                  : "bg-[#e5e7eb] text-[#1f2937]"
+                "bg-hover"
               )}
             >
               High
@@ -117,9 +106,7 @@ export function BlurToolPopup({
           <div
             className={cn(
               "min-w-[40px] text-center px-2 py-1 rounded text-sm",
-              isDarkMode
-                ? "bg-[#3A3A3C] text-[#f3f4f6]"
-                : "bg-[#e5e7eb] text-[#1f2937]"
+              "bg-hover"
             )}
           >
             {blurIntensity}
@@ -129,9 +116,7 @@ export function BlurToolPopup({
           <Button
             className={cn(
               "h-8 w-8 rounded-full transition-colors duration-200 justify-center",
-              isDarkMode
-                ? "hover:bg-[#3A3A3A] hover:text-[#F5F5F5]"
-                : "hover:bg-gray-100",
+              "hover:bg-hover hover:text-text",
               isToolbarLeft && "absolute top-0 right-0.5"
             )}
             onClick={onClose}

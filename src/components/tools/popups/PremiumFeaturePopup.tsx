@@ -3,48 +3,12 @@
 import { X, Check, CreditCard, Sparkles } from "lucide-react";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { plans } from "@/constant/PlansData";
+import { useImageEditor } from "@/context/ImageContext";
 
-interface PremiumFeaturePopupProps {
-  position: { top: number; left: number; width: number };
-  isDarkMode: boolean;
-  onClose: () => void;
-  featureName: string;
-}
-
-export function PremiumFeaturePopup({
-  //   position,
-  isDarkMode,
-  onClose,
-  featureName,
-}: PremiumFeaturePopupProps) {
-  // Plans data
-  const plans = [
-    {
-      name: "Monthly",
-      price: "$9.99",
-      period: "per month",
-      features: [
-        "All premium features",
-        "Unlimited exports",
-        "Cloud storage",
-        "Priority support",
-      ],
-      popular: false,
-    },
-    {
-      name: "Yearly",
-      price: "$79.99",
-      period: "per year",
-      features: [
-        "All premium features",
-        "Unlimited exports",
-        "Cloud storage",
-        "Priority support",
-        "Save 33%",
-      ],
-      popular: true,
-    },
-  ];
+export function PremiumFeaturePopup() {
+  const { handleClosePremiumPopup: onClose, premiumFeatureName: featureName } =
+    useImageEditor();
 
   return (
     <div
@@ -56,26 +20,20 @@ export function PremiumFeaturePopup({
       <div
         className={cn(
           "w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200",
-          isDarkMode
-            ? "bg-[#1C1C1E] border border-[#3A3A3C]"
-            : "bg-white border border-gray-200"
+          "bg-background border-border"
         )}
       >
         {/* Header */}
         <div
           className={cn(
             "relative p-6 pb-8 text-center",
-            isDarkMode
-              ? "bg-gradient-to-b from-[#2C2C2E] to-[#1C1C1E]"
-              : "bg-gradient-to-b from-gray-50 to-white"
+            "bg-gradient-to-b from-card to-background"
           )}
         >
           <Button
             className={cn(
               "absolute top-3 right-3 h-8 w-8 rounded-full justify-center",
-              isDarkMode
-                ? "hover:bg-[#3A3A3C] text-gray-400"
-                : "hover:bg-gray-100 text-gray-500"
+              "hover:bg-hover text-text"
             )}
             onClick={onClose}
           >
@@ -87,21 +45,11 @@ export function PremiumFeaturePopup({
             <Sparkles className='h-6 w-6 text-amber-600' />
           </div>
 
-          <h2
-            className={cn(
-              "text-xl font-bold mb-2",
-              isDarkMode ? "text-white" : "text-gray-900"
-            )}
-          >
+          <h2 className={cn("text-xl font-bold mb-2", "text-foreground")}>
             Unlock Premium Features
           </h2>
 
-          <p
-            className={cn(
-              "text-sm",
-              isDarkMode ? "text-gray-300" : "text-gray-600"
-            )}
-          >
+          <p className={cn("text-sm", "text-text")}>
             <span className='font-medium text-amber-500'>{featureName}</span> is
             a premium feature. Upgrade to access all premium tools and enhance
             your screenshots.
@@ -117,12 +65,8 @@ export function PremiumFeaturePopup({
                 className={cn(
                   "rounded-xl p-4 border relative",
                   plan.popular
-                    ? isDarkMode
-                      ? "border-amber-500/50 bg-amber-500/10"
-                      : "border-amber-500/50 bg-amber-50"
-                    : isDarkMode
-                    ? "border-[#3A3A3C] bg-[#2C2C2E]"
-                    : "border-gray-200 bg-gray-50"
+                    ? "border-amber-500/50 bg-amber-500/10"
+                    : "border-border bg-card"
                 )}
               >
                 {plan.popular && (
@@ -132,29 +76,12 @@ export function PremiumFeaturePopup({
                 )}
 
                 <div className='text-center mb-4 pt-2'>
-                  <h3
-                    className={cn(
-                      "font-medium",
-                      isDarkMode ? "text-gray-200" : "text-gray-800"
-                    )}
-                  >
-                    {plan.name}
-                  </h3>
+                  <h3 className='font-medium text-text-primary'>{plan.name}</h3>
                   <div className='mt-1'>
-                    <span
-                      className={cn(
-                        "text-xl font-bold",
-                        isDarkMode ? "text-white" : "text-gray-900"
-                      )}
-                    >
+                    <span className='text-xl font-bold text-foreground'>
                       {plan.price}
                     </span>
-                    <span
-                      className={cn(
-                        "text-xs ml-1",
-                        isDarkMode ? "text-gray-400" : "text-gray-500"
-                      )}
-                    >
+                    <span className='text-xs ml-1 text-text'>
                       {plan.period}
                     </span>
                   </div>
@@ -166,20 +93,10 @@ export function PremiumFeaturePopup({
                       <Check
                         className={cn(
                           "h-3.5 w-3.5 mr-2 flex-shrink-0",
-                          plan.popular
-                            ? "text-amber-500"
-                            : isDarkMode
-                            ? "text-gray-400"
-                            : "text-gray-500"
+                          plan.popular ? "text-amber-500" : "text-text"
                         )}
                       />
-                      <span
-                        className={
-                          isDarkMode ? "text-gray-300" : "text-gray-600"
-                        }
-                      >
-                        {feature}
-                      </span>
+                      <span className='text-text'>{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -189,9 +106,7 @@ export function PremiumFeaturePopup({
                     "w-full text-xs h-8",
                     plan.popular
                       ? "bg-amber-500 hover:bg-amber-600 text-white"
-                      : isDarkMode
-                      ? "bg-[#3A3A3C] hover:bg-[#4A4A4C] text-white"
-                      : "bg-gray-200 hover:bg-gray-300 text-gray-800"
+                      : "bg-searchbar hover:bg-btn-hover text-foreground"
                   )}
                 >
                   <CreditCard className='h-3.5 w-3.5 mr-1.5' />
@@ -202,12 +117,7 @@ export function PremiumFeaturePopup({
           </div>
 
           <div className='mt-6 text-center'>
-            <p
-              className={cn(
-                "text-xs",
-                isDarkMode ? "text-gray-400" : "text-gray-500"
-              )}
-            >
+            <p className={cn("text-xs", "text-text")}>
               All plans include a 7-day free trial. Cancel anytime.
             </p>
           </div>

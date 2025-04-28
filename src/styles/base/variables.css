@@ -1,0 +1,80 @@
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background-color);
+  --color-text: var(--text-color);
+  --color-card: var(--card-color);
+  --color-border: var(--border-color);
+  --color-text-primary: var(--text-primary);
+  --color-foreground: var(--text-foreground);
+  --color-searchbar: var(--search-bar);
+  --color-hover: var(--hover-color);
+  --color-btn-hover: var(--btn-hover);
+  --color-switch-enabled-bg: var(--switch-enabled-bg-color);
+  --color-switch-disabled-bg: var(--switch-disabled-bg-color);
+  --color-info: var(--info-color);
+  --color-info-hover: var(--info-hover);
+  --color-error: var(--error-color);
+}
+
+:root {
+  --background-color: #ffffff; /* Pure white background */
+  --card-color: #f6f7f8; /* Light gray for cards */
+  --text-color: #1c1c1c; /* Dark text for readability */
+  --text-foreground: rgba(28, 28, 28, 0.8); /* Subtle foreground emphasis */
+  --text-primary: #fff; /* Primary text color */
+  --border-color: #e4e6e8; /* Soft light gray borders */
+  --search-bar: #f6f7f8;
+
+  --radius: 0.5rem; /* Rounded corners */
+
+  --btn-hover: #dbeeff; /* Light blue hover for buttons */
+  --hover-color: #f0f2f5; /* Subtle hover effect */
+
+  --switch-enabled-bg-color: #000;
+  --switch-disabled-bg-color: #dae0e6;
+
+  --info-color: #155dfc;
+  --info-hover: #2b7fff;
+  --error-color: #fb2c36;
+}
+[data-theme="light"] {
+  --background-color: #ffffff; /* Pure white background */
+  --card-color: #f6f7f8; /* Light gray for cards */
+  --text-color: #1c1c1c; /* Dark text for readability */
+  --text-foreground: rgba(28, 28, 28, 0.8); /* Subtle foreground emphasis */
+  --text-primary: #fff; /* Primary text color */
+  --border-color: #e4e6e8; /* Soft light gray borders */
+  --search-bar: #f6f7f8;
+
+  --radius: 0.5rem; /* Rounded corners */
+
+  --btn-hover: #dbeeff; /* Light blue hover for buttons */
+  --hover-color: #dae0e6; /* Subtle hover effect */
+
+  --switch-enabled-bg-color: #000;
+  --switch-disabled-bg-color: #dae0e6;
+
+  --info-color: #155dfc;
+  --info-hover: #2b7fff;
+  --error-color: #fb2c36;
+}
+[data-theme="dark"] {
+  --search-bar: #171c1f;
+  --text-primary: #fff; /* Primary text color */
+  --background-color: #000;
+  --card-color: #171c1f;
+  --text-color: #ffff;
+  --text-foreground: #d4d4d4;
+  --btn-hover: #2a3236;
+  --switch-enabled-bg-color: #fff;
+  --switch-disabled-bg-color: #333d42;
+  --switch-disabled-color: #fff;
+  --border-color: #333;
+  --hover-color: #2a3236;
+  --info-hover: #51a2ff;
+  --info-color: #2b7fff;
+  --error-color: #ff6467;
+}
