@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import Tooltip from "../ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
+import { Link } from "react-router-dom";
 
 interface UserAvatarDropdownProps {
   userName?: string;
@@ -234,7 +235,8 @@ export function UserAvatarDropdown({
 
           {/* Menu Items */}
           <nav className='py-1' aria-label='User menu'>
-            <button
+            <Link
+              to={"/profile"}
               onClick={() => handleMenuAction("profile")}
               className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
               role='menuitem'
@@ -242,7 +244,7 @@ export function UserAvatarDropdown({
               <User className='h-5 w-5 mr-3 opacity-70' />
               <span>Profile Settings</span>
               <ChevronRight className='h-5 w-5 ml-auto opacity-50' />
-            </button>
+            </Link>
 
             <button
               onClick={() => handleMenuAction("uploads")}
