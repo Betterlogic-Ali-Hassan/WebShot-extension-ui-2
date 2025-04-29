@@ -103,10 +103,10 @@ export function PremiumFeaturePopup() {
 
                 <Button
                   className={cn(
-                    "w-full text-xs h-8",
+                    "w-full text-xs h-8 justify-center",
                     plan.popular
                       ? "bg-amber-500 hover:bg-amber-600 text-white"
-                      : "bg-searchbar hover:bg-btn-hover text-foreground"
+                      : "bg-background hover:bg-btn-hover text-foreground"
                   )}
                 >
                   <CreditCard className='h-3.5 w-3.5 mr-1.5' />

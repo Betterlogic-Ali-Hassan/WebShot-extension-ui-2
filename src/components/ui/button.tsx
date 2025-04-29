@@ -28,7 +28,7 @@ const Button = ({
       disabled={disabled}
       title={title}
       className={cn(
-        "rounded  cursor-pointer  px-3 py-2 text-sm font-semibold text-text  disabled:cursor-not-allowed whitespace-nowrap flex items-center",
+        "rounded-md  cursor-pointer  px-3 py-2 text-sm font-semibold text-text  disabled:cursor-not-allowed whitespace-nowrap flex items-center",
         className
       )}
       onClick={onClick}

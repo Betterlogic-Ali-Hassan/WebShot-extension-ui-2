@@ -6,6 +6,9 @@ import ProfilePage from "./pages/ProfilePage"; // Assume ye path sahi hai
 import { ToastContainer } from "react-toastify";
 import SubscriptionPage from "./pages/SubscriptionPage";
 import SupportPage from "./pages/SupportPage";
+import Billing from "./components/subscription/billing/Billing";
+import { ModalProvider } from "./context/ModalsContext";
+import { ScreenShotProvider } from "./context/ScreenShotContext";
 
 function App() {
   return (
@@ -20,14 +23,19 @@ function App() {
         theme='dark'
       />
       <ImageEditorProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/subscription' element={<SubscriptionPage />} />
-            <Route path='/support' element={<SupportPage />} />
-          </Routes>
-        </BrowserRouter>
+        <ModalProvider>
+          <ScreenShotProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/profile' element={<ProfilePage />} />
+                <Route path='/subscription' element={<SubscriptionPage />} />
+                <Route path='/support' element={<SupportPage />} />
+                <Route path='/billing' element={<Billing />} />
+              </Routes>
+            </BrowserRouter>
+          </ScreenShotProvider>
+        </ModalProvider>
       </ImageEditorProvider>
     </ThemeProvider>
   );

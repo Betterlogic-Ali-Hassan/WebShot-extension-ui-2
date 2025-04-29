@@ -1,0 +1,5 @@
+@layer base {
+  .input {
+    @apply block w-full rounded-none rounded-l !bg-searchbar focus:ring-card focus:ring-2 text-sm text-text font-medium border border-border py-1.5 px-3 outline-none h-10 placeholder:text-[#777];
+  }
+}

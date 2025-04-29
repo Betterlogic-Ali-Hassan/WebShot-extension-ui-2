@@ -1,0 +1,1 @@
+export type folder =  { id: string, name: string, parent: null | string }

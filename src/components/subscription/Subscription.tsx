@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSubscriptionData } from "@/hooks/useSubscriptionHook";
-import { PaymentFormData, Plan, ReceiptData } from "@/types/Plan";
+import { Plan, ReceiptData } from "@/types/Plan";
 import { CurrentPlanCard } from "./CurrentPlanCard";
 import { UsageStatistics } from "./UsageStatistics";
 import { PaymentMethodCard } from "./PaymentMethodCard";
@@ -13,6 +13,7 @@ import { UpdatePaymentModal } from "./modal/UpdatePaymentModal";
 import { PlanChangeModal } from "./modal/PlanChangeModal";
 import { ReceiptModal } from "./modal/ReceiptModal";
 import Header from "./Header";
+import { useModal } from "@/context/ModalsContext";
 
 export function Subscription() {
   const {
@@ -23,18 +24,26 @@ export function Subscription() {
     billingHistory,
     plans,
     handlePlanChange,
-    handlePaymentUpdate,
     confirmPlanChange,
   } = useSubscriptionData();
 
   // State for modals
-  const [showCancelModal, setShowCancelModal] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [showPlanModal, setShowPlanModal] = useState(false);
-  const [showReceiptModal, setShowReceiptModal] = useState(false);
+  const {
+    showCancelModal,
+    setShowCancelModal,
+    showPaymentModal,
+    setShowPaymentModal,
+    showPlanModal,
+    setShowPlanModal,
+    showReceiptModal,
+    setShowReceiptModal,
+    setIsProcessing,
+    isProcessing,
+    handlePaymentSuccess,
+    onPaymentSubmit,
+  } = useModal();
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const [receiptData, setReceiptData] = useState<ReceiptData | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [billingPeriod, setBillingPeriod] = useState("monthly");
 
   // Handle plan selection
@@ -54,12 +63,6 @@ export function Subscription() {
     }
   };
 
-  // Handle payment success
-  const handlePaymentSuccess = () => {
-    setShowPaymentModal(false);
-    setShowPlanModal(true);
-  };
-
   // Handle plan confirmation
   const onConfirmPlan = async () => {
     if (!selectedPlan) return;
@@ -72,17 +75,6 @@ export function Subscription() {
         setShowPlanModal(false);
         setShowReceiptModal(true);
       }
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  // Handle payment form submission
-  const onPaymentSubmit = async (formData: PaymentFormData) => {
-    setIsProcessing(true);
-    try {
-      await handlePaymentUpdate(formData);
-      handlePaymentSuccess();
     } finally {
       setIsProcessing(false);
     }

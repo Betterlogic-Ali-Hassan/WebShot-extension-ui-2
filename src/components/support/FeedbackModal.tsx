@@ -35,7 +35,7 @@ export function FeedbackModal({ onClose }: FeedbackModalProps) {
   };
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50  bg-opacity-50 animate-in fade-in duration-300'>
+    <div className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200'>
       <div className='w-full max-w-md rounded-xl shadow-xl animate-in zoom-in-95 duration-300 bg-background border border-border'>
         <div className='flex items-center justify-between p-6 border-b border-border'>
           <h3 className='text-xl font-semibold text-text'>Submit Feedback</h3>

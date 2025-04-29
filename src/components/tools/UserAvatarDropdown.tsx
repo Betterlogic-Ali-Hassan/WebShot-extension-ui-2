@@ -224,7 +224,7 @@ export function UserAvatarDropdown({
                   </button>
 
                   <button
-                    onClick={() => handleMenuAction("billing")}
+                    onClick={() => handleMenuAction("/billing")}
                     className='text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-card hover:bg-hover'
                     aria-label='View billing details'
                   >
