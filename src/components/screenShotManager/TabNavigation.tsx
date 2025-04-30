@@ -4,8 +4,8 @@ import { FolderOpen, Trash2 } from "lucide-react";
 const TabNavigation = () => {
   const { screenshots, activeTab, setActiveTab } = useScreenShot();
   return (
-    <div className='mb-8'>
-      <div className='flex items-center gap-1 p-1 rounded-lg max-w-md transition-all duration-300  bg-card/50 text-text'>
+    <div className='mb-8 mt-4'>
+      <div className='flex items-center gap-1 p-1 rounded-lg max-w-md transition-all duration-300  bg-hover/25 text-text'>
         <button
           onClick={() => setActiveTab("all")}
           className={cn(

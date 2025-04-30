@@ -202,9 +202,9 @@ export function WatermarkToolPopup() {
                       setWatermarkImage(null);
                       setImageSize(null);
                     }}
-                    className='absolute top-1 right-1 h-6 w-6 p-0 rounded-full bg-background/70 hover:bg-background/90'
+                    className='absolute top-1 right-1 h-8 w-8 p-0 rounded-full bg-background/70  justify-center hover:bg-hover'
                   >
-                    <Trash2 className='h-3 w-3' />
+                    <Trash2 className='h-4 w-4 flex-shrink-0' />
                     <span className='sr-only'>Remove watermark</span>
                   </Button>
                 </div>

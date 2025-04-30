@@ -2,14 +2,20 @@
 
 import { Scissors, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
-interface CropNotificationProps {
-  onClose?: () => void;
-}
-
-export function CropNotification({ onClose }: CropNotificationProps) {
+export function CropNotification() {
+  const [showNotification, setShowNotification] = useState(true);
+  const onClose = () => {
+    setShowNotification(false);
+  };
   return (
-    <div className='fixed bottom-32 left-1/2 transform -translate-x-1/2 z-20'>
+    <div
+      className={cn(
+        "fixed bottom-32 left-1/2 transform -translate-x-1/2 z-20 hidden",
+        showNotification && "block"
+      )}
+    >
       <div className='flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition-all duration-300 bg-background border border-border text-text'>
         <Scissors className='h-4 w-4' />
         <p className='text-sm'>

@@ -4,3 +4,8 @@
 @import "./styles/base/reset.css";
 @import "./styles/components/scrollbars.css";
 @import "./styles/components/inputs.css";
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

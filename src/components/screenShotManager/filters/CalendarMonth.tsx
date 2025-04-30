@@ -39,7 +39,7 @@ export const CalendarMonth = ({ month, year, onNavigate }: Props) => {
         key={day}
         onClick={() => onSelectDate(formattedDate)}
         className={cn(
-          "p-2 rounded-lg transition-all duration-200 w-full bg-hover",
+          "p-2 rounded-lg transition-all duration-200 w-full hover:bg-border",
           isSelected
             ? "bg-info text-text-primary"
             : isWithinRange && "bg-hover",

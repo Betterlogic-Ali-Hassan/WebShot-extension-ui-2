@@ -12,7 +12,7 @@ import { FooterControls } from "./FooterControl";
 import { CropNotification } from "./CropNotification";
 
 // Header controls
-import { ScreenshotManagerButton } from "./ScreenshotManagerButton";
+
 import { UserAvatarDropdown } from "./tools/UserAvatarDropdown";
 import { SettingsButton } from "./SettingButton";
 
@@ -91,7 +91,6 @@ export function ScreenshotEditor() {
       <EditorToolbar
         settingsButton={
           <>
-            <ScreenshotManagerButton />
             <UserAvatarDropdown
               userName='Alex Johnson'
               userEmail='alex@example.com'

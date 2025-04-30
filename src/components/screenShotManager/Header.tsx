@@ -61,7 +61,8 @@ const Header = () => {
                 onClick={() => setIsMultiSelectMode(!isMultiSelectMode)}
                 className={cn(
                   "p-2 rounded-full transition-all duration-200 hover:bg-hover",
-                  isMultiSelectMode && "bg-info text-text-primary"
+                  isMultiSelectMode &&
+                    "bg-info text-text-primary hover:bg-info-hover"
                 )}
                 title='Multi-select mode'
               >

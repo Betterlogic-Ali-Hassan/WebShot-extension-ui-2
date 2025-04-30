@@ -26,7 +26,7 @@ const MultiSelectBar = () => {
 
       <button
         onClick={() => setIsDeleteConfirmationOpen(true)}
-        className='flex items-center space-x-1 px-3 py-1.5 rounded-full text-sm transition-all duration-200 bg-error/40 text-error'
+        className='flex items-center space-x-1 px-3 py-1.5 rounded-full text-sm transition-all duration-200 bg-error hover:bg-error/80 text-text-primary'
       >
         <Trash2 size={14} className='mr-1' />
         <span>Delete</span>

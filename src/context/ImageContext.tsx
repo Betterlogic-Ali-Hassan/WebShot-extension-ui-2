@@ -155,7 +155,7 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   const [premiumFeatureName, setPremiumFeatureName] = useState("");
 
   // Add a new state variable for premium popup toggle after the existing state declarations
-  const [premiumPopupsEnabled, setPremiumPopupsEnabled] = useState(true);
+  const [premiumPopupsEnabled, setPremiumPopupsEnabled] = useState(false);
 
   // Handle file upload
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

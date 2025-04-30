@@ -79,15 +79,15 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({
               handleToggleScreenshotSelection(screenshot.id);
             }}
             className={cn(
-              "transition-all duration-200 bg-text/30 backdrop-blur-sm text-card hover:bg-text/40",
+              "transition-all duration-200 bg-background backdrop-blur-sm border  text-card hover:bg-border",
               selectedScreenshots.includes(screenshot.id) &&
-                "bg-info text-text-primary"
+                "bg-info text-text-primary hover:bg-info-hover"
             )}
           >
             {selectedScreenshots.includes(screenshot.id) ? (
-              <CheckSquare size={14} />
+              <CheckSquare size={18} />
             ) : (
-              <Square size={14} />
+              <Square size={18} />
             )}
           </button>
         </div>

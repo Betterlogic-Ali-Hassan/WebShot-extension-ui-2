@@ -10,7 +10,7 @@ import Billing from "./components/subscription/billing/Billing";
 import { ModalProvider } from "./context/ModalsContext";
 import { ScreenShotProvider } from "./context/ScreenShotContext";
 import ScreenShotManager from "./components/screenShotManager/ScreenShotManager";
-
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <ThemeProvider>

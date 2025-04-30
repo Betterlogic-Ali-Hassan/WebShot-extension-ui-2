@@ -27,7 +27,7 @@ const BreadCrumb = () => {
     setCurrentFolder(folderId);
   };
   return (
-    <div className='flex items-center space-x-2 mb-6'>
+    <div className='flex items-center space-x-2 mb-6 mt-4'>
       {getBreadcrumbPath().map((folder, index) => (
         <div key={folder.id} className='flex items-center'>
           {index > 0 && (

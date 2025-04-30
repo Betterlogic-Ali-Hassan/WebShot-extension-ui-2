@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import Tooltip from "../ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface UserAvatarDropdownProps {
   userName?: string;
@@ -136,14 +136,15 @@ export function UserAvatarDropdown({
   };
 
   const planStyles = getPlanStyles();
-
+  const location = useLocation();
+  const path = location.pathname;
   return (
     <div ref={dropdownRef}>
       {/* Avatar Button */}
       <Tooltip id='user-avatar' content='Profile'>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className='flex items-center justify-center rounded-full w-9 h-9 transition-colors bg-card hover:bg-btn-hover'
+          className='flex items-center justify-center rounded-full w-9 h-9 transition-colors bg-card hover:bg-hover'
           aria-expanded={isOpen}
           aria-haspopup='true'
           aria-label='User profile menu'
@@ -164,9 +165,10 @@ export function UserAvatarDropdown({
       {isOpen && (
         <div
           className={cn(
-            "fixed mt-2 w-72 rounded-xl shadow-xl py-3 z-50 border backdrop-blur-lg",
-            "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98 bg-background/80 border-border text-text",
-            getDropdownPosition()
+            "fixed mt-2 w-72 rounded-xl shadow-xl py-3 z-50 border ",
+            "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98 bg-background border-border text-text",
+            getDropdownPosition(),
+            path === "/screenshot" && "ml-10"
           )}
           role='menu'
           aria-orientation='vertical'
@@ -258,7 +260,7 @@ export function UserAvatarDropdown({
             </button>
 
             <button
-              onClick={() => handleMenuAction("help")}
+              onClick={() => handleMenuAction("/support")}
               className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-border/80'
               role='menuitem'
             >

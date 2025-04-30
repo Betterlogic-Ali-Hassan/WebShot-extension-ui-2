@@ -10,7 +10,7 @@ const storageData = {
 const StorageUsage = () => {
   const navigate = useNavigate();
   return (
-    <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 p-5 rounded-xl border transition-all bg-gradient-to-r from-blue-50 to-white border-blue-200 animate-in fade-in duration-300'>
+    <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 p-5 rounded-xl border transition-all bg-gradient-to-r  bg-background animate-in fade-in duration-300  border-border'>
       <div className='flex flex-col space-y-3 w-full sm:w-auto mb-4 sm:mb-0'>
         <div className='flex items-center justify-between'>
           <span className='text-base font-semibold'>

@@ -383,7 +383,7 @@ export function ColorPicker({
                         }
                       }
                     }}
-                    className='w-full text-sm py-1.5 px-2 rounded-md focus:outline-none transition-all bg-searchbar text-text'
+                    className='w-full text-sm py-1.5 px-2 rounded-md focus:outline-none transition-all bg-background border  text-text'
                   />
                 </div>
               </div>
@@ -410,7 +410,7 @@ export function ColorPicker({
                     setSaturation(hsv.s);
                     setBrightness(hsv.v);
                   }}
-                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-searchbar text-text'
+                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
                 />
               </div>
               <div>
@@ -432,7 +432,7 @@ export function ColorPicker({
                     setSaturation(hsv.s);
                     setBrightness(hsv.v);
                   }}
-                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-searchbar text-text'
+                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
                 />
               </div>
               <div>
@@ -454,7 +454,7 @@ export function ColorPicker({
                     setSaturation(hsv.s);
                     setBrightness(hsv.v);
                   }}
-                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-searchbar text-text'
+                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
                 />
               </div>
               {showAlpha && (
@@ -473,7 +473,7 @@ export function ColorPicker({
                         )
                       );
                     }}
-                    className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-searchbar text-text'
+                    className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
                   />
                 </div>
               )}
