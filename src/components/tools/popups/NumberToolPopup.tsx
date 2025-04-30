@@ -192,7 +192,7 @@ export function NumberToolPopup() {
           <div className='flex items-center gap-1.5'>
             <Button
               onClick={() => setCurrentNumber((prev) => Math.max(1, prev - 1))}
-              className='h-7 w-7 p-0 rounded-md justify-center bg-background hover:bg-hover'
+              className='h-7 w-7 p-0 rounded-md justify-center bg-border hover:bg-border/60'
               disabled={currentNumber <= 1}
             >
               <span className='text-[15px]'>-</span>
@@ -207,7 +207,7 @@ export function NumberToolPopup() {
 
             <Button
               onClick={handleIncrementNumber}
-              className='h-7 w-7 p-0 rounded-md justify-center bg-background hover:bg-hover'
+              className='h-7 w-7 p-0 rounded-md justify-center bg-border hover:bg-border/60'
             >
               <span className='text-[15px]'>+</span>
             </Button>

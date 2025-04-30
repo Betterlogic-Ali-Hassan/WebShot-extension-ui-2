@@ -225,7 +225,7 @@ export function BorderToolPopup() {
           <div className='mb-4'>
             <div className='flex items-center justify-between mb-2'>
               <span className='text-xs font-medium text-text'>Padding</span>
-              <span className='text-xs font-medium px-2 py-0.5 rounded-full bg-searchbar text-text'>
+              <span className='text-xs font-medium px-2 py-0.5 rounded-full bg-border text-text'>
                 {padding}px
               </span>
             </div>
@@ -244,7 +244,7 @@ export function BorderToolPopup() {
                 <div className='w-0.5 h-1 bg-border'></div>
                 <div className='w-0.5 h-1 bg-border'></div>
               </div>
-              <div className='flex justify-between mt-3 text-[10px] text-gray-500'>
+              <div className='flex justify-between mt-3 text-[10px] text-foreground'>
                 <span>0</span>
                 <span>100</span>
               </div>

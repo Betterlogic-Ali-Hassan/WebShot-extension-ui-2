@@ -342,7 +342,7 @@ export function StickersToolPopup() {
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-background border border-border text-text",
         isToolbarLeft && "ml-[100px]",
         isToolbarBottom && "-mt-[440px] "
       )}
@@ -381,7 +381,7 @@ export function StickersToolPopup() {
               if (container)
                 container.scrollBy({ left: -100, behavior: "smooth" });
             }}
-            className='absolute left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-background/80 shadow-sm'
+            className='absolute left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-border border-tool-selected-color shadow-sm'
           >
             <svg
               width='16'
@@ -415,8 +415,8 @@ export function StickersToolPopup() {
                   className={cn(
                     "px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200",
                     activeCategory === category.id
-                      ? "bg-hover text-text shadow-sm"
-                      : "text-text/60 hover:text-text hover:bg-hover"
+                      ? "bg-border text-text shadow-sm"
+                      : "text-text/60 hover:text-text hover:bg-border/60"
                   )}
                   onClick={() => setActiveCategory(category.id)}
                 >
@@ -433,7 +433,7 @@ export function StickersToolPopup() {
               if (container)
                 container.scrollBy({ left: 100, behavior: "smooth" });
             }}
-            className='absolute right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-background/80 shadow-sm'
+            className='absolute right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-border border-tool-selected-color shadow-sm'
           >
             <svg
               width='16'
@@ -455,7 +455,7 @@ export function StickersToolPopup() {
 
         {/* Search input */}
         <div className='px-2 py-1.5'>
-          <div className='flex items-center gap-2 px-2 py-1.5 rounded-md bg-hover'>
+          <div className='flex items-center gap-2 px-2 py-1.5 rounded-md bg-card/50'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 20 20'
@@ -543,7 +543,7 @@ export function StickersToolPopup() {
                     key={index}
                     className={cn(
                       "aspect-square flex items-center justify-center text-xl rounded-lg transition-all duration-200 hover:scale-110 focus:outline-none relative",
-                      "bg-hover "
+                      "bg-card/50 hover:bg-card "
                     )}
                     title={item.name}
                     onClick={() => {
@@ -641,7 +641,7 @@ export function StickersToolPopup() {
                   key={index}
                   className={cn(
                     "h-9 w-9 flex items-center justify-center text-lg rounded-lg transition-all duration-200 hover:scale-110 relative",
-                    "bg-hover "
+                    "bg-card/50 hover:bg-card "
                   )}
                   onClick={() => {
                     // Toggle selection

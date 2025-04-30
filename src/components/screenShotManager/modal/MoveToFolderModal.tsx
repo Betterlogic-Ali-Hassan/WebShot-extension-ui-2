@@ -15,7 +15,7 @@ const MoveToFolderModal = () => {
 
   return (
     <Modal>
-      <div className='relative max-w-md w-full mx-4 rounded-2xl overflow-hidden border shadow-lg transition-all duration-200 bg-background'>
+      <div className='relative max-w-md w-full rounded-2xl overflow-hidden  shadow-lg transition-all duration-200 bg-background'>
         {/* Modal header */}
         <div className='flex items-center justify-between p-4 border-b'>
           <h3 className='font-medium'>

@@ -20,8 +20,8 @@ const TagManagementModal = () => {
     isTagAssignedToSome,
   } = useScreenShot();
   return (
-    <Modal>
-      <div className='relative max-w-md w-full mx-4 rounded-2xl overflow-hidden border shadow-lg transition-all duration-200 bg-card'>
+    <Modal className='rounded-2xl'>
+      <div className='relative max-w-md w-full  rounded-2xl overflow-hidden  shadow-lg transition-all duration-200 bg-card'>
         {/* Modal header */}
         <div className='flex items-center justify-between p-4 border-b border-border'>
           <h3 className='font-medium text-foreground'>
@@ -81,7 +81,7 @@ const TagManagementModal = () => {
                   <button
                     key={tag}
                     onClick={() => handleAddTag(tag)}
-                    className='px-2 py-0.5 rounded-full text-xs bg-hover text-foreground hover:bg-btn-hover transition-all duration-200'
+                    className='px-2 py-0.5 rounded-full text-xs bg-hover text-foreground hover:bg-hover transition-all duration-200'
                   >
                     {tag}
                   </button>
@@ -95,13 +95,7 @@ const TagManagementModal = () => {
             <label className='block text-sm mb-2 text-foreground'>
               Available Tags
             </label>
-            <div
-              className='max-h-60 overflow-y-auto pr-1'
-              style={{
-                scrollbarWidth: "thin",
-                scrollbarColor: "var(--color-border) transparent",
-              }}
-            >
+            <div className='max-h-60 overflow-y-auto pr-1 no-scrollbar'>
               {allTags.length > 0 ? (
                 <div className='space-y-1'>
                   {allTags.map((tag) => (
@@ -112,7 +106,7 @@ const TagManagementModal = () => {
                         "flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer",
                         "transition-all duration-200 border",
                         isTagAssignedToAll(tag.name)
-                          ? "bg-info/20 border-info/50"
+                          ? "bg-info/10 border-info/50"
                           : isTagAssignedToSome(tag.name)
                           ? "bg-info/10 border-info/30"
                           : "bg-card border-border hover:bg-hover"
@@ -124,9 +118,9 @@ const TagManagementModal = () => {
                             "w-4 h-4 mr-2 flex items-center justify-center rounded-sm",
                             "transition-all duration-200",
                             isTagAssignedToAll(tag.name)
-                              ? "bg-info text-primary"
+                              ? "bg-info text-text-primary"
                               : isTagAssignedToSome(tag.name)
-                              ? "bg-info/50 text-primary"
+                              ? "bg-info/50 text-text-primary"
                               : "border border-border"
                           )}
                         >
@@ -156,7 +150,7 @@ const TagManagementModal = () => {
         <div className='flex items-center justify-end p-4 border-t border-border'>
           <button
             onClick={() => setIsTagManagementOpen(false)}
-            className='px-4 py-2 rounded-full transition-all duration-200 bg-info hover:bg-info-hover text-primary'
+            className='px-4 py-2 rounded-full transition-all duration-200 bg-info hover:bg-info-hover text-text-primary'
           >
             Done
           </button>

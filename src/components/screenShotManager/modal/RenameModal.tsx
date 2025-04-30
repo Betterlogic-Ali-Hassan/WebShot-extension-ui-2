@@ -11,8 +11,8 @@ const RenameModal = () => {
     handleSaveRename,
   } = useScreenShot();
   return (
-    <Modal>
-      <div className='relative max-w-md w-full mx-4 rounded-2xl overflow-hidden border shadow-lg transition-all duration-200 bg-background'>
+    <Modal className='rounded-2xl'>
+      <div className='relative max-w-md w-full rounded-2xl  overflow-hidden  shadow-lg transition-all duration-200 bg-background'>
         {/* Modal header */}
         <div className='flex items-center justify-between p-4 border-b'>
           <h3 className='font-medium'>Rename Screenshot</h3>
@@ -33,10 +33,10 @@ const RenameModal = () => {
             onChange={(e) => setRenameInput(e.target.value)}
             placeholder='Enter new name'
             autoFocus
-            className='w-full px-3 py-2 rounded-lg border transition-all duration-200 bg-card'
+            className='w-full px-3 py-2 rounded-lg border transition-all duration-200 bg-background'
           />
           {renameError && (
-            <p className='mt-2 text-sm text-red-500'>{renameError}</p>
+            <p className='mt-2 text-sm text-error'>{renameError}</p>
           )}
         </div>
 
@@ -44,13 +44,13 @@ const RenameModal = () => {
         <div className='flex items-center justify-end p-4 border-t'>
           <button
             onClick={() => setRenameModalOpen(false)}
-            className='px-4 py-2 rounded-full mr-2 transition-all duration-200 hover:bg-hover'
+            className='px-4 py-2 rounded-full mr-2 transition-all duration-200 hover:bg-hover border'
           >
             Cancel
           </button>
           <button
             onClick={handleSaveRename}
-            className='px-4 py-2 rounded-full transition-all duration-200 bg-info hover:bg-info-hover'
+            className='px-4 py-2 rounded-full transition-all duration-200 bg-info hover:bg-info-hover text-text-primary'
           >
             Save
           </button>

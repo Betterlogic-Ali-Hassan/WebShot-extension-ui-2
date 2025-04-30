@@ -37,7 +37,12 @@ export function UsageCard({
             {unit} / {total}
             {unit}
           </span>
-          <span className={cn("text-sm font-medium", progressColor)}>
+          <span
+            className={cn(
+              "text-sm font-medium !text-success-color",
+              progressColor
+            )}
+          >
             {percentage}%
           </span>
         </div>

@@ -63,7 +63,7 @@ export function SettingsPanel({
     <>
       <div
         ref={panelRef}
-        className='h-full w-full overflow-hidden flex flex-col transition-transform duration-300 ease-in-out bg-card text-text '
+        className='h-full w-full overflow-hidden flex flex-col transition-transform duration-300 ease-in-out bg-card/50 text-text '
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -95,7 +95,7 @@ export function SettingsPanel({
                   "p-4 rounded-lg border transition-all relative flex flex-col items-center justify-center gap-2",
                   toolbarPosition === "top"
                     ? "bg-info/20 border-info ring-1 ring-info/20"
-                    : "bg-card border-border hover:bg-hover"
+                    : " border-border hover:bg-info/20"
                 )}
               >
                 <div className='w-full h-2 bg-current rounded-full opacity-70'></div>
@@ -108,32 +108,6 @@ export function SettingsPanel({
                 )}
               </button>
 
-              {/* <button
-                onClick={(e) => handleToolbarPositionChange(e, "left")}
-                type='button'
-                className={cn(
-                  "p-4 rounded-lg border transition-all flex items-center justify-center gap-2 relative",
-                  toolbarPosition === "left"
-                    ? isDarkMode
-                      ? "bg-[#2563eb33] border-[#3b82f6] ring-1 ring-[#3b82f6]/20"
-                      : "bg-[#dbeafe] border-[#2563eb] ring-1 ring-[#2563eb]/20"
-                    : isDarkMode
-                    ? "bg-[#1f1f1f] border-[#2c2c2c] hover:bg-[#2c2c2c]"
-                    : "bg-[#ffffff] border-[#e5e7eb] hover:bg-[#f9fafb]"
-                )}
-              >
-                <div className='h-full w-2 bg-current rounded-full opacity-70'></div>
-                <div className='h-10 w-full border-2 border-dashed border-current rounded-lg opacity-30'></div>
-                <span className='text-xs font-medium absolute bottom-3'>
-                  Left
-                </span>
-                {toolbarPosition === "left" && (
-                  <div className='absolute top-1 right-1 h-3 w-3 rounded-full bg-[#3b82f6] flex items-center justify-center'>
-                    <Check className='h-2 w-2 text-white' />
-                  </div>
-                )}
-              </button> */}
-
               <button
                 onClick={(e) => handleToolbarPositionChange(e, "bottom")}
                 type='button'
@@ -141,7 +115,7 @@ export function SettingsPanel({
                   "p-4 rounded-lg border transition-all flex flex-col items-center justify-center gap-2 relative",
                   toolbarPosition === "bottom"
                     ? "bg-info/20 border-info ring-1 ring-info/20"
-                    : "bg-card border-border hover:bg-hover"
+                    : " border-border hover:bg-info/20"
                 )}
               >
                 <div className='w-full h-10 border-2 border-dashed border-current rounded-lg opacity-30'></div>
@@ -322,7 +296,7 @@ export function SettingsPanel({
             <div
               className={cn(
                 "rounded-lg p-3 space-y-2 text-sm",
-                "bg-card/90 text-text/70"
+                "bg-dark-info-color text-text/70"
               )}
             >
               <div className='flex justify-between'>

@@ -142,7 +142,7 @@ export function BillingHistorySection({
         <h2 className='text-xl font-bold text-text'>Billing History</h2>
         <Button
           onClick={handleDownloadAllInvoices}
-          className='flex items-center border-border border bg-card hover:bg-btn-hover'
+          className='flex items-center border-border border bg-background hover:bg-hover'
         >
           <Download className='w-4 h-4 mr-2' />
           Download All
@@ -152,7 +152,7 @@ export function BillingHistorySection({
       <div className='rounded-xl overflow-hidden border border-border bg-background'>
         <div className='overflow-x-auto'>
           <table className='w-full'>
-            <thead className='bg-btn-hover bg-opacity-50'>
+            <thead className='bg-card/80 '>
               <tr>
                 <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-foreground'>
                   Date
@@ -170,10 +170,7 @@ export function BillingHistorySection({
             </thead>
             <tbody className='divide-y divide-border'>
               {getCurrentItems().map((item, index) => (
-                <tr
-                  key={index}
-                  className='transition-colors hover:bg-btn-hover'
-                >
+                <tr key={index} className='transition-colors hover:bg-card/80'>
                   <td className='px-6 py-4 whitespace-nowrap text-sm text-text'>
                     {item.date}
                   </td>
@@ -232,7 +229,7 @@ export function BillingHistorySection({
           <div className='flex items-center justify-center py-4 border-t border-border'>
             <div className='flex items-center space-x-2'>
               <Button
-                className='h-8 w-8 border-border border hover:bg-btn-hover justify-center'
+                className='h-8 w-8 border-border border hover:bg-hover justify-center'
                 onClick={() => paginate(currentPage - 1)}
                 disabled={currentPage === 1}
                 aria-label='Previous page'
@@ -245,7 +242,7 @@ export function BillingHistorySection({
                 {currentPage > 2 && (
                   <Button
                     className={cn(
-                      "h-8 w-8 border-border hover:bg-btn-hover",
+                      "h-8 w-8 border-border hover:bg-hover",
                       currentPage === 1 && "bg-text text-card"
                     )}
                     onClick={() => paginate(1)}
@@ -263,7 +260,7 @@ export function BillingHistorySection({
                 {/* Previous page if not first */}
                 {currentPage > 1 && (
                   <Button
-                    className='h-8 w-8 border-border border hover:bg-btn-hover justify-center'
+                    className='h-8 w-8 border-border border hover:bg-hover justify-center'
                     onClick={() => paginate(currentPage - 1)}
                     aria-label={`Page ${currentPage - 1}`}
                   >
@@ -283,7 +280,7 @@ export function BillingHistorySection({
                 {/* Next page if not last */}
                 {currentPage < totalPages && (
                   <Button
-                    className='h-8 w-8 border-border border hover:bg-btn-hover justify-center'
+                    className='h-8 w-8 border-border border hover:bg-hover justify-center'
                     onClick={() => paginate(currentPage + 1)}
                     aria-label={`Page ${currentPage + 1}`}
                   >
@@ -299,7 +296,7 @@ export function BillingHistorySection({
                 {/* Last page if not current */}
                 {currentPage < totalPages - 1 && (
                   <Button
-                    className='h-8 w-8 border-border border justify-center hover:bg-btn-hover'
+                    className='h-8 w-8 border-border border justify-center hover:bg-hover'
                     onClick={() => paginate(totalPages)}
                     aria-label={`Page ${totalPages}`}
                   >
@@ -309,7 +306,7 @@ export function BillingHistorySection({
               </div>
 
               <Button
-                className='h-8 w-8 border-border border hover:bg-btn-hover justify-center'
+                className='h-8 w-8 border-border border hover:bg-hover justify-center'
                 onClick={() => paginate(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 aria-label='Next page'

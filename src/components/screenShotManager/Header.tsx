@@ -23,7 +23,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <header className='sticky top-0 z-10 py-4 px-6 backdrop-blur-md bg-background shadow-sm border-b'>
-      <div className='max-w-[1600px] mx-auto  px-4 sm:px-6'>
+      <div className='max-w-screen-2xl mx-auto '>
         <div className='flex items-center justify-between'>
           <div className='flex items-center space-x-3'>
             <button

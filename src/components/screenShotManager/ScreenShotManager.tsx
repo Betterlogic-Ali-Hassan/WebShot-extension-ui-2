@@ -30,9 +30,9 @@ const ScreenShotManager = () => {
     isTagManagementOpen,
   } = useScreenShot();
   return (
-    <div className='max-h-screen overflow-y-auto'>
+    <div className='max-h-screen overflow-y-auto bg-body-color'>
       <Header />
-      <main className='max-w-[1600px] mx-auto py-8 px-4 sm:px-6'>
+      <main className='max-w-screen-2xl mx-auto p-6'>
         <Filters />
         <TabNavigation />
         <StorageUsage />

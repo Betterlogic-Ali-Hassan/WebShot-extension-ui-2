@@ -43,15 +43,15 @@ export function TextFormattingControls({
   className,
 }: TextFormattingControlsProps) {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+    <div className={cn("flex items-center gap-4", className)}>
       {/* Text Style Buttons */}
       <div className='flex items-center border rounded-md overflow-hidden border-border'>
         <Button
           onClick={() => onBoldChange(!isBold)}
           className={cn(
             "h-8 px-3 rounded-none border-r transition-colors duration-200",
-            "border-border hover:bg-hover",
-            isBold && "bg-hover"
+            "border-border hover:bg-tool-selected-color",
+            isBold && "bg-tool-selected-color"
           )}
         >
           <Bold className='h-4 w-4' />
@@ -61,8 +61,8 @@ export function TextFormattingControls({
           onClick={() => onItalicChange(!isItalic)}
           className={cn(
             "h-8 px-3 rounded-none border-r transition-colors duration-200",
-            "border-border hover:bg-hover",
-            isItalic && "bg-hover"
+            "border-border hover:bg-tool-selected-color",
+            isItalic && "bg-tool-selected-color"
           )}
         >
           <Italic className='h-4 w-4' />
@@ -72,8 +72,8 @@ export function TextFormattingControls({
           onClick={() => onUnderlineChange(!isUnderline)}
           className={cn(
             "h-8 px-3 rounded-none border-r transition-colors duration-200",
-            "border-border hover:bg-hover",
-            isUnderline && "bg-hover"
+            "border-border hover:bg-tool-selected-color",
+            isUnderline && "bg-tool-selected-color"
           )}
         >
           <Underline className='h-4 w-4' />
@@ -84,8 +84,8 @@ export function TextFormattingControls({
             onClick={() => onStrikethroughChange(!isStrikethrough)}
             className={cn(
               "h-8 px-3 rounded-none transition-colors duration-200",
-              "hover:bg-hover",
-              isStrikethrough && "bg-hover"
+              "hover:bg-tool-selected-color",
+              isStrikethrough && "bg-tool-selected-color"
             )}
           >
             <StrikethroughIcon className='h-4 w-4' />
@@ -99,8 +99,8 @@ export function TextFormattingControls({
             onClick={() => onAlignmentChange("left")}
             className={cn(
               "h-8 px-3 rounded-none border-r",
-              "border-border hover:bg-hover",
-              textAlignment === "left" && "bg-hover"
+              "border-border hover:bg-tool-selected-color",
+              textAlignment === "left" && "bg-tool-selected-color"
             )}
           >
             <AlignLeft className='h-4 w-4' />
@@ -110,8 +110,8 @@ export function TextFormattingControls({
             onClick={() => onAlignmentChange("center")}
             className={cn(
               "h-8 px-3 rounded-none border-r",
-              "border-border hover:bg-hover",
-              textAlignment === "center" && "bg-hover"
+              "border-border hover:bg-tool-selected-color",
+              textAlignment === "center" && "bg-tool-selected-color"
             )}
           >
             <AlignCenter className='h-4 w-4' />
@@ -121,8 +121,8 @@ export function TextFormattingControls({
             onClick={() => onAlignmentChange("right")}
             className={cn(
               "h-8 px-3 rounded-none",
-              "hover:bg-hover",
-              textAlignment === "right" && "bg-hover"
+              "hover:bg-tool-selected-color",
+              textAlignment === "right" && "bg-tool-selected-color"
             )}
           >
             <AlignRight className='h-4 w-4' />

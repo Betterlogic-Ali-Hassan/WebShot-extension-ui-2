@@ -129,7 +129,7 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
           alt='Uploaded screenshot'
           className='transition-transform duration-200'
           style={{
-            transform: `scale(${zoomLevel === 1 ? 0.9 : zoomLevel})`,
+            transform: `scale(${zoomLevel})`,
             transformOrigin: "top center",
             height: "auto",
             margin: imageSize.width < containerSize.width ? "0 auto" : "0",

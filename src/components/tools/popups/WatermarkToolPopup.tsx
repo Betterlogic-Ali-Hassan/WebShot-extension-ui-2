@@ -132,7 +132,7 @@ export function WatermarkToolPopup() {
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200  min-h-[68px] flex items-center bg-card border border-border text-text",
         isToolbarBottom && isWatermarkEnabled && "-mt-[150px]",
         isToolbarLeft && isWatermarkEnabled && "-mt-[130px]",
         isToolbarLeft && "ml-[100px]",
@@ -146,7 +146,7 @@ export function WatermarkToolPopup() {
         width: "100%",
       }}
     >
-      <div className='p-3'>
+      <div className='p-3 w-full'>
         {/* Watermark Toggle */}
         <div className='flex items-center justify-between'>
           <span className='text-sm font-medium text-text'>Watermark</span>

@@ -13,7 +13,7 @@ const ScreenshotSection = () => {
     <div
       className={cn(
         "rounded-xl border p-6 mb-6",
-        "transition-all duration-300 animate-in fade-in-50 bg-card border-border"
+        "transition-all duration-300 animate-in fade-in-50 bg-background border-border"
       )}
     >
       <ScreenshotHeader />

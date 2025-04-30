@@ -45,7 +45,7 @@ const PaymentMethod = () => {
         </Button>
         <Button
           onClick={() => setShowPaymentModal(true)}
-          className='border border-border hover:bg-hover bg-card'
+          className='border border-border hover:bg-hover bg-background'
         >
           <Plus className='mr-2 h-4 w-4' />
           Add New

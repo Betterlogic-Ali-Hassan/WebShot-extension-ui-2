@@ -49,7 +49,7 @@ export function PersonalInfoSection({
   };
 
   return (
-    <section className='mb-8 p-6 rounded-xl border shadow-sm bg-card border-border'>
+    <section className='mb-8 p-6 rounded-xl border shadow-sm bg-background border-border'>
       <div className='flex items-center mb-6'>
         <div className='p-2 rounded-full mr-3 bg-hover'>
           <User className='h-5 w-5' />
@@ -98,7 +98,7 @@ export function PersonalInfoSection({
               onChange={(e) =>
                 setPersonalInfo({ ...personalInfo, name: e.target.value })
               }
-              className='w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-card border-border focus:ring-info'
+              className='w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-background border-border focus:ring-info'
               placeholder='Enter your full name'
             />
           </div>
@@ -114,7 +114,7 @@ export function PersonalInfoSection({
               onChange={(e) =>
                 setPersonalInfo({ ...personalInfo, email: e.target.value })
               }
-              className='w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-card border-border focus:ring-info'
+              className='w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-background border-border focus:ring-info'
               placeholder='your.email@example.com'
             />
           </div>
@@ -122,7 +122,7 @@ export function PersonalInfoSection({
           <div className='pt-3'>
             <button
               onClick={savePersonalInfo}
-              className='flex items-center px-5 py-2.5 rounded-lg font-medium transition-colors bg-info hover:bg-info-hover text-text-primary'
+              className='flex items-center px-5 py-2.5 rounded-lg font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
             >
               <Save className='h-4 w-4 mr-2' />
               Save Changes

@@ -25,7 +25,7 @@ export function NotificationsSection({ onSave }: NotificationsSectionProps) {
   };
 
   return (
-    <section className='mb-8 p-6 rounded-xl border  bg-card border-border'>
+    <section className='mb-8 p-6 rounded-xl border  bg-background  border-border'>
       <div className='flex items-center mb-6'>
         <div className='p-2 rounded-full mr-3 bg-hover'>
           <Bell className='h-5 w-5' />
@@ -35,7 +35,7 @@ export function NotificationsSection({ onSave }: NotificationsSectionProps) {
 
       <div className='space-y-5'>
         {/* Email Notifications */}
-        <div className='flex items-center justify-between py-3 px-4 rounded-lg bg-background bg-opacity-20'>
+        <div className='flex items-center justify-between py-3 px-4 rounded-lg bg-card '>
           <div className='flex items-center'>
             <Mail className='h-5 w-5 mr-3 opacity-70' />
             <div>
@@ -57,7 +57,7 @@ export function NotificationsSection({ onSave }: NotificationsSectionProps) {
         </div>
 
         {/* In-App Notifications */}
-        <div className='flex items-center justify-between py-3 px-4 rounded-lg bg-background  bg-opacity-20'>
+        <div className='flex items-center justify-between py-3 px-4 rounded-lg bg-card  '>
           <div className='flex items-center'>
             <Bell className='h-5 w-5 mr-3 opacity-70' />
             <div>
@@ -82,7 +82,7 @@ export function NotificationsSection({ onSave }: NotificationsSectionProps) {
         <div className='pt-4'>
           <button
             onClick={saveNotificationPreferences}
-            className='flex items-center px-5 py-2.5 rounded-lg font-medium transition-colors bg-info hover:bg-info-hover text-text-primary'
+            className='flex items-center px-5 py-2.5 rounded-lg font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
           >
             <Save className='h-4 w-4 mr-2' />
             Save Preferences

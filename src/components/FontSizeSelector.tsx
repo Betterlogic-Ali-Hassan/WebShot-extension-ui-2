@@ -66,8 +66,8 @@ export function FontSizeSelector({
       <Button
         onClick={decreaseFontSize}
         className={cn(
-          "h-8 w-8 rounded-l-md rounded-r-none border-r-0 transition-colors duration-200",
-          "bg-background border-border text-text hover:bg-hover"
+          "h-8 w-8 rounded-l-md rounded-r-none border-r-0 transition-colors duration-200  ",
+          "bg-border border  border-tool-selected-color text-text hover:bg-border/60"
         )}
       >
         <Minus className='h-3 w-3' />
@@ -81,7 +81,7 @@ export function FontSizeSelector({
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className={cn(
             "h-8 w-12 text-center border-x focus:outline-none focus:ring-0 cursor-pointer",
-            "bg-background border-border text-text"
+            "bg-border border hover:bg-border/60  border-tool-selected-color border-r-0 border-l-0 text-text"
           )}
         />
 
@@ -107,7 +107,7 @@ export function FontSizeSelector({
                 }}
                 className={cn(
                   "px-3 py-1 cursor-pointer transition-all duration-200 text-center",
-                  "hover:bg-hover",
+                  "hover:bg-border/60",
                   value === size && "bg-hover"
                 )}
               >
@@ -121,7 +121,7 @@ export function FontSizeSelector({
         onClick={increaseFontSize}
         className={cn(
           "h-8 w-8 rounded-r-md rounded-l-none border-l-0",
-          "bg-background border-border text-text hover:bg-hover"
+          "bg-border border  border-tool-selected-color  text-text hover:bg-border/60"
         )}
       >
         <Plus className='h-3 w-3' />

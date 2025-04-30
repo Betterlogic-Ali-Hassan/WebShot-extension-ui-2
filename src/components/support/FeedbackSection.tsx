@@ -9,9 +9,9 @@ export function FeedbackSection() {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
   return (
-    <section className='mb-12 card'>
+    <section className='bg-background p-6 rounded-xl border border-border hover:shadow-lg cursor-pointer  transition duration-200 mb-12'>
       <div className='flex items-center mb-6'>
-        <div className='icon-container mr-3'>
+        <div className='icon-container mr-3 bg-card p-2 rounded-full'>
           <MessageSquare className='h-6 w-6' />
         </div>
         <h2 className='text-2xl font-bold text-text'>Submit Feedback</h2>
@@ -24,7 +24,7 @@ export function FeedbackSection() {
 
       <Button
         onClick={() => setShowFeedbackModal(true)}
-        className='btn btn-secondary flex items-center bg-card border border-border hover:bg-hover '
+        className=' text-base font-normal flex items-center bg-card py-2.5 px-5  border border-border hover:bg-hover '
       >
         <Send className='h-4 w-4 mr-2' />
         Submit Feedback

@@ -34,7 +34,7 @@ export function CaptureCard({ onCapture, onUpload }: CaptureCardProps) {
   };
 
   return (
-    <div className='w-full max-w-md p-6 rounded-[20px] shadow-lg transition-all duration-300 bg-background border border-border'>
+    <div className='w-full max-w-md p-6 rounded-[20px] shadow-lg transition-all duration-300 bg-card border border-border'>
       <h2 className='text-xl font-semibold text-center mb-6'>
         Capture Screenshot from URL
       </h2>
@@ -43,7 +43,7 @@ export function CaptureCard({ onCapture, onUpload }: CaptureCardProps) {
         <input
           type='url'
           placeholder='https://example.com'
-          className='rounded-xl h-10 border-none w-full px-3 py-2 bg-hover text-text focus:outline-none text-sm'
+          className='rounded-xl h-10 border-none w-full px-3 py-2 bg-border text-text focus:outline-none text-sm'
         />
 
         <Button
@@ -64,8 +64,9 @@ export function CaptureCard({ onCapture, onUpload }: CaptureCardProps) {
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
+          onClick={onUpload}
           className={cn(
-            "w-full rounded-xl h-32 border-dashed border-2 transition-all duration-200 flex flex-col items-center justify-center gap-2 border-border hover:border-hover",
+            "w-full rounded-xl h-32 border-dashed border-2 transition-all duration-200 flex flex-col items-center justify-center gap-2 border-border hover:!border-selection-border cursor-pointer ",
 
             isDragging && "bg-background border-info"
           )}
@@ -75,7 +76,7 @@ export function CaptureCard({ onCapture, onUpload }: CaptureCardProps) {
             <p className='font-medium'>Drop image here or</p>
             <Button
               onClick={onUpload}
-              className='p-0 h-auto justify-center w-full text-info'
+              className='p-0 h-auto justify-center w-full text-info hover:underline'
             >
               browse files
             </Button>

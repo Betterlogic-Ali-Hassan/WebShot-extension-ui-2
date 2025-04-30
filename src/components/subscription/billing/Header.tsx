@@ -17,7 +17,7 @@ const Header = () => {
         <Button>
           <Link
             to='/subscription'
-            className='flex items-center  border border-border bg-card px-3 py-2 text-sm rounded-md hover:bg-hover'
+            className='flex items-center  border border-border bg-background px-3 py-2 text-sm rounded-md hover:bg-hover'
           >
             <ArrowLeft className='mr-2 h-4 w-4' />
             Back to Plans

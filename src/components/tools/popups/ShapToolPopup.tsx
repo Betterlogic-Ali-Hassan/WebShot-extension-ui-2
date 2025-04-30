@@ -63,9 +63,9 @@ export function ShapeToolPopup() {
               key={shape.id}
               onClick={() => handleStyleSelect(shape.id as ShapeStyle)}
               className={cn(
-                "flex flex-row items-center gap-2 p-2 rounded-lg transition-all cursor-pointer border border-transparent duration-200",
+                "flex flex-row items-center gap-2 p-2 rounded-lg transition-all max-h-[38px] cursor-pointer border border-transparent duration-200",
                 selectedShape === shape.id
-                  ? "bg-hover border-dashed border-border text-text"
+                  ? "bg-hover border-dashed  border-selection-border text-text"
                   : "text-text/60 hover:bg-hover hover:text-text",
                 isToolbarLeft && "min-w-[108px] mt-2"
               )}
@@ -74,7 +74,7 @@ export function ShapeToolPopup() {
                 {shape.id === "square" && (
                   <div
                     className={cn(
-                      "w-5 h-5 border-2",
+                      "w-4 h-4 border-2",
                       selectedShape === shape.id
                         ? "border-current"
                         : "border-gray-400"
@@ -84,7 +84,7 @@ export function ShapeToolPopup() {
                 {shape.id === "rounded" && (
                   <div
                     className={cn(
-                      "w-5 h-5 rounded-md border-2",
+                      "w-4 h-4 rounded-md border-2",
                       selectedShape === shape.id
                         ? "border-current"
                         : "border-gray-400"
@@ -94,7 +94,7 @@ export function ShapeToolPopup() {
                 {shape.id === "circle" && (
                   <div
                     className={cn(
-                      "w-5 h-5 rounded-full border-2",
+                      "w-4 h-4 rounded-full border-2",
                       selectedShape === shape.id
                         ? "border-current"
                         : "border-gray-400"
@@ -104,7 +104,7 @@ export function ShapeToolPopup() {
                 {shape.id === "star" && (
                   <Star
                     className={cn(
-                      "w-5 h-5",
+                      "w-4 h-4",
                       selectedShape === shape.id ? "fill-current" : ""
                     )}
                   />

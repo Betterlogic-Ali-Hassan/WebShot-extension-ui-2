@@ -250,7 +250,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
   }
 
   return (
-    <div className='mt-6 p-5 rounded-lg border border-border bg-card'>
+    <div className='mt-6 p-5 rounded-lg border border-border bg-card/50'>
       <div className='space-y-6'>
         {/* Progress indicator */}
         <div className='flex items-center mb-2'>
@@ -307,10 +307,8 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
               <div
                 onClick={() => setAuthMethod("app")}
                 className={cn(
-                  "p-4 rounded-lg border cursor-pointer flex items-center",
-                  authMethod === "app"
-                    ? "bg-card border-info"
-                    : "bg-card border-border"
+                  "p-4 rounded-lg border cursor-pointer flex items-center bg-background",
+                  authMethod === "app" ? " border-info" : " border-border"
                 )}
               >
                 <div
@@ -334,10 +332,8 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
               <div
                 onClick={() => setAuthMethod("sms")}
                 className={cn(
-                  "p-4 rounded-lg border cursor-pointer flex items-center",
-                  authMethod === "sms"
-                    ? "bg-card border-info"
-                    : "bg-card border-border"
+                  "p-4 rounded-lg border cursor-pointer flex items-center bg-background",
+                  authMethod === "sms" ? " border-info" : " border-border"
                 )}
               >
                 <div
@@ -362,14 +358,14 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             <div className='flex justify-between mt-6'>
               <button
                 onClick={reset2FASetup}
-                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover'
+                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover border '
               >
                 Cancel
               </button>
 
               <button
                 onClick={() => setSetupStep(2)}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-info hover:bg-info-hover text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
               >
                 Continue
               </button>
@@ -427,7 +423,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                     id='phone-number'
                     type='tel'
                     placeholder='+1 (555) 123-4567'
-                    className='w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-card border-border focus:ring-info'
+                    className='w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-background border-border focus:ring-info'
                   />
                 </div>
               </div>
@@ -436,14 +432,14 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             <div className='flex justify-between mt-6'>
               <button
                 onClick={() => setSetupStep(1)}
-                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover'
+                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover border '
               >
                 Back
               </button>
 
               <button
                 onClick={() => setSetupStep(3)}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-info hover:bg-info-hover text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
               >
                 {authMethod === "app" ? "Continue" : "Send Code"}
               </button>
@@ -480,7 +476,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                       prevInput?.focus();
                     }
                   }}
-                  className='w-10 h-12 text-center text-lg font-medium rounded-md border focus:outline-none focus:ring-2 bg-card border-border focus:ring-info'
+                  className='w-10 h-12 text-center text-lg font-medium rounded-md border focus:outline-none focus:ring-2 bg-background  border-border focus:ring-info'
                 />
               ))}
             </div>
@@ -488,14 +484,14 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             <div className='flex justify-between mt-6'>
               <button
                 onClick={() => setSetupStep(2)}
-                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover'
+                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover border '
               >
                 Back
               </button>
 
               <button
                 onClick={verifyCode}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-info hover:bg-info-hover text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
               >
                 Verify Code
               </button>
@@ -555,14 +551,14 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             <div className='flex justify-between'>
               <button
                 onClick={() => setSetupStep(3)}
-                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover'
+                className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover border '
               >
                 Back
               </button>
 
               <button
                 onClick={complete2FASetup}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-info hover:bg-info-hover text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
               >
                 Complete Setup
               </button>

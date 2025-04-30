@@ -35,7 +35,7 @@ const SubscriptionSummary = () => {
         <div className='flex flex-col items-stretch gap-2 pt-9'>
           <Button
             onClick={() => navigate("/subscription")}
-            className='bg-card border border-border hover:bg-hover justify-center'
+            className='bg-text text-card border border-border hover:bg-text/80 justify-center'
           >
             Manage Subscription
           </Button>

@@ -81,7 +81,7 @@ export function FooterControls() {
     <>
       <div
         className={cn(
-          "fixed bottom-0 left-0 right-0 z-20",
+          "fixed bottom-0  left-0 right-0 z-20",
           isToolbarBottom && "top-0"
         )}
       >
@@ -106,7 +106,7 @@ export function FooterControls() {
         <div
           className={cn(
             "w-full transition-all duration-300 ease-in-out border-t shadow-lg",
-            "bg-background border-border",
+            "bg-card",
             isCollapsed
               ? "max-h-0 overflow-hidden opacity-0"
               : "max-h-24 opacity-100 py-3"
@@ -117,7 +117,7 @@ export function FooterControls() {
             <div
               className={cn(
                 "flex items-center gap-2 p-2 rounded-full transition-all duration-300",
-                "bg-searchbar"
+                "bg-border"
               )}
             >
               <Tooltip id='undo' content='Undo'>
@@ -180,7 +180,7 @@ export function FooterControls() {
             <div
               className={cn(
                 "flex items-center gap-2 p-2 rounded-full transition-all duration-300",
-                "bg-searchbar"
+                "bg-border"
               )}
             >
               <Tooltip id='Copy to Clipboard' content='Copy to Clipboard'>

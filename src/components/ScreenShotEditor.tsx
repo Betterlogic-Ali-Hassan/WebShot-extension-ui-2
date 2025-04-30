@@ -74,8 +74,8 @@ export function ScreenshotEditor() {
   return (
     <div
       className={cn(
-        "w-full max-w-6xl transition-colors duration-300 relative min-h-[80vh]",
-        "rounded-3xl overflow-hidden shadow-2xl bg-card text-text"
+        "w-full max-w-6xl transition-colors duration-300 relative min-h-[80vh] mt-[62px]",
+        "rounded-3xl overflow-hidden shadow-2xl bg-background text-text"
       )}
     >
       {/* Hidden file input for image uploads */}

@@ -49,7 +49,7 @@ export function AvailablePlansSection({
           </p>
         </div>
         <div className='mt-2 md:mt-0'>
-          <div className='bg-btn-hover border border-border rounded-full p-1 flex items-center'>
+          <div className='bg-card border border-border rounded-full p-1 flex items-center'>
             <Button
               className={cn(
                 "rounded-full px-4",
@@ -85,7 +85,7 @@ export function AvailablePlansSection({
         ))}
       </div>
 
-      <div className='mt-8 p-4 border rounded-xl bg-hover/30 mb-12 border-border'>
+      <div className='mt-8 p-4 border rounded-xl bg-card/60 mb-12 border-border'>
         <div className='flex items-start'>
           <Sparkles className='w-5 h-5 mr-2 text-info flex-shrink-0 mt-0.5' />
           <div>

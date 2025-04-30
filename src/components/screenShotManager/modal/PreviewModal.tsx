@@ -23,8 +23,8 @@ const PreviewModal = () => {
     navigate(`/?image=${encodeURIComponent(screenshot.url)}`);
   };
   return (
-    <Modal>
-      <div className='relative max-w-4xl w-full mx-4 rounded-2xl overflow-hidden border shadow-lg transition-all duration-200 bg-background border-border'>
+    <Modal className='max-w-4xl rounded-2xl'>
+      <div className='relative w-full  rounded-2xl overflow-hidden  shadow-lg transition-all duration-200 bg-background '>
         {/* Modal header */}
         <div className='flex items-center justify-between p-4 border-b border-border'>
           <h3 className='font-medium'>{previewImage?.name}</h3>

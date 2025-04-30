@@ -43,7 +43,7 @@ export function BlurToolPopup() {
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 max-h-[68px] min-h-[68px] flex items-center  bg-card border border-border text-text",
         isToolbarBottom && "-mt-6",
         isToolbarLeft && "ml-[100px]"
       )}
@@ -57,7 +57,7 @@ export function BlurToolPopup() {
         maxWidth: `${isToolbarLeft ? "" : "calc(100% - 32px)"}`,
       }}
     >
-      <div className='p-3'>
+      <div className='p-3 w-full'>
         <div
           className={cn("flex items-center gap-4", isToolbarLeft && "flex-col")}
         >
@@ -76,7 +76,7 @@ export function BlurToolPopup() {
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded h-6 flex items-center",
-                "bg-hover"
+                "bg-border"
               )}
             >
               Low
@@ -95,7 +95,7 @@ export function BlurToolPopup() {
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded h-6 flex items-center",
-                "bg-hover"
+                "bg-border"
               )}
             >
               High
@@ -106,7 +106,7 @@ export function BlurToolPopup() {
           <div
             className={cn(
               "min-w-[40px] text-center px-2 py-1 rounded text-sm",
-              "bg-hover"
+              "bg-border"
             )}
           >
             {blurIntensity}

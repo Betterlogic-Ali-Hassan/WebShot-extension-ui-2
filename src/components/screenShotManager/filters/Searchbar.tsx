@@ -13,7 +13,7 @@ const Searchbar = () => {
         placeholder='Search screenshots...'
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className='pl-10 pr-4 py-2 rounded-full w-full md:w-64 input border border-border'
+        className='pl-10 pr-4 py-2 rounded-full w-full md:w-64 bg-background text-base border border-border focus:ring-info outline-none focus:ring-2'
       />
     </div>
   );

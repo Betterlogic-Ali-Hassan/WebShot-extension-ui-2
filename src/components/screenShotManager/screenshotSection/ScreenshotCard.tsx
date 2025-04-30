@@ -60,7 +60,7 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({
       className={cn(
         "group relative rounded-2xl overflow-hidden ",
         "transition-all duration-300 transform hover:scale-[1.02]",
-        "shadow-sm hover:shadow bg-background hover:bg-hover border border-border",
+        "shadow-sm hover:shadow bg-background  border border-border",
         viewMode === "grid" ? "" : "flex items-center",
         activeTab === "recycle-bin" && "opacity-80"
       )}

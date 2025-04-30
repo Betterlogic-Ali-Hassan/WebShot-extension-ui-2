@@ -125,7 +125,7 @@ export function ConfirmationDialog({
           <div className='flex justify-end gap-3'>
             <button
               onClick={onCancel}
-              className='px-4 py-2 rounded-lg text-sm transition-colors bg-background hover:bg-hover'
+              className='px-4 py-2 rounded-lg text-sm transition-colors bg-background border  hover:bg-hover'
             >
               {cancelText}
             </button>

@@ -43,9 +43,9 @@ export function TextArrowToolPopup() {
         <div className={`flex rounded-md overflow-hidden bg-background`}>
           <button
             className={cn(
-              "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap   hover:bg-hover",
+              "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap   hover:bg-border",
               selectedTextArrowType === "text-arrow"
-                ? "bg-hover text-text"
+                ? "bg-border text-text"
                 : "text-text"
             )}
             onClick={() => onTextArrowTypeSelect?.("text-arrow")}
@@ -90,9 +90,9 @@ export function TextArrowToolPopup() {
           </button>
           <button
             className={cn(
-              "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap  hover:bg-hover",
+              "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap  hover:bg-border",
               selectedTextArrowType === "page-text"
-                ? "bg-hover text-text"
+                ? "bg-border text-text"
                 : "text-text"
             )}
             onClick={() => onTextArrowTypeSelect?.("page-text")}

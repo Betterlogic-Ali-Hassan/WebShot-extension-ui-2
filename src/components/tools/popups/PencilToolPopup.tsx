@@ -61,9 +61,9 @@ export function PencilToolPopup() {
               key={tool.id}
               onClick={() => handleToolSelect(tool.id as PencilTool)}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 cursor-pointer rounded-lg transition-all duration-200 border border-transparent",
+                "flex items-center gap-2 px-3 py-2 cursor-pointer rounded-lg max-h-[38px] transition-all duration-200 border border-transparent",
                 selectedTool === tool.id
-                  ? "bg-hover border-dashed border-border text-text"
+                  ? "bg-hover border-dashed  border-selection-border text-text"
                   : "text-text/60 hover:bg-hover hover:text-text",
                 tool.id === "highlighter" && "mr-4",
                 isToolbarLeft && "min-w-[108px] mt-2"

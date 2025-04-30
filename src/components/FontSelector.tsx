@@ -35,7 +35,7 @@ export function FontSelector({
   const renderOption = (option: DropdownOption, isSelected: boolean) => (
     <div
       className={cn(
-        "px-3 py-2 cursor-pointer transition-all duration-200",
+        "px-3 py-2 cursor-pointer transition-all duration-200 ",
         "hover:bg-hover",
         isSelected && "bg-hover"
       )}
@@ -46,7 +46,7 @@ export function FontSelector({
   );
 
   const renderValue = (option: DropdownOption | undefined) => (
-    <div className='flex items-center justify-between w-full'>
+    <div className='flex items-center justify-between w-full '>
       <span className='text-sm truncate' style={{ fontFamily: option?.value }}>
         {option?.label || "Select font"}
       </span>

@@ -28,7 +28,7 @@ const BillingAddress = ({ billingAddress }: { billingAddress: Address }) => {
       </div>
       <div className='pt-9'>
         <Button
-          className='border-border border bg-card  hover:bg-hover '
+          className='border-border border bg-background  hover:bg-hover '
           onClick={() => setAddressFormModal(true)}
         >
           <Edit className='mr-2 h-4 w-4' />

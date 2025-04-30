@@ -56,7 +56,7 @@ export function StrokeWidthSelector({
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "flex items-center justify-between gap-2 px-3 py-1.5 min-w-[120px] cursor-pointer rounded-md border transition-all duration-200",
-          "bg-searchbar border-border text-text hover:bg-hover"
+          "bg-border border-tool-selected-color text-text hover:bg-border/80"
         )}
       >
         <div className='flex items-center gap-1.5'>

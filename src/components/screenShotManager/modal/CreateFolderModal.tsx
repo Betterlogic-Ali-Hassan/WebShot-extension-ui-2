@@ -11,8 +11,8 @@ const CreateFolderModal = () => {
     handleCreateFolder,
   } = useScreenShot();
   return (
-    <Modal>
-      <div className='relative max-w-md w-full mx-4 rounded-2xl overflow-hidden bg-background border border-border'>
+    <Modal className='rounded-2xl'>
+      <div className='relative max-w-md w-full  rounded-2xl overflow-hidden bg-background '>
         {/* Modal header */}
         <div className='flex items-center justify-between p-4 border-b'>
           <h3 className='font-medium'>Create New Folder</h3>
@@ -33,7 +33,7 @@ const CreateFolderModal = () => {
             onChange={(e) => setNewFolderName(e.target.value)}
             placeholder='Enter folder name'
             autoFocus
-            className='w-full px-3 py-2 rounded-lg border transition-all duration-200 bg-card hover:bg-hover'
+            className='w-full px-3 py-2 rounded-lg border transition-all duration-200 bg-background hover:bg-hover'
           />
         </div>
 
@@ -41,7 +41,7 @@ const CreateFolderModal = () => {
         <div className='flex items-center justify-end p-4 border-t '>
           <button
             onClick={() => setIsCreateFolderOpen(false)}
-            className='px-4 py-2 rounded-full mr-2 transition-all duration-200 border'
+            className='px-4 py-2 rounded-full mr-2 transition-all hover:bg-hover duration-200 border'
           >
             Cancel
           </button>
@@ -49,7 +49,7 @@ const CreateFolderModal = () => {
             onClick={handleCreateFolder}
             disabled={!newFolderName.trim()}
             className={cn(
-              "px-4 py-2 rounded-full bg-card cursor-not-allowed text-text-primary",
+              "px-4 py-2 rounded-full bg-hover cursor-not-allowed text-text-primary",
               newFolderName.trim() && "bg-info "
             )}
           >

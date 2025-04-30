@@ -88,7 +88,7 @@ export function Dropdown({
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "flex items-center justify-between gap-2 px-3 py-1.5 rounded-md cursor-pointer border transition-all duration-200",
-          "bg-searchbar border-border text-text hover:bg-hover",
+          "bg-border border-tool-selected-color text-text hover:bg-border/80 max-h-8",
           buttonClassName
         )}
       >

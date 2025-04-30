@@ -15,7 +15,7 @@ export function FaqSection() {
   return (
     <section className='mb-12'>
       <div className='flex items-center mb-8'>
-        <div className='icon-container mr-3'>
+        <div className='icon-container mr-3 bg-card p-2 rounded-full'>
           <FileQuestion className='h-6 w-6' />
         </div>
         <h2 className='text-2xl font-bold text-text'>
@@ -33,7 +33,7 @@ export function FaqSection() {
               onClick={() => toggleFaq(index)}
               className={cn(
                 "flex items-center justify-between w-full p-5 text-left transition-all duration-200",
-                expandedFaq === index ? "bg-card" : "hover:bg-hover"
+                expandedFaq === index ? "bg-card/50" : "hover:bg-card/50"
               )}
             >
               <span className='font-medium text-base text-text'>
@@ -54,7 +54,7 @@ export function FaqSection() {
             </button>
 
             {expandedFaq === index && (
-              <div className='p-5 text-base leading-relaxed animate-in slide-in-from-top-2 duration-200 bg-card text-foreground'>
+              <div className='p-5 text-base leading-relaxed animate-in slide-in-from-top-2 duration-200 bg-card/50 text-foreground'>
                 <p>{faq.answer}</p>
               </div>
             )}

@@ -4,7 +4,6 @@ import type React from "react";
 
 import { useRef } from "react";
 import {
-  ZoomIn,
   Crop,
   Pencil,
   Square,
@@ -70,25 +69,25 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
                 </div>
               );
             case "star":
-              return wrapWithPremiumIndicator(<Star className='h-5 w-5' />);
+              return wrapWithPremiumIndicator(<Star className='!h-4 !w-4' />);
             default:
-              return wrapWithPremiumIndicator(<Square className='h-5 w-5' />);
+              return wrapWithPremiumIndicator(<Square className='!h-4 !w-4' />);
           }
         }
-        return wrapWithPremiumIndicator(<Square className='h-5 w-5' />);
+        return wrapWithPremiumIndicator(<Square className='!h-4 !w-4' />);
 
       case "arrow":
         if (activeTool === "arrow") {
           switch (selectedArrowStyle) {
             case "arrow-curve":
               return wrapWithPremiumIndicator(
-                <ArrowUpRight className='h-5 w-5' />
+                <ArrowUpRight className='!h-4 !w-4' />
               );
             case "double-arrow":
               return wrapWithPremiumIndicator(
                 <svg
-                  width='20'
-                  height='20'
+                  width='16'
+                  height='16'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
@@ -105,8 +104,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
             case "line":
               return wrapWithPremiumIndicator(
                 <svg
-                  width='20'
-                  height='20'
+                  width='16'
+                  height='16'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
@@ -122,8 +121,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
             case "curve-line":
               return wrapWithPremiumIndicator(
                 <svg
-                  width='20'
-                  height='20'
+                  width='16'
+                  height='16'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
@@ -139,8 +138,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
             case "dotted-line":
               return wrapWithPremiumIndicator(
                 <svg
-                  width='20'
-                  height='20'
+                  width='16'
+                  height='16'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
@@ -155,28 +154,28 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
               );
             default:
               return wrapWithPremiumIndicator(
-                <ArrowRight className='h-5 w-5' />
+                <ArrowRight className='!h-4 !w-4' />
               );
           }
         }
-        return wrapWithPremiumIndicator(<ArrowRight className='h-5 w-5' />);
+        return wrapWithPremiumIndicator(<ArrowRight className='!h-4 !w-4' />);
 
       case "pencil":
         if (activeTool === "pencil") {
           switch (selectedPencilTool) {
             case "brush":
               return wrapWithPremiumIndicator(
-                <Paintbrush className='h-5 w-5' />
+                <Paintbrush className='!h-4 !w-4' />
               );
             case "highlighter":
               return wrapWithPremiumIndicator(
-                <Highlighter className='h-5 w-5' />
+                <Highlighter className='!h-4 !w-4' />
               );
             default:
-              return wrapWithPremiumIndicator(<Pencil className='h-5 w-5' />);
+              return wrapWithPremiumIndicator(<Pencil className='!h-4 !w-4' />);
           }
         }
-        return wrapWithPremiumIndicator(<Pencil className='h-5 w-5' />);
+        return wrapWithPremiumIndicator(<Pencil className='!h-4 !w-4' />);
 
       case "textarrow":
         if (activeTool === "textarrow") {
@@ -184,8 +183,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
             // Page text icon - document with text lines
             return wrapWithPremiumIndicator(
               <svg
-                width='20'
-                height='20'
+                width='16'
+                height='16'
                 viewBox='0 0 20 20'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
@@ -223,8 +222,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
           // Text arrow icon - speech bubble with arrow
           return wrapWithPremiumIndicator(
             <svg
-              width='20'
-              height='20'
+              width='16'
+              height='16'
               viewBox='0 0 20 20'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
@@ -256,8 +255,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
         // Default text arrow icon when not active
         return wrapWithPremiumIndicator(
           <svg
-            width='20'
-            height='20'
+            width='18'
+            height='18'
             viewBox='0 0 20 20'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
@@ -288,7 +287,6 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
       default: {
         // For other tools, use the default icon mapping
         const iconMap: Record<string, React.ElementType> = {
-          zoom: ZoomIn,
           crop: Crop,
           text: Type,
           number: Hash,
@@ -298,14 +296,13 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
           watermark: ImageIcon,
         };
         const Icon = iconMap[toolId] || Square;
-        return wrapWithPremiumIndicator(<Icon className='h-5 w-5' />);
+        return wrapWithPremiumIndicator(<Icon className='!h-4 !w-4' />);
       }
     }
   };
 
   // Filter tools based on visibility settings
   const tools = [
-    { id: "zoom", label: "Zoom" },
     { id: "crop", label: "Crop" },
     { id: "pencil", label: "Pencil" },
     { id: "square", label: "Shape" },
@@ -410,7 +407,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
                   <Button
                     ref={(el) => (buttonRefs.current[tool.id] = el)}
                     className={cn(
-                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 bg-background hover:bg-hover",
+                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 h-[40px] flex justify-center items-center  hover:bg-hover",
                       activeTool === tool.id && "bg-hover"
                     )}
                     onClick={() => handleToolClick(tool.id)}
@@ -432,7 +429,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
 
   // Default: Top position
   return (
-    <div className='fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 animate-fade-in-top bg-background border-b border-border'>
+    <div className='fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 animate-fade-in-top bg-background '>
       <div className='max-w-screen-2xl mx-auto px-4 py-2 flex items-center justify-between'>
         {/* Left section - logo */}
         <div className='flex items-center min-w-24'>{logo}</div>
@@ -449,8 +446,8 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
               <Button
                 ref={(el) => (buttonRefs.current[tool.id] = el)}
                 className={cn(
-                  "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 hover:bg-hover bg-background",
-                  activeTool === tool.id && "bg-hover"
+                  "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 h-[40px] hover:bg-hover",
+                  activeTool === tool.id && "bg-hover "
                 )}
                 onClick={() => handleToolClick(tool.id)}
               >

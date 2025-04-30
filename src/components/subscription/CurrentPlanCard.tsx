@@ -34,8 +34,8 @@ export function CurrentPlanCard({
 
   return (
     <section>
-      <div className='overflow-hidden rounded-xl border border-border bg-background'>
-        <div className='p-6 pb-3'>
+      <div className='overflow-hidden rounded-lg shadow-sm border border-border bg-background'>
+        <div className='p-6 pb-2'>
           <h3 className='text-2xl font-semibold text-text'>Current Plan</h3>
           <p className='text-sm text-foreground mt-1'>
             Your subscription details and renewal information
@@ -53,7 +53,7 @@ export function CurrentPlanCard({
                     {currentPlan} Plan
                   </h2>
                   {currentPlan === "Pro" && (
-                    <span className='ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-text bg-opacity-10 text-card flex items-center'>
+                    <span className='ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-info-hover/15 text-info flex items-center'>
                       <Sparkles className='w-3 h-3 mr-1 inline-block' />
                       Popular
                     </span>
@@ -77,7 +77,7 @@ export function CurrentPlanCard({
             <div className='mt-4 md:mt-0 flex flex-col sm:flex-row gap-3 '>
               <Button
                 onClick={onCancelClick}
-                className='border-border bg-card border hover:bg-hover'
+                className='border-border bg-background border hover:bg-hover'
               >
                 Cancel Plan
               </Button>

@@ -13,9 +13,9 @@ const FolderContent = ({ folder }: { folder: folder }) => {
   return (
     <div
       onClick={() => handleFolderClick(folder.id)}
-      className='flex flex-col items-center text-center'
+      className='flex flex-col items-center text-center '
     >
-      <div className='w-16 h-16 flex items-center justify-center rounded-xl mb-2 transition-all duration-200 bg-card '>
+      <div className='w-16 h-16 flex items-center justify-center rounded-xl mb-2 transition-all duration-200 bg-info-hover/5 '>
         <FolderOpen size={32} className='text-info' />
       </div>
 

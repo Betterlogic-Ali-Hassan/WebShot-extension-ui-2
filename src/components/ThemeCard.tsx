@@ -17,8 +17,8 @@ const ThemeCard = ({
   return (
     <button
       className={cn(
-        "flex flex-col items-center justify-center p-3 rounded-lg relative bg-background hover:bg-hover text-text border border-border",
-        isSelected && "bg-hover border-info"
+        "flex flex-col items-center justify-center p-3 rounded-lg relative  hover:bg-info/20 text-text border border-border",
+        isSelected && "bg-info/20 border-info"
       )}
       onClick={handleSetTheme}
     >

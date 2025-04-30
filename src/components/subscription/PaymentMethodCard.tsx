@@ -37,7 +37,7 @@ export function PaymentMethodCard({
             </div>
             <Button
               onClick={onUpdateClick}
-              className='border-border bg-card border hover:bg-hover'
+              className='border-border bg-background border hover:bg-hover'
             >
               Update
             </Button>

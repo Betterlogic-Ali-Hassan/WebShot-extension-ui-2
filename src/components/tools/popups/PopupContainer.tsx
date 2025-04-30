@@ -49,7 +49,7 @@ export function PopupContainer({
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 max-h-[68px] min-h-[68px] flex items-center justify-center",
         "bg-card border border-border",
         isToolbarBottom && "-mt-6",
         isToolbarLeft && "ml-[100px]",

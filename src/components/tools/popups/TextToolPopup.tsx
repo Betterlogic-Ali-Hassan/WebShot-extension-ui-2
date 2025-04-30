@@ -12,6 +12,7 @@ import { PopupContainer } from "./PopupContainer";
 import { FontSelector } from "@/components/FontSelector";
 import { FontSizeSelector } from "@/components/FontSizeSelector";
 import { ColorPicker } from "@/components/ColorPicker";
+import BackgroundColorPicker from "@/components/BackgroundColorPicker";
 
 export function TextToolPopup() {
   const {
@@ -24,7 +25,7 @@ export function TextToolPopup() {
   const [selectedFont, setSelectedFont] = useState("Calibri");
   const [fontSize, setFontSize] = useState(16);
   const [textColor, setTextColor] = useState("#FF3B30");
-  const [backgroundColor, setBackgroundColor] = useState("transparent");
+  // const [backgroundColor, setBackgroundColor] = useState("transparent");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
@@ -60,7 +61,7 @@ export function TextToolPopup() {
         <ColorPicker
           color={textColor}
           onChange={setTextColor}
-          buttonClassName='w-8 h-7'
+          buttonClassName='w-8 h-8'
         />
 
         {/* Text Formatting Controls */}
@@ -80,14 +81,7 @@ export function TextToolPopup() {
 
         {/* Background Fill Color */}
         <div className='relative'>
-          <div className='flex items-center gap-2'>
-            <span className='text-sm'>Background:</span>
-            <ColorPicker
-              color={backgroundColor}
-              onChange={setBackgroundColor}
-              buttonClassName='w-8 h-7'
-            />
-          </div>
+          <BackgroundColorPicker />
         </div>
       </div>
     </PopupContainer>

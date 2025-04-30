@@ -165,7 +165,7 @@ export function UserAvatarDropdown({
         <div
           className={cn(
             "fixed mt-2 w-72 rounded-xl shadow-xl py-3 z-50 border backdrop-blur-lg",
-            "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98 bg-background border-border text-text",
+            "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98 bg-background/80 border-border text-text",
             getDropdownPosition()
           )}
           role='menu'
@@ -173,7 +173,7 @@ export function UserAvatarDropdown({
           aria-labelledby='user-menu-button'
         >
           {/* User Info Header */}
-          <div className='px-4 py-3 border-b border-opacity-10 border-current'>
+          <div className='px-4 py-3 border-b border-opacity-10 '>
             <p className='text-base font-medium'>{userName}</p>
             <p className='text-sm opacity-70 truncate'>{userEmail}</p>
           </div>
@@ -225,7 +225,7 @@ export function UserAvatarDropdown({
 
                   <button
                     onClick={() => handleMenuAction("/billing")}
-                    className='text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-card hover:bg-hover'
+                    className='text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-card hover:bg-border/80'
                     aria-label='View billing details'
                   >
                     <ChevronRight className='h-4 w-4' />
@@ -239,7 +239,7 @@ export function UserAvatarDropdown({
           <nav className='py-1' aria-label='User menu'>
             <button
               onClick={() => handleMenuAction("/profile")}
-              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-border/80'
               role='menuitem'
             >
               <User className='h-5 w-5 mr-3 opacity-70' />
@@ -249,7 +249,7 @@ export function UserAvatarDropdown({
 
             <button
               onClick={() => handleMenuAction("/screenshot")}
-              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-border/80'
               role='menuitem'
             >
               <ImageIcon className='h-5 w-5 mr-3 opacity-70' />
@@ -259,7 +259,7 @@ export function UserAvatarDropdown({
 
             <button
               onClick={() => handleMenuAction("help")}
-              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-border/80'
               role='menuitem'
             >
               <LifeBuoy className='h-5 w-5 mr-3 opacity-70' />
@@ -271,7 +271,7 @@ export function UserAvatarDropdown({
 
             <button
               onClick={() => handleMenuAction("logout")}
-              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover text-error'
+              className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-border/80 text-error'
               role='menuitem'
             >
               <LogOut className='h-5 w-5 mr-3 opacity-70' />

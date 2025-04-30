@@ -34,9 +34,9 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className='max-h-screen overflow-y-auto '>
+    <div className='max-h-screen overflow-y-auto bg-card/50'>
       <ProfileLayout />
-      <main className=' max-w-[1100px] mx-auto py-8 px-4 sm:px-6 '>
+      <main className=' max-w-4xl mx-auto py-8 px-4 sm:px-6 '>
         <PersonalInfoSection onSave={handlePersonalInfoSave} />
         <SecuritySection onSave={handleSecuritySave} />
         <NotificationsSection onSave={handleNotificationsSave} />

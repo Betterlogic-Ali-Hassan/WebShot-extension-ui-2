@@ -47,18 +47,18 @@ export function ArrowToolPopup() {
   const renderArrowIcon = (style: string) => {
     switch (style) {
       case "arrow-line":
-        return <ArrowRight className='h-5 w-5' />;
+        return <ArrowRight className='h-4 w-4' />;
       case "arrow-curve":
-        return <ArrowUpRight className='h-5 w-5' />;
+        return <ArrowUpRight className='h-4.5 w-4.5' />;
       case "double-arrow":
-        return <span className='text-lg'>↔</span>;
+        return <span className='text-base'>↔</span>;
       case "line":
-        return <span className='text-lg'>—</span>;
+        return <span className='text-base'>—</span>;
       case "curve-line":
         return (
           <svg
-            width='20'
-            height='20'
+            width='16'
+            height='16'
             viewBox='0 0 20 20'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
@@ -74,8 +74,8 @@ export function ArrowToolPopup() {
       case "dotted-line":
         return (
           <svg
-            width='20'
-            height='20'
+            width='16'
+            height='16'
             viewBox='0 0 20 20'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
@@ -121,9 +121,9 @@ export function ArrowToolPopup() {
               key={style.id}
               onClick={() => handleStyleSelect(style.id as ArrowStyle)}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer border border-transparent ring-0 outline-none max-h-[38px] focus:outline-none",
+                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px] duration-200 cursor-pointer border border-transparent ring-0 outline-none max-h-[38px] focus:outline-none",
                 selectedArrowStyle === style.id
-                  ? "bg-hover border-dashed border-border text-text "
+                  ? "bg-hover border-dashed  border-selection-border text-text "
                   : "text-text/60 hover:bg-hover hover:text-text",
                 isToolbarLeft && "min-w-[138px] mt-2"
               )}
