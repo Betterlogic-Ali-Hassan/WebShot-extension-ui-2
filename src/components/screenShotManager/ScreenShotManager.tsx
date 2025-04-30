@@ -13,6 +13,7 @@ import DeleteModal from "./modal/DeleteModal";
 import ContextMenu from "./ContextMenu";
 import RenameModal from "./modal/RenameModal";
 import EmptyBinModal from "./modal/EmptyBinModal";
+import TagManagementModal from "./modal/TagManagementModal";
 
 const ScreenShotManager = () => {
   const {
@@ -26,6 +27,7 @@ const ScreenShotManager = () => {
     contextMenu,
     renameModalOpen,
     isEmptyBinConfirmationOpen,
+    isTagManagementOpen,
   } = useScreenShot();
   return (
     <div className='max-h-screen overflow-y-auto'>
@@ -43,6 +45,7 @@ const ScreenShotManager = () => {
       {isMultiSelectMode && selectedScreenshots.length > 0 && (
         <MultiSelectBar />
       )}
+      {isTagManagementOpen && <TagManagementModal />}
       {isDeleteConfirmationOpen && <DeleteModal />}
       {contextMenu.isOpen && <ContextMenu />}
       {renameModalOpen && <RenameModal />}
