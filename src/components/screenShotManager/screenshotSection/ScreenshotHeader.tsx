@@ -1,6 +1,5 @@
 "use client";
 
-import type React from "react";
 import { CheckSquare, FolderOpen, Square, Trash2 } from "lucide-react";
 
 import { useScreenShot } from "@/context/ScreenShotContext";
