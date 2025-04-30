@@ -75,6 +75,7 @@ export function TextToolPopup() {
           onUnderlineChange={setIsUnderline}
           onStrikethroughChange={setIsStrikethrough}
           onAlignmentChange={setTextAlignment}
+          option
         />
 
         {/* Background Fill Color */}

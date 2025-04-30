@@ -1,4 +1,6 @@
-export const initialScreenshots = [
+import { screenShot } from "@/types/ScreenShot";
+
+export const initialScreenshots: screenShot[] = [
   {
     id: "1",
     name: "Dashboard Design",

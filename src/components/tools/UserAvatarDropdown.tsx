@@ -248,7 +248,7 @@ export function UserAvatarDropdown({
             </button>
 
             <button
-              onClick={() => handleMenuAction("uploads")}
+              onClick={() => handleMenuAction("/screenshot")}
               className='flex items-center w-full px-5 py-2.5 text-base transition-colors hover:bg-hover'
               role='menuitem'
             >

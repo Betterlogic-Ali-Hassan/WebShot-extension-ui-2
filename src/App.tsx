@@ -9,6 +9,7 @@ import SupportPage from "./pages/SupportPage";
 import Billing from "./components/subscription/billing/Billing";
 import { ModalProvider } from "./context/ModalsContext";
 import { ScreenShotProvider } from "./context/ScreenShotContext";
+import ScreenShotManager from "./components/screenShotManager/ScreenShotManager";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                 <Route path='/subscription' element={<SubscriptionPage />} />
                 <Route path='/support' element={<SupportPage />} />
                 <Route path='/billing' element={<Billing />} />
+                <Route path='/screenshot' element={<ScreenShotManager />} />
               </Routes>
             </BrowserRouter>
           </ScreenShotProvider>
