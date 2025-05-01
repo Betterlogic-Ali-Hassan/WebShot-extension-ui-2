@@ -102,7 +102,7 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
           "bg-card"
         )}
       >
-        <p className='text-center text-gray-500'>
+        <p className='text-center text-foreground'>
           No image uploaded yet
           <br />
           <span className='text-sm'>Upload an image to preview</span>
@@ -149,7 +149,7 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
               onClick={toggleHeightExpand}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                "bg-searchbar text-foreground hover:bg-btn-hover"
+                "bg-searchbar text-foreground hover:bg-hover"
               )}
               aria-label={isHeightExpanded ? "Collapse view" : "Expand view"}
             >
@@ -199,7 +199,7 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
               onClick={zoomIn}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                "bg-searchbar text-foreground hover:bg-btn-hover"
+                "bg-searchbar text-foreground hover:bg-hover"
               )}
               aria-label='Zoom in'
             >
@@ -220,7 +220,7 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
               onClick={zoomOut}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                "bg-searchbar text-foreground hover:bg-btn-hover"
+                "bg-searchbar text-foreground hover:bg-hover"
               )}
               aria-label='Zoom out'
             >
@@ -241,7 +241,7 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
               onClick={resetZoom}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-lg",
-                "bg-searchbar text-foreground hover:bg-btn-hover",
+                "bg-searchbar text-foreground hover:bg-hover",
                 zoomLevel === initialScale ? "opacity-50" : "opacity-100"
               )}
               aria-label='Reset zoom'

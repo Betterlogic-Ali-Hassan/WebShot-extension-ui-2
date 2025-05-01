@@ -18,7 +18,6 @@ import {
   ArrowUpRight,
   Paintbrush,
   Highlighter,
-  Camera,
 } from "lucide-react";
 import Button from "@/components/ui/button";
 
@@ -337,54 +336,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
   };
 
   // Render toolbar based on position
-  if (toolbarPosition === "left") {
-    return (
-      <>
-        <div className='fixed left-0 top-0 h-full z-50 shadow-md transition-all duration-300 animate-fade-in-left bg-background border-r border-border'>
-          <div className='h-full py-4  px-3 flex flex-col items-center gap-8 overflow-y-auto no-scrollbar '>
-            {/* Top section - logo and settings */}
-            <div className='flex flex-col items-center gap-4'>
-              {logo && (
-                <div className='flex items-center justify-center w-8 h-8 rounded-lg mb-2 mt-6 bg-card'>
-                  <Camera className='h-5 w-5 text-text' />
-                </div>
-              )}
-              <div className='flex items-center gap-2 flex-col'>
-                {settingsButton}
-              </div>
-            </div>
-
-            {/* Center section - tools */}
-            <div className='flex flex-col items-center gap-2 bg-card py-3 px-2 rounded-xl transition-all duration-300 min-[1600px]:fixed min-[1600px]:top-1/2 min-[1600px]:-translate-y-1/2'>
-              {visibleTools.map((tool) => (
-                <Tooltip
-                  key={tool.id}
-                  id={tool.id}
-                  place='right'
-                  content={tool.label}
-                >
-                  <Button
-                    ref={(el) => (buttonRefs.current[tool.id] = el)}
-                    className={cn(
-                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 hover:bg-hover bg-background",
-                      activeTool === tool.id && "bg-hover"
-                    )}
-                    onClick={() => handleToolClick(tool.id)}
-                  >
-                    {renderToolIcon(tool.id)}
-                    <span className='sr-only'>{tool.label}</span>
-                  </Button>
-                </Tooltip>
-              ))}
-            </div>
-
-            {/* Bottom section (empty for now) */}
-            <div className='w-12'></div>
-          </div>
-        </div>
-      </>
-    );
-  } else if (toolbarPosition === "bottom") {
+  if (toolbarPosition === "bottom") {
     return (
       <>
         <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 shadow-lg rounded-full transition-all duration-300 animate-fade-in-bottom bg-background border border-border'>
@@ -429,7 +381,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
 
   // Default: Top position
   return (
-    <div className='fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 animate-fade-in-top bg-background '>
+    <div className='fixed top-0 left-0 w-full z-40 shadow-md transition-all duration-300 animate-fade-in-top bg-background  '>
       <div className='max-w-screen-2xl mx-auto px-4 py-2 flex items-center justify-between'>
         {/* Left section - logo */}
         <div className='flex items-center min-w-24'>{logo}</div>

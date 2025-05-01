@@ -5,6 +5,13 @@ import type React from "react";
 import { Send, X } from "lucide-react";
 import { useState } from "react";
 import Button from "../ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface FeedbackModalProps {
   onClose: () => void;
@@ -53,18 +60,21 @@ export function FeedbackModal({ onClose }: FeedbackModalProps) {
             <label className='block text-sm font-medium text-text'>
               Feedback Type
             </label>
-            <select
-              value={feedbackForm.type}
-              onChange={(e) =>
-                setFeedbackForm({ ...feedbackForm, type: e.target.value })
-              }
-              className='w-full p-3 rounded-lg border border-border bg-card text-text transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-info/50 focus:border-info'
-            >
-              <option value='question'>Question</option>
-              <option value='bug'>Bug Report</option>
-              <option value='feature'>Feature Request</option>
-              <option value='other'>Other</option>
-            </select>
+            <Select>
+              <SelectTrigger
+                value={feedbackForm.type}
+                className='w-full p-3 rounded-lg border border-border bg-card text-text transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-info/50 !min-h-[50px] focus:border-info'
+              >
+                <SelectValue placeholder='Select type' />
+              </SelectTrigger>
+              <SelectContent className='bg-background'>
+                <SelectItem value='question'>Question</SelectItem>
+                <SelectItem value='bug'>Bug Report</SelectItem>
+                <SelectItem value='feature'>Feature Request</SelectItem>
+                <SelectItem value='other'>Other</SelectItem>
+              </SelectContent>
+            </Select>
+
             <p className='text-xs mt-1 text-foreground'>
               Select the category that best matches your feedback
             </p>

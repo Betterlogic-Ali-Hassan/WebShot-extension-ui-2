@@ -56,9 +56,9 @@ export function NumberToolPopup() {
               className={cn(
                 "p-1.5 rounded-md transition-all duration-200 relative",
                 selectedStyle === "circled"
-                  ? "bg-searchbar ring-2 ring-info shadow-inner"
+                  ? " ring-2 ring-info shadow-inner"
                   : "hover:bg-hover hover:shadow",
-                "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10 after:bg-background after:transition-opacity"
+                "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10  after:transition-opacity"
               )}
             >
               <NumberPreview
@@ -73,9 +73,9 @@ export function NumberToolPopup() {
               className={cn(
                 "p-1.5 rounded-md transition-all duration-200 relative",
                 selectedStyle === "squared"
-                  ? "bg-searchbar ring-2 ring-info shadow-inner"
+                  ? " ring-2 ring-info shadow-inner"
                   : "hover:bg-hover hover:shadow",
-                "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10 after:bg-white after:transition-opacity"
+                "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10  after:transition-opacity"
               )}
             >
               <NumberPreview
@@ -90,9 +90,9 @@ export function NumberToolPopup() {
               className={cn(
                 "p-1.5 rounded-md transition-all duration-200 relative",
                 selectedStyle === "plain"
-                  ? "bg-searchbar ring-2 ring-info shadow-inner"
+                  ? "  ring-2 ring-info shadow-inner"
                   : "hover:bg-hover hover:shadow",
-                "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10 after:bg-white after:transition-opacity"
+                "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10  after:transition-opacity"
               )}
             >
               <NumberPreview

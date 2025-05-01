@@ -25,7 +25,6 @@ export function TextToolPopup() {
   const [selectedFont, setSelectedFont] = useState("Calibri");
   const [fontSize, setFontSize] = useState(16);
   const [textColor, setTextColor] = useState("#FF3B30");
-  // const [backgroundColor, setBackgroundColor] = useState("transparent");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);

@@ -82,7 +82,7 @@ export function FooterControls() {
       <div
         className={cn(
           "fixed bottom-0  left-0 right-0 z-20",
-          isToolbarBottom && "top-0"
+          isToolbarBottom && "top-0 h-0"
         )}
       >
         {/* Collapse toggle button */}
@@ -323,7 +323,7 @@ export function FooterControls() {
                 }}
                 className={cn(
                   "rounded-full p-1.5 transition-colors justify-center",
-                  "hover:bg-tool-selected-color text-[#999] hover:text-white"
+                  "hover:bg-hover text-foreground hover:text-text"
                 )}
                 aria-label='Close'
               >
@@ -336,7 +336,7 @@ export function FooterControls() {
                 <div
                   className={cn(
                     "flex items-center rounded-lg overflow-hidden",
-                    "bg-searchbar"
+                    "bg-border"
                   )}
                 >
                   <input
@@ -345,7 +345,7 @@ export function FooterControls() {
                     value={isUploading ? "Preparing link..." : shareableLink}
                     className={cn(
                       "flex-1 px-3 py-2.5 text-sm border-none outline-none w-full",
-                      "bg-searchbar text-white"
+                      "bg-border text-text "
                     )}
                     onClick={(e) => {
                       if (!isUploading) {
@@ -357,7 +357,7 @@ export function FooterControls() {
                   {!isUploading && (
                     <CopyButton
                       textToCopy={shareableLink}
-                      onCopy={() => toast("Link copied to clipboard!")}
+                      onCopy={() => toast.success("Link copied to clipboard!")}
                     />
                   )}
                 </div>
@@ -374,7 +374,7 @@ export function FooterControls() {
                     )}
                   >
                     <div
-                      className='h-full bg-blue-500 rounded-full animate-progress'
+                      className='h-full bg-info rounded-full animate-progress'
                       style={{ width: "75%" }}
                     ></div>
                   </div>
@@ -387,7 +387,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full px-4 py-2 transition-colors duration-200 flex items-center gap-2",
-                    "hover:bg-tool-selected-color hover:text-foreground"
+                    "hover:bg-hover border hover:text-foreground"
                   )}
                   onClick={handleCopyLink}
                 >
@@ -430,7 +430,7 @@ function CopyButton({
         "px-3 py-1 mr-1 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1",
         copied
           ? "bg-green-500/20 text-green-500"
-          : "bg-btn-hover hover:bg-tool-selected-color text-foreground"
+          : "bg-card hover:bg-tool-selected-color text-foreground"
       )}
     >
       {copied ? (

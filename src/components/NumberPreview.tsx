@@ -1,4 +1,5 @@
 "use client";
+import { getContrastTextColor } from "@/helper/getContrastColor";
 import { cn } from "@/lib/utils";
 
 export type NumberStyle = "circled" | "squared" | "plain";
@@ -20,17 +21,21 @@ export function NumberPreview({
   useStandardColor = false,
   className,
 }: NumberPreviewProps) {
-  const bgColor = useStandardColor ? "var(--searchbar)" : color;
-  const borderColor = useStandardColor ? "var(--border)" : color;
-
+  const bgColor = useStandardColor ? "var(--info-color)" : color;
+  const borderColor = useStandardColor ? "var(--border-color)" : color;
+  const textColor = useStandardColor
+    ? "var(--text)"
+    : getContrastTextColor(color);
   if (style === "circled") {
     return (
       <div
         className={cn(
-          "w-7 h-7 rounded-full flex items-center justify-center text-sm font-medium !bg-info text-text-primary",
+          "w-7 h-7 rounded-full flex items-center justify-center text-sm font-medium bg-info text-text",
           className
         )}
         style={{
+          background: bgColor,
+          color: textColor,
           border: useStandardColor
             ? `1px solid ${borderColor}`
             : `${strokeWidth}px solid ${bgColor}`,
@@ -43,10 +48,12 @@ export function NumberPreview({
     return (
       <div
         className={cn(
-          "w-7 h-7 rounded-sm flex items-center justify-center text-sm font-medium !bg-info text-text-primary",
+          "w-7 h-7 rounded-sm flex items-center justify-center text-sm font-medium bg-info text-text",
           className
         )}
         style={{
+          background: bgColor,
+          color: textColor,
           border: useStandardColor
             ? `1px solid ${borderColor}`
             : `${strokeWidth}px solid ${bgColor}`,
@@ -63,7 +70,7 @@ export function NumberPreview({
           className
         )}
         style={{
-          color: useStandardColor ? "var(--text)" : bgColor,
+          color: useStandardColor ? "var(--text-color)" : bgColor,
         }}
       >
         {number}

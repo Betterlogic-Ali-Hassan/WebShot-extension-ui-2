@@ -218,7 +218,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                 setSetupComplete(false);
                 setSetupStep(4);
               }}
-              className='px-4 py-2 rounded-lg text-sm transition-colors bg-card hover:bg-hover'
+              className='px-4 py-2 rounded-lg text-sm transition-colors border hover:bg-hover'
             >
               View Backup Codes
             </button>
@@ -365,7 +365,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
 
               <button
                 onClick={() => setSetupStep(2)}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-card'
               >
                 Continue
               </button>
@@ -439,7 +439,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
 
               <button
                 onClick={() => setSetupStep(3)}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-card'
               >
                 {authMethod === "app" ? "Continue" : "Send Code"}
               </button>
@@ -491,7 +491,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
 
               <button
                 onClick={verifyCode}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-card'
               >
                 Verify Code
               </button>
@@ -558,7 +558,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
 
               <button
                 onClick={complete2FASetup}
-                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
+                className='px-5 py-2 rounded-lg text-sm font-medium transition-colors bg-text hover:bg-text/80 text-card'
               >
                 Complete Setup
               </button>

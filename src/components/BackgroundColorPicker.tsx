@@ -3,6 +3,7 @@
 import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
 // Helper functions for color conversion
 const rgbToHsv = (r: number, g: number, b: number) => {
@@ -121,6 +122,7 @@ const hexToHsv = (hex: string) => {
 };
 
 const BackgroundColorPicker = () => {
+  const { toolbarPosition } = useImageEditor();
   const bgColorButtonRef = useRef<HTMLButtonElement>(null);
   const bgHueSliderRef = useRef<HTMLDivElement>(null);
   const bgAlphaSliderRef = useRef<HTMLDivElement>(null);
@@ -135,7 +137,7 @@ const BackgroundColorPicker = () => {
   const [bgHexValue, setBgHexValue] = useState("FFFFFF");
   const [bgRgbValues, setBgRgbValues] = useState({ r: 255, g: 255, b: 255 });
   const bgSaturationBoxRef = useRef<HTMLDivElement>(null);
-
+  const isToolbarBottom = toolbarPosition === "bottom";
   // Update the background color whenever HSV or alpha changes
   useEffect(() => {
     const rgb = hsvToRgb(bgHue, bgSaturation, bgBrightness);
@@ -296,7 +298,10 @@ const BackgroundColorPicker = () => {
       {isBackgroundColorPickerOpen && (
         <div
           ref={bgColorPickerRef}
-          className='absolute top-full right-0 mt-2 z-50'
+          className={cn(
+            "absolute  left-0 mt-2 z-50",
+            isToolbarBottom ? "bottom-full mb-2" : "top-full"
+          )}
         >
           <div className='p-3 rounded-2xl shadow-lg border w-[300px] transition-all duration-200 bg-background border-border'>
             {/* Saturation/Value box */}

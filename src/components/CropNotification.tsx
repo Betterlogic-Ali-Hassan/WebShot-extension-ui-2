@@ -12,7 +12,7 @@ export function CropNotification() {
   return (
     <div
       className={cn(
-        "fixed bottom-32 left-1/2 transform -translate-x-1/2 z-20 hidden",
+        "fixed bottom-32 left-1/2 transform -translate-x-1/2 z-50 hidden",
         showNotification && "block"
       )}
     >

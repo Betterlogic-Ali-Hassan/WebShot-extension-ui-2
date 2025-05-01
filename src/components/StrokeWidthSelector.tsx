@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
 export interface StrokeWidthSelectorProps {
   value: string;
@@ -32,7 +33,8 @@ export function StrokeWidthSelector({
     const parsed = Number.parseInt(value, 10);
     return isNaN(parsed) ? fallback : parsed;
   };
-
+  const { toolbarPosition } = useImageEditor();
+  const isToolbarBottom = toolbarPosition === "bottom";
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -79,8 +81,9 @@ export function StrokeWidthSelector({
       {isOpen && (
         <div
           className={cn(
-            "absolute top-full left-0 mt-1 w-36 rounded-md shadow-lg z-50 py-1",
-            "bg-card border border-border"
+            "absolute  left-0 mt-1 w-36 rounded-md shadow-lg z-50 py-1",
+            "bg-card border border-border",
+            isToolbarBottom ? "bottom-full mb-2" : "top-full"
           )}
         >
           {options.map((size) => (

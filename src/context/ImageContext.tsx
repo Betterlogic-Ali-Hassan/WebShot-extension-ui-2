@@ -60,7 +60,7 @@ type ImageEditorContextType = {
   handleHelpClick: () => void;
   handleLogoutClick: () => void;
   handleManagePlanClick: () => void;
-  getContentPadding: () => string;
+
   setSelectedShape: React.Dispatch<
     React.SetStateAction<"square" | "rounded" | "circle" | "star">
   >;
@@ -409,15 +409,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
     toast.success("Manage subscription plan clicked");
   };
 
-  // Calculate content padding based on toolbar position
-  const getContentPadding = () => {
-    if (!isEditing) return "";
-
-    if (toolbarPosition === "top") return "pt-16 pb-24";
-    if (toolbarPosition === "left") return "pl-16 pb-24";
-    return "pb-32"; // Extra padding for bottom toolbar + footer controls
-  };
-
   // Create the context value object
   const contextValue: ImageEditorContextType = {
     isDarkMode,
@@ -456,7 +447,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
     handleHelpClick,
     handleLogoutClick,
     handleManagePlanClick,
-    getContentPadding,
     setSelectedShape,
     setSelectedArrowStyle,
     setSelectedPencilTool,

@@ -174,8 +174,8 @@ export function BorderToolPopup() {
       ref={popupRef}
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
-        isToolbarLeft && "ml-[100px]",
-        isToolbarBottom && "-mt-[440px] "
+        !isToolbarBottom && "mt-2.5",
+        isToolbarBottom && "-mt-[430px] "
       )}
       style={{
         top: `${isToolbarLeft ? "50%" : position.top + "px"}`,
@@ -292,7 +292,7 @@ export function BorderToolPopup() {
                 }}
                 className={cn(
                   "h-6 w-6 flex items-center justify-center rounded-full mr-1",
-                  "bg-searchbar hover:bg-hover text-text"
+                  "bg-border hover:bg-hover text-text"
                 )}
                 disabled={selectedPreset === 0}
               >
@@ -356,7 +356,7 @@ export function BorderToolPopup() {
                 }}
                 className={cn(
                   "h-6 w-6 flex items-center justify-center rounded-full ml-1",
-                  "bg-searchbar hover:bg-hover text-text"
+                  "bg-border hover:bg-hover text-text"
                 )}
                 disabled={
                   Math.floor(selectedPreset / 6) >=

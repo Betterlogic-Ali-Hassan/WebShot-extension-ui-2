@@ -109,7 +109,7 @@ export function SecuritySection({ onSave }: SecuritySectionProps) {
           <div className='pt-2'>
             <button
               onClick={saveSecuritySettings}
-              className='flex items-center px-5 py-2.5 rounded-lg font-medium transition-colors bg-text hover:bg-text/80 text-text-primary'
+              className='flex items-center px-5 py-2.5 rounded-lg font-medium transition-colors bg-text hover:bg-text/80 text-card'
             >
               <Save className='h-4 w-4 mr-2' />
               Update Password

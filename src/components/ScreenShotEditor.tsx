@@ -37,7 +37,7 @@ export function ScreenshotEditor() {
     isCropActive,
     activeTool,
     showPremiumPopup,
-
+    toolbarPosition,
     // Refs
     fileInputRef,
     toolbarRef,
@@ -46,7 +46,7 @@ export function ScreenshotEditor() {
     handleFileUpload,
     handleCapture,
     handleUpload,
-    getContentPadding,
+    uploadedImage,
   } = useImageEditor();
 
   /**
@@ -74,8 +74,11 @@ export function ScreenshotEditor() {
   return (
     <div
       className={cn(
-        "w-full max-w-6xl transition-colors duration-300 relative min-h-[80vh] mt-[62px]",
-        "rounded-3xl overflow-hidden shadow-2xl bg-background text-text"
+        "w-full max-w-6xl transition-colors duration-300 relative min-h-[80vh] mt-16 ",
+        "rounded-3xl overflow-hidden shadow-2xl bg-background text-text",
+        uploadedImage && "mt-[145px] min-h-[70vh]",
+        uploadedImage && toolbarPosition === "bottom" && "mt-0 ",
+        !uploadedImage && toolbarPosition === "bottom" && "mt-2 "
       )}
     >
       {/* Hidden file input for image uploads */}
@@ -111,14 +114,14 @@ export function ScreenshotEditor() {
         </div>
       ) : (
         // Editing state - Image editor with tools
-        <div className={cn("relative h-full", getContentPadding())}>
+        <div className='relative h-full'>
           {/* Tool popup container */}
           <div className='z-40 relative' ref={toolbarRef}>
             {renderToolPopup()}
           </div>
 
           {/* Image viewer */}
-          <div className='flex items-center justify-center h-[calc(100vh-200px)] overflow-hidden'>
+          <div className='flex items-center justify-center h-[calc(100vh-190px)] overflow-hidden'>
             <ImageViewer
               disableWheelZoom={false}
               showZoomControls={true}

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./components/ThemeProvider";
 import { ImageEditorProvider } from "./context/ImageContext";
 import HomePage from "./pages/HomePage"; // Assume ye path sahi hai
 import ProfilePage from "./pages/ProfilePage"; // Assume ye path sahi hai
@@ -11,9 +10,11 @@ import { ModalProvider } from "./context/ModalsContext";
 import { ScreenShotProvider } from "./context/ScreenShotContext";
 import ScreenShotManager from "./components/screenShotManager/ScreenShotManager";
 import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "./components/ThemeProvider";
 function App() {
+  const { theme } = useTheme();
   return (
-    <ThemeProvider>
+    <>
       <ToastContainer
         position='bottom-center'
         autoClose={3000}
@@ -21,7 +22,7 @@ function App() {
         closeOnClick={false}
         pauseOnHover={true}
         draggable={true}
-        theme='dark'
+        theme={theme === "light" ? "light" : "dark"}
       />
       <ImageEditorProvider>
         <ModalProvider>
@@ -39,7 +40,7 @@ function App() {
           </ScreenShotProvider>
         </ModalProvider>
       </ImageEditorProvider>
-    </ThemeProvider>
+    </>
   );
 }
 

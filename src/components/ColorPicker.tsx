@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
 export interface ColorPickerProps {
   color: string;
@@ -28,6 +29,7 @@ export function ColorPicker({
     "#5856D6",
   ],
 }: ColorPickerProps) {
+  const { toolbarPosition } = useImageEditor();
   const [isOpen, setIsOpen] = useState(false);
   const [hue, setHue] = useState(0);
   const [saturation, setSaturation] = useState(100);
@@ -38,7 +40,7 @@ export function ColorPicker({
 
   // Track if the color change is internal (from HSV controls) or external (from color prop)
   const isInternalColorChange = useRef(false);
-
+  const isToolbarBottom = toolbarPosition === "bottom";
   // Refs for DOM elements
   const buttonRef = useRef<HTMLButtonElement>(null);
   const pickerRef = useRef<HTMLDivElement>(null);
@@ -215,7 +217,13 @@ export function ColorPicker({
       </button>
 
       {isOpen && (
-        <div ref={pickerRef} className='absolute top-full left-0 mt-2 z-50'>
+        <div
+          ref={pickerRef}
+          className={cn(
+            "absolute  left-0 mt-2 z-50",
+            isToolbarBottom ? "bottom-full mb-2" : "top-full"
+          )}
+        >
           <div className='p-3 rounded-2xl shadow-lg border w-[300px] transition-all duration-200 bg-background border-border text-text'>
             {/* Saturation/Value box */}
             <div

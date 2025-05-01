@@ -343,8 +343,8 @@ export function StickersToolPopup() {
       ref={popupRef}
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-background border border-border text-text",
-        isToolbarLeft && "ml-[100px]",
-        isToolbarBottom && "-mt-[440px] "
+        isToolbarBottom && "-mt-[430px] ",
+        !isToolbarBottom && "mt-2.5"
       )}
       style={{
         top: `${isToolbarLeft ? "50%" : position.top + "px"}`,

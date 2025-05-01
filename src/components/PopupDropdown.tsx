@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
 export interface DropdownOption {
   value: string;
@@ -36,7 +37,8 @@ export function Dropdown({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const selectedOption = options.find((option) => option.value === value);
-
+  const { toolbarPosition } = useImageEditor();
+  const isToolbarBottom = toolbarPosition === "bottom";
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -100,14 +102,11 @@ export function Dropdown({
       {isOpen && (
         <div
           className={cn(
-            "absolute top-full left-0 mt-1 rounded-md shadow-lg z-50 py-1 max-h-60 overflow-y-auto scrollbar-none",
+            "absolute left-0 mt-1 rounded-md shadow-lg z-50 py-1 max-h-60 overflow-y-auto no-scrollbar",
             "bg-card border border-border",
-            dropdownClassName
+            dropdownClassName,
+            isToolbarBottom ? "bottom-full mb-2" : "top-full"
           )}
-          style={{
-            scrollbarWidth: "none" /* Firefox */,
-            msOverflowStyle: "none" /* IE and Edge */,
-          }}
         >
           {options.map((option) => (
             <div
