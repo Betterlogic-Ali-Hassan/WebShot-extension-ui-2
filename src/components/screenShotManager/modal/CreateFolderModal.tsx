@@ -33,7 +33,7 @@ const CreateFolderModal = () => {
             onChange={(e) => setNewFolderName(e.target.value)}
             placeholder='Enter folder name'
             autoFocus
-            className='w-full px-3 py-2 rounded-lg border transition-all duration-200 bg-background hover:bg-hover'
+            className='w-full px-3 py-2 rounded-lg border transition-all duration-200 bg-background '
           />
         </div>
 
@@ -49,7 +49,7 @@ const CreateFolderModal = () => {
             onClick={handleCreateFolder}
             disabled={!newFolderName.trim()}
             className={cn(
-              "px-4 py-2 rounded-full bg-hover cursor-not-allowed text-text-primary",
+              "px-4 py-2 rounded-full bg-text text-card cursor-not-allowed hover:bg-text/80 disabled:opacity-60 disabled:hover:bg-text",
               newFolderName.trim() && "bg-info "
             )}
           >
