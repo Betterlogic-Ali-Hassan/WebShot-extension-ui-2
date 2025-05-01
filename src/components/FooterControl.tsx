@@ -89,7 +89,7 @@ export function FooterControls() {
         <div className={cn("flex justify-center", isToolbarBottom && "hidden")}>
           <Button
             onClick={toggleCollapse}
-            className='rounded-t-lg rounded-b-none border-t border-l border-r mb-[-1px] transition-colors bg-card border-border hover:bg-hover'
+            className='rounded-t-lg rounded-b-none border-t border-l border-r mb-[-1px] transition-colors bg-card border-border hover:bg-tool-selected-color'
           >
             {isCollapsed ? (
               <ChevronUp className='h-4 w-4 flex-shrink-0' />
@@ -124,7 +124,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    "hover:bg-btn-hover hover:text-foreground"
+                    "hover:bg-tool-selected-color hover:text-foreground"
                   )}
                 >
                   <Undo2 className='h-4 w-4 flex-shrink-0' />
@@ -136,7 +136,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    "hover:bg-btn-hover hover:text-foreground"
+                    "hover:bg-tool-selected-color hover:text-foreground"
                   )}
                 >
                   <Redo2 className='h-4 w-4 flex-shrink-0' />
@@ -148,7 +148,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    "hover:bg-btn-hover hover:text-foreground"
+                    "hover:bg-tool-selected-color hover:text-foreground"
                   )}
                 >
                   <RotateCcw className='h-4 w-4 flex-shrink-0' />
@@ -160,7 +160,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    "hover:bg-btn-hover hover:text-foreground",
+                    "hover:bg-tool-selected-color hover:text-foreground",
                     isDeleting && "animate-delete-shake"
                   )}
                   onClick={handleDeleteClick}
@@ -187,7 +187,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    "hover:bg-btn-hover hover:text-foreground"
+                    "hover:bg-tool-selected-color hover:text-foreground"
                   )}
                   onClick={handleCopyToClipboard}
                 >
@@ -202,7 +202,7 @@ export function FooterControls() {
                     <Button
                       className={cn(
                         "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                        "hover:bg-btn-hover hover:text-foreground"
+                        "hover:bg-tool-selected-color hover:text-foreground"
                       )}
                     >
                       <Download className='h-4 w-4 flex-shrink-0' />
@@ -220,7 +220,7 @@ export function FooterControls() {
                   <DropdownMenuItem
                     className={cn(
                       "rounded-lg cursor-pointer flex items-center gap-2.5 px-3 py-2 transition-all duration-150",
-                      "hover:bg-hover focus:bg-hover active:bg-btn-hover"
+                      "hover:bg-tool-selected-color focus:bg-hover active:bg-btn-hover"
                     )}
                     onClick={() => handleSaveAs("PNG")}
                   >
@@ -230,7 +230,7 @@ export function FooterControls() {
                   <DropdownMenuItem
                     className={cn(
                       "rounded-lg cursor-pointer flex items-center gap-2.5 px-3 py-2 transition-all duration-150",
-                      "hover:bg-hover focus:bg-hover active:bg-btn-hover"
+                      "hover:bg-tool-selected-color focus:bg-hover active:bg-btn-hover"
                     )}
                     onClick={() => handleSaveAs("JPG")}
                   >
@@ -240,7 +240,7 @@ export function FooterControls() {
                   <DropdownMenuItem
                     className={cn(
                       "rounded-lg cursor-pointer flex items-center gap-2.5 px-3 py-2 transition-all duration-150",
-                      "hover:bg-hover focus:bg-hover active:bg-btn-hover"
+                      "hover:bg-tool-selected-color focus:bg-hover active:bg-btn-hover"
                     )}
                     onClick={() => handleSaveAs("PDF")}
                   >
@@ -254,7 +254,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full h-9 w-9 transition-colors duration-200 justify-center",
-                    "hover:bg-btn-hover hover:text-foreground"
+                    "hover:bg-tool-selected-color hover:text-foreground"
                   )}
                   onClick={handleUpload}
                   disabled={isUploading}
@@ -278,7 +278,7 @@ export function FooterControls() {
             onClick={toggleCollapse}
             className={cn(
               "rounded-b-lg rounded-t-none border-b border-l border-r mb-[-1px] transition-colors",
-              "bg-card border-border hover:bg-hover"
+              "bg-card border-border hover:bg-tool-selected-color"
             )}
           >
             {isCollapsed ? (
@@ -323,7 +323,7 @@ export function FooterControls() {
                 }}
                 className={cn(
                   "rounded-full p-1.5 transition-colors justify-center",
-                  "hover:bg-hover text-[#999] hover:text-white"
+                  "hover:bg-tool-selected-color text-[#999] hover:text-white"
                 )}
                 aria-label='Close'
               >
@@ -387,7 +387,7 @@ export function FooterControls() {
                 <Button
                   className={cn(
                     "rounded-full px-4 py-2 transition-colors duration-200 flex items-center gap-2",
-                    "hover:bg-btn-hover hover:text-foreground"
+                    "hover:bg-tool-selected-color hover:text-foreground"
                   )}
                   onClick={handleCopyLink}
                 >
@@ -430,7 +430,7 @@ function CopyButton({
         "px-3 py-1 mr-1 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1",
         copied
           ? "bg-green-500/20 text-green-500"
-          : "bg-btn-hover hover:bg-hover text-foreground"
+          : "bg-btn-hover hover:bg-tool-selected-color text-foreground"
       )}
     >
       {copied ? (
