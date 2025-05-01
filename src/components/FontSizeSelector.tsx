@@ -70,7 +70,7 @@ export function FontSizeSelector({
           "bg-border border  border-tool-selected-color text-text hover:bg-border/60"
         )}
       >
-        <Minus className='h-3 w-3' />
+        <Minus className='h-3 w-3 flex-shrink-0' />
         <span className='sr-only'>Decrease font size</span>
       </Button>
       <div className='relative' ref={dropdownRef}>
@@ -124,7 +124,7 @@ export function FontSizeSelector({
           "bg-border border  border-tool-selected-color  text-text hover:bg-border/60"
         )}
       >
-        <Plus className='h-3 w-3' />
+        <Plus className='h-3 w-3 flex-shrink-0' />
         <span className='sr-only'>Increase font size</span>
       </Button>
     </div>

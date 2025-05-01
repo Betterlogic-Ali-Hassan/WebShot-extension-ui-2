@@ -26,6 +26,7 @@
 
 :root {
   --body-color: #f9fafb;
+  --selection-border-color: #ccc;
   --background-color: #ffffff; /* Pure white background */
   --card-color: #f6f7f8; /* Light gray for cards */
   --text-color: #1c1c1c; /* Dark text for readability */
@@ -35,7 +36,7 @@
   --search-bar: #f6f7f8;
   --success-color: #22c55e;
   --radius: 0.5rem; /* Rounded corners */
-
+  --tool-selected-color: #ccc;
   --btn-hover: #dbeeff; /* Light blue hover for buttons */
   --hover-color: #f0f2f5; /* Subtle hover effect */
 
@@ -47,6 +48,8 @@
   --error-color: #fb2c36;
 }
 [data-theme="light"] {
+  --selection-border-color: #ccc;
+  --tool-selected-color: #ccc;
   --body-color: #f9fafb;
   --background-color: #ffffff; /* Pure white background */
   --card-color: #f6f7f8; /* Light gray for cards */
