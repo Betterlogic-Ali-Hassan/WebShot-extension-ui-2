@@ -43,7 +43,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className='flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg bg-info text-text-primary '
+              className='flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:bg-info-hover bg-info text-text-primary '
             >
               <Upload size={16} />
               <span>Upload</span>
