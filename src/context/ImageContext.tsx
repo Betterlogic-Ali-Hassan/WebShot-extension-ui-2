@@ -394,19 +394,19 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const handleManageUploadsClick = () => {
-    toast("Manage uploads clicked");
+    toast.success("Manage uploads clicked");
   };
 
   const handleHelpClick = () => {
-    toast("Help & Support clicked");
+    toast.success("Help & Support clicked");
   };
 
   const handleLogoutClick = () => {
-    toast("Logged out successfully");
+    toast.success("Logged out successfully");
   };
 
   const handleManagePlanClick = () => {
-    toast("Manage subscription plan clicked");
+    toast.success("Manage subscription plan clicked");
   };
 
   // Calculate content padding based on toolbar position

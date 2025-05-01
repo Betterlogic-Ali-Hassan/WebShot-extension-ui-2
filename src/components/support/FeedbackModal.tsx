@@ -4,6 +4,7 @@ import type React from "react";
 
 import { Send, X } from "lucide-react";
 import { useState } from "react";
+import Button from "../ui/button";
 
 interface FeedbackModalProps {
   onClose: () => void;
@@ -123,17 +124,20 @@ export function FeedbackModal({ onClose }: FeedbackModalProps) {
           </div>
 
           <div className='flex justify-end space-x-3 pt-3'>
-            <button
+            <Button
               type='button'
               onClick={onClose}
-              className='btn btn-secondary'
+              className='bg-card border border-border hover:bg-hover rounded-lg  cursor-pointer  px-5 py-2.5 text-base font-medium text-text  disabled:cursor-not-allowed whitespace-nowrap flex items-center max-w-max'
             >
               Cancel
-            </button>
-            <button type='submit' className='btn btn-primary flex items-center'>
+            </Button>
+            <Button
+              type='submit'
+              className='bg-text text-card border border-border hover:bg-text/80 rounded-lg  cursor-pointer  px-5 py-2.5 text-base font-medium   disabled:cursor-not-allowed whitespace-nowrap flex items-center max-w-max ml-2'
+            >
               <Send className='h-4 w-4 mr-2' />
               Submit Feedback
-            </button>
+            </Button>
           </div>
         </form>
       </div>
