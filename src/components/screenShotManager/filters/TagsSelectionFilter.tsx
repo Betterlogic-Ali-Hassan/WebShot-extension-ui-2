@@ -78,7 +78,7 @@ const TagsSelectionFilter = () => {
                 >
                   <div
                     className={cn(
-                      "flex items-center px-3 py-2 rounded-full cursor-pointer transition-all duration-200 bg-background border border-border hover:bg-hover",
+                      "flex items-center px-3 py-2 rounded-full cursor-pointer transition-all duration-200 bg-background border border-border hover:bg-card",
                       selectedTags.includes(tag.name) && "bg-hover"
                     )}
                   >
