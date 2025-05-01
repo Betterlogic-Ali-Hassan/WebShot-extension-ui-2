@@ -175,7 +175,7 @@ export function BorderToolPopup() {
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-card border border-border text-text",
         !isToolbarBottom && "mt-2.5",
-        isToolbarBottom && "-mt-[430px] "
+        isToolbarBottom && "-mt-[405px] "
       )}
       style={{
         top: `${isToolbarLeft ? "50%" : position.top + "px"}`,

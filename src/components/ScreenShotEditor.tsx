@@ -29,6 +29,7 @@ import { NumberToolPopup } from "./tools/popups/NumberToolPopup";
 import { WatermarkToolPopup } from "./tools/popups/WatermarkToolPopup";
 import { TextArrowToolPopup } from "./tools/popups/TextArrowPopup";
 import { PremiumFeaturePopup } from "./tools/popups/PremiumFeaturePopup";
+import ExportActionGroup from "./ExportActionGroup";
 
 export function ScreenshotEditor() {
   const {
@@ -94,6 +95,7 @@ export function ScreenshotEditor() {
       <EditorToolbar
         settingsButton={
           <>
+            {isEditing && <ExportActionGroup />}
             <UserAvatarDropdown
               userName='Alex Johnson'
               userEmail='alex@example.com'
@@ -121,7 +123,12 @@ export function ScreenshotEditor() {
           </div>
 
           {/* Image viewer */}
-          <div className='flex items-center justify-center h-[calc(100vh-190px)] overflow-hidden'>
+          <div
+            className={cn(
+              "flex items-center justify-center h-[calc(100vh-130px)] overflow-hidden",
+              uploadedImage && "h-[calc(100vh-190px)]"
+            )}
+          >
             <ImageViewer
               disableWheelZoom={false}
               showZoomControls={true}

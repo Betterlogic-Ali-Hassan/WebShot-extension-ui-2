@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { Minus, Plus } from "lucide-react";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useImageEditor } from "@/context/ImageContext";
 
 export interface FontSizeSelectorProps {
   value: number;
@@ -28,7 +29,8 @@ export function FontSizeSelector({
 }: FontSizeSelectorProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
+  const { toolbarPosition } = useImageEditor();
+  const isToolbarBottom = toolbarPosition === "bottom";
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number.parseInt(e.target.value, 10);
     if (!isNaN(newValue)) {
@@ -88,8 +90,9 @@ export function FontSizeSelector({
         {isDropdownOpen && (
           <div
             className={cn(
-              "absolute top-full mt-1 w-24 rounded-md shadow-lg z-50 py-1 max-h-60 overflow-y-auto scrollbar-none",
-              "bg-card border border-border"
+              "absolute  mt-1 w-24 rounded-md shadow-lg z-50 py-1 max-h-60 overflow-y-auto scrollbar-none",
+              "bg-card border border-border",
+              isToolbarBottom ? "bottom-full" : "top-full"
             )}
             style={{
               scrollbarWidth: "none" /* Firefox */,

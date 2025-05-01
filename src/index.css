@@ -9,3 +9,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+.react-tooltip {
+  position: fixed !important;
+  z-index: 9999 !important;
+}

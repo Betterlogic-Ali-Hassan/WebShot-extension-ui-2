@@ -11,6 +11,8 @@ import { ScreenShotProvider } from "./context/ScreenShotContext";
 import ScreenShotManager from "./components/screenShotManager/ScreenShotManager";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "./components/ThemeProvider";
+
+import SingleScreenshot from "./components/singleScreenshotPage/SingleScreenshot";
 function App() {
   const { theme } = useTheme();
   return (
@@ -35,6 +37,7 @@ function App() {
                 <Route path='/support' element={<SupportPage />} />
                 <Route path='/billing' element={<Billing />} />
                 <Route path='/screenshot' element={<ScreenShotManager />} />
+                <Route path='/s/:id' element={<SingleScreenshot />} />
               </Routes>
             </BrowserRouter>
           </ScreenShotProvider>

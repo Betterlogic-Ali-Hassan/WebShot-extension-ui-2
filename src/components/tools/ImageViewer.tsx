@@ -11,7 +11,10 @@ interface ImageViewerProps {
   fitToContainer?: boolean;
 }
 
-export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
+export function ImageViewer({
+  showZoomControls = true,
+  fitToContainer,
+}: ImageViewerProps) {
   const { uploadedImage: imageUrl } = useImageEditor();
   const [zoomLevel, setZoomLevel] = useState(1);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
@@ -127,7 +130,10 @@ export function ImageViewer({ showZoomControls = true }: ImageViewerProps) {
           ref={imageRef}
           src={imageUrl || "/placeholder.svg"}
           alt='Uploaded screenshot'
-          className='transition-transform duration-200'
+          className={cn(
+            "transition-transform duration-200",
+            fitToContainer && "!m-0 !w-full  "
+          )}
           style={{
             transform: `scale(${zoomLevel})`,
             transformOrigin: "top center",

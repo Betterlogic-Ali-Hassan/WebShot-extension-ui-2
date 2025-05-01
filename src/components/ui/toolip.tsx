@@ -2,6 +2,7 @@
 import React, { ReactNode } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { useTheme } from "../ThemeProvider";
+import { cn } from "@/lib/utils";
 
 interface TooltipProps {
   id: string; // unique id for tooltip
@@ -32,7 +33,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         place={place}
         variant={theme === "light" ? "dark" : "light"}
         float={effect}
-        className={className}
+        className={cn("z-50", className)}
       />
     </>
   );

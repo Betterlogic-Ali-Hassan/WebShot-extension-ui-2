@@ -19,7 +19,7 @@ type ImageEditorContextType = {
   isEditing: boolean;
   popupPosition: { top: number; left: number; width: number };
   isCropActive: boolean;
-  uploadedImage: string | null;
+  uploadedImage: string | null | undefined;
   selectedShape: "square" | "rounded" | "circle" | "star";
   selectedArrowStyle:
     | "arrow-line"
@@ -60,7 +60,7 @@ type ImageEditorContextType = {
   handleHelpClick: () => void;
   handleLogoutClick: () => void;
   handleManagePlanClick: () => void;
-
+  setUploadedImage: (img: string | null | undefined) => void;
   setSelectedShape: React.Dispatch<
     React.SetStateAction<"square" | "rounded" | "circle" | "star">
   >;
@@ -103,7 +103,9 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
     width: 0,
   });
   const [isCropActive, setIsCropActive] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<string | null | undefined>(
+    null
+  );
   const toolbarRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -411,6 +413,7 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Create the context value object
   const contextValue: ImageEditorContextType = {
+    setUploadedImage,
     isDarkMode,
     activeTool,
     isEditing,

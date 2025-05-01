@@ -1,0 +1,40 @@
+import { screenShot } from "@/types/ScreenShot";
+
+export const mockScreenshots: screenShot[] = [
+  {
+    id: "1",
+    name: "Dashboard Design",
+    url: "/placeholder.svg?height=600&width=800",
+    date: "April 15, 2023",
+    uploadDate: "Uploaded on April 15, 2023",
+    folder: "UI Designs",
+    tags: ["dashboard", "ui", "design"],
+    isPrivate: false,
+    views: 245,
+    likes: 18,
+  },
+  {
+    id: "2",
+    name: "Login Screen",
+    url: "/placeholder.svg?height=600&width=800",
+    date: "April 10, 2023",
+    uploadDate: "Uploaded on April 10, 2023",
+    folder: "Authentication",
+    tags: ["login", "auth", "form"],
+    isPrivate: true,
+    views: 124,
+    likes: 7,
+  },
+  {
+    id: "3",
+    name: "API Documentation",
+    url: "/placeholder.svg?height=600&width=800",
+    date: "March 28, 2023",
+    uploadDate: "Uploaded on March 28, 2023",
+    folder: "Documentation",
+    tags: ["api", "docs", "reference"],
+    isPrivate: false,
+    views: 389,
+    likes: 32,
+  },
+];

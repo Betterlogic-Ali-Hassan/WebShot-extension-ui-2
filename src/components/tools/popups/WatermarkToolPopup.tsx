@@ -134,11 +134,9 @@ export function WatermarkToolPopup() {
       ref={popupRef}
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200  min-h-[68px] flex items-center bg-card border border-border text-text",
-        isToolbarBottom && isWatermarkEnabled && "-mt-[140px]",
-        isToolbarLeft && isWatermarkEnabled && "-mt-[130px]",
+        isToolbarBottom && isWatermarkEnabled && "-mt-[115px]",
         !isToolbarBottom && "mt-2.5",
-        isToolbarBottom && !isWatermarkEnabled && "-mt-5.5",
-        watermarkImage && isToolbarBottom && "-mt-[340px]"
+        watermarkImage && isToolbarBottom && "-mt-[320px]"
       )}
       style={{
         top: ` ${position.top}px`,

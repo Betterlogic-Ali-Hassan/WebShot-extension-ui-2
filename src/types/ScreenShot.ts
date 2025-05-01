@@ -5,5 +5,9 @@ export type screenShot =   {
     folder: string,
     date: string,
     tags: string[],
-    trash:boolean,
+    trash?:boolean,
+    uploadDate?: string;
+    views?: number
+  likes?: number
+    isPrivate?: boolean
   }

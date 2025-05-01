@@ -343,7 +343,7 @@ export function StickersToolPopup() {
       ref={popupRef}
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-background border border-border text-text",
-        isToolbarBottom && "-mt-[430px] ",
+        isToolbarBottom && "-mt-[405px] ",
         !isToolbarBottom && "mt-2.5"
       )}
       style={{

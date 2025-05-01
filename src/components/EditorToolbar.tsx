@@ -179,7 +179,6 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
       case "textarrow":
         if (activeTool === "textarrow") {
           if (selectedTextArrowType === "page-text") {
-            // Page text icon - document with text lines
             return wrapWithPremiumIndicator(
               <svg
                 width='16'
@@ -189,99 +188,113 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
                 xmlns='http://www.w3.org/2000/svg'
               >
                 <rect
-                  x='3'
-                  y='3'
-                  width='14'
-                  height='14'
+                  x='2'
+                  y='2'
+                  width='16'
+                  height='16'
                   rx='2'
                   stroke='currentColor'
-                  strokeWidth='1.5'
-                />
+                  stroke-width='1.5'
+                ></rect>
                 <path
-                  d='M6 7H14'
+                  d='M5 6H15'
                   stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                />
+                  stroke-width='1.5'
+                  stroke-linecap='round'
+                ></path>
                 <path
-                  d='M6 10H14'
+                  d='M5 10H15'
                   stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                />
+                  stroke-width='1.5'
+                  stroke-linecap='round'
+                ></path>
                 <path
-                  d='M6 13H10'
+                  d='M5 14H12'
                   stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                />
+                  stroke-width='1.5'
+                  stroke-linecap='round'
+                ></path>
               </svg>
             );
           }
           // Text arrow icon - speech bubble with arrow
           return wrapWithPremiumIndicator(
+            <div className='relative h-4 w-4'>
+              <svg
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                className='absolute top-0 left-0'
+              >
+                <rect
+                  x='2'
+                  y='2'
+                  width='12'
+                  height='10'
+                  rx='2'
+                  stroke='currentColor'
+                  strokeWidth='1.5'
+                />
+              </svg>
+              <svg
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                className='absolute -bottom-1 -right-1'
+              >
+                <path
+                  d='M12 10L18 16M18 16H14M18 16V12'
+                  stroke='currentColor'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </div>
+          );
+        }
+        // Default text arrow icon when not active
+        return wrapWithPremiumIndicator(
+          <div className='relative h-4 w-4'>
             <svg
-              width='16'
-              height='16'
+              width='20'
+              height='20'
               viewBox='0 0 20 20'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
+              className='absolute top-0 left-0'
+            >
+              <rect
+                x='2'
+                y='2'
+                width='12'
+                height='10'
+                rx='2'
+                stroke='currentColor'
+                strokeWidth='1.5'
+              />
+            </svg>
+            <svg
+              width='20'
+              height='20'
+              viewBox='0 0 20 20'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+              className='absolute -bottom-1 -right-1'
             >
               <path
-                d='M3 5C3 3.89543 3.89543 3 5 3H12C13.1046 3 14 3.89543 14 5V10C14 11.1046 13.1046 12 12 12H9L6 15V12H5C3.89543 12 3 11.1046 3 10V5Z'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-              <path
-                d='M14 8L17 11'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-              <path
-                d='M17 11L17 14'
+                d='M12 10L18 16M18 16H14M18 16V12'
                 stroke='currentColor'
                 strokeWidth='1.5'
                 strokeLinecap='round'
                 strokeLinejoin='round'
               />
             </svg>
-          );
-        }
-        // Default text arrow icon when not active
-        return wrapWithPremiumIndicator(
-          <svg
-            width='18'
-            height='18'
-            viewBox='0 0 20 20'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M3 5C3 3.89543 3.89543 3 5 3H12C13.1046 3 14 3.89543 14 5V10C14 11.1046 13.1046 12 12 12H9L6 15V12H5C3.89543 12 3 11.1046 3 10V5Z'
-              stroke='currentColor'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-            <path
-              d='M14 8L17 11'
-              stroke='currentColor'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-            <path
-              d='M17 11L17 14'
-              stroke='currentColor'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+          </div>
         );
       default: {
         // For other tools, use the default icon mapping
@@ -335,64 +348,24 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
     onToolChange(toolId, buttonRect, isPremium);
   };
 
-  // Render toolbar based on position
-  if (toolbarPosition === "bottom") {
-    return (
-      <>
-        <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 shadow-lg rounded-full transition-all duration-300 animate-fade-in-bottom bg-background border border-border'>
-          <div className='px-4 py-2 flex items-center justify-between'>
-            {/* Left section - logo, settings and theme toggle */}
-            <div className='flex items-center gap-3 mr-2'>
-              {logo && <div className='mr-2'>{logo}</div>}
-              {settingsButton}
-            </div>
-
-            {/* Center section - tools */}
-            <div className='flex items-center justify-center gap-1 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text'>
-              {visibleTools.map((tool) => (
-                <Tooltip
-                  key={tool.id}
-                  id={tool.id}
-                  place='top'
-                  content={tool.label}
-                >
-                  <Button
-                    ref={(el) => (buttonRefs.current[tool.id] = el)}
-                    className={cn(
-                      "rounded-xl transition-all duration-200 hover:scale-110 min-w-10 h-[40px] flex justify-center items-center  hover:bg-hover",
-                      activeTool === tool.id && "bg-hover"
-                    )}
-                    onClick={() => handleToolClick(tool.id)}
-                  >
-                    {renderToolIcon(tool.id)}
-                    <span className='sr-only'>{tool.label}</span>
-                  </Button>
-                </Tooltip>
-              ))}
-            </div>
-
-            {/* Right section (empty for now) */}
-            <div className='w-12'></div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  // Default: Top position
   return (
-    <div className='fixed top-0 left-0 w-full z-40 shadow-md transition-all duration-300 animate-fade-in-top bg-background  '>
-      <div className='max-w-screen-2xl mx-auto px-4 py-2 flex items-center justify-between'>
+    <div
+      className={cn(
+        "fixed  left-0 w-full z-40 shadow-md transition-all duration-300 animate-fade-in-top bg-background  ",
+        toolbarPosition === "bottom" ? "bottom-0" : "top-0"
+      )}
+    >
+      <div className='max-w-screen-2xl mx-auto px-4 h-[72px] py-2 flex items-center justify-between'>
         {/* Left section - logo */}
         <div className='flex items-center min-w-24'>{logo}</div>
 
         {/* Center section - tools */}
-        <div className='flex items-center justify-center gap-1 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text'>
+        <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text absolute left-1/2 -translate-x-1/2'>
           {visibleTools.map((tool) => (
             <Tooltip
               key={tool.id}
               id={tool.id}
-              place='bottom'
+              place={activeTool ? "left" : "bottom"}
               content={tool.label}
             >
               <Button
