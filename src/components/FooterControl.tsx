@@ -49,13 +49,13 @@ export function FooterControls() {
 
   // Export panel handlers
   const handleCopyToClipboard = () => {
-    toast("Copied to clipboard!");
+    toast.success("Copied to clipboard!");
   };
 
   const handleSaveAs = (format: string) => {
     const timestamp = new Date().getTime();
     const filename = `screenshot-${timestamp}.${format.toLowerCase()}`;
-    toast(`Saving as ${filename}`);
+    toast.success(`Saving as ${filename}`);
   };
 
   const handleUpload = async () => {
@@ -64,12 +64,12 @@ export function FooterControls() {
     setIsUploading(false);
     setUploadSuccess(true);
     setShareableLink("https://yourserver.com/view/abc123");
-    toast("Uploaded successfully!");
+    toast.success("Uploaded successfully!");
   };
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareableLink);
-    toast("Link copied to clipboard!");
+    toast.success("Link copied to clipboard!");
   };
 
   const toggleCollapse = () => {
