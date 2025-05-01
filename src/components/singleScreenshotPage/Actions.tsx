@@ -159,7 +159,7 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
       {/* Metadata Section with improved styling */}
       <div
         className={cn(
-          "p-6 rounded-2xl transition-all duration-300 bg-background ",
+          "p-6 rounded-2xl transition-all duration-300 bg-background border",
 
           activeTab === "details" || window.innerWidth >= 768
             ? "block"
@@ -208,7 +208,7 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
               {screenshot?.tags?.map((tag, index) => (
                 <span
                   key={index}
-                  className='px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 cursor-pointer bg-hover hover:bg-tool-selected-color/40'
+                  className='px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 cursor-pointer bg-hover hover:bg-tool-selected-color'
                 >
                   #{tag}
                 </span>
