@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Check, Share, X } from "lucide-react";
-import { toast } from "react-toastify";
 import Button from "./ui/button";
-import { CopyButton } from "./CopyButton";
+import { useState } from "react";
+import ShareLinkModal from "./ShareLinkModal";
+import ShareLinkInput from "./ShareLinkInput";
 interface Props {
   shareableLink: string;
   isUploading: boolean;
@@ -17,6 +18,7 @@ const UploadSeverImageModal = ({
   setUploadSuccess,
   uploadProgress,
 }: Props) => {
+  const [showShareLinkModal, setShareableLinkModal] = useState(false);
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm'>
       <div
@@ -54,38 +56,10 @@ const UploadSeverImageModal = ({
           </button>
         </div>
 
-        <div className='flex-1 flex flex-col justify-center mb-4'>
-          <div className='relative'>
-            <div
-              className={cn(
-                "flex items-center rounded-lg overflow-hidden",
-                "bg-border"
-              )}
-            >
-              <input
-                type='text'
-                readOnly
-                value={isUploading ? "Preparing link..." : shareableLink}
-                className={cn(
-                  "flex-1 px-3 py-2.5 text-sm border-none outline-none w-full",
-                  "bg-border text-text "
-                )}
-                onClick={(e) => {
-                  if (!isUploading) {
-                    e.currentTarget.select();
-                  }
-                }}
-              />
-
-              {!isUploading && (
-                <CopyButton
-                  textToCopy={shareableLink}
-                  onCopy={() => toast.success("Link copied to clipboard!")}
-                />
-              )}
-            </div>
-          </div>
-        </div>
+        <ShareLinkInput
+          shareableLink={shareableLink}
+          isUploading={isUploading}
+        />
 
         {isUploading && (
           <div className='flex-1 flex items-center justify-center mb-2'>
@@ -108,6 +82,9 @@ const UploadSeverImageModal = ({
         {!isUploading && (
           <div className='mt-auto'>
             <Button
+              onClick={() => {
+                setShareableLinkModal(true);
+              }}
               className={cn(
                 "rounded-full px-4 py-2 transition-colors duration-200 flex items-center gap-2",
                 "hover:bg-hover border hover:text-foreground"
@@ -117,6 +94,12 @@ const UploadSeverImageModal = ({
               <span>Share Link</span>
             </Button>
           </div>
+        )}
+        {showShareLinkModal && (
+          <ShareLinkModal
+            setShowShareLinkModal={setShareableLinkModal}
+            shareableLink={shareableLink}
+          />
         )}
       </div>
     </div>

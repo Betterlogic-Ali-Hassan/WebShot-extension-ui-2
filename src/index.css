@@ -13,3 +13,13 @@ input::-webkit-inner-spin-button {
   position: fixed !important;
   z-index: 9999 !important;
 }
+.swiper-button-next {
+  display: none !important;
+}
+.swiper-button-prev {
+  display: none !important;
+}
+.swiper {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
