@@ -26,6 +26,8 @@ const ExportActionGroup = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [shareableLink, setShareableLink] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
+
   const handleCopyToClipboard = () => {
     toast.success("Copied to clipboard!");
   };
@@ -36,12 +38,21 @@ const ExportActionGroup = () => {
   };
   const handleUpload = async () => {
     setIsUploading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setUploadProgress(0); // Start from 0%
+
+    // Simulate progress step-by-step
+    for (let i = 1; i <= 5; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 300)); // wait 300ms
+      setUploadProgress(i * 20); // 20%, 40%, ..., 100%
+    }
+
+    // Finalize
     setIsUploading(false);
     setUploadSuccess(true);
     setShareableLink("https://yourserver.com/view/abc123");
     toast.success("Uploaded successfully!");
   };
+
   return (
     <>
       <div className='flex items-center gap-2 py-2 px-3 rounded-[20px] mr-12 transition-all duration-300 bg-card'>
@@ -125,6 +136,7 @@ const ExportActionGroup = () => {
           setIsUploading={setIsUploading}
           setUploadSuccess={setUploadSuccess}
           isUploading={isUploading}
+          uploadProgress={uploadProgress}
         />
       )}
     </>

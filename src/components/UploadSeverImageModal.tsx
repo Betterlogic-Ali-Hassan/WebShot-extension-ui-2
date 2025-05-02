@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Check, Clipboard, X } from "lucide-react";
+import { Check, Share, X } from "lucide-react";
 import { toast } from "react-toastify";
 import Button from "./ui/button";
 import { CopyButton } from "./CopyButton";
@@ -8,17 +8,15 @@ interface Props {
   isUploading: boolean;
   setIsUploading: (upload: boolean) => void;
   setUploadSuccess: (upload: boolean) => void;
+  uploadProgress: number;
 }
 const UploadSeverImageModal = ({
   shareableLink,
   isUploading,
   setIsUploading,
   setUploadSuccess,
+  uploadProgress,
 }: Props) => {
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(shareableLink);
-    toast.success("Link copied to clipboard!");
-  };
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm'>
       <div
@@ -100,7 +98,7 @@ const UploadSeverImageModal = ({
               >
                 <div
                   className='h-full bg-info rounded-full animate-progress'
-                  style={{ width: "75%" }}
+                  style={{ width: `${uploadProgress}%` }}
                 ></div>
               </div>
             </div>
@@ -114,10 +112,9 @@ const UploadSeverImageModal = ({
                 "rounded-full px-4 py-2 transition-colors duration-200 flex items-center gap-2",
                 "hover:bg-hover border hover:text-foreground"
               )}
-              onClick={handleCopyLink}
             >
-              <Clipboard className='h-4 w-4 flex-shrink-0' />
-              <span>Copy Link</span>
+              <Share className='h-4 w-4 flex-shrink-0' />
+              <span>Share Link</span>
             </Button>
           </div>
         )}

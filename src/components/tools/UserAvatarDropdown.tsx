@@ -121,7 +121,7 @@ export function UserAvatarDropdown({
       case "left":
         return "left-0 ml-[100px]";
       case "bottom":
-        return "mb-[80px] bottom-0";
+        return "mb-[80px] bottom-0 right-12";
       default:
         return "right-1/2 min-[1600px]:translate-x-[150%] translate-x-[115%] left-1/2";
     }
