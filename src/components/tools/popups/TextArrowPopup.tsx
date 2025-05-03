@@ -10,6 +10,8 @@ import { ColorPicker } from "@/components/ColorPicker";
 import { FontSelector } from "@/components/FontSelector";
 import { TextFormattingControls } from "@/components/TextFormatingControl";
 import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
+import TextArrowIcon from "@/components/svgs/TextArrowIcon";
+import PageTextIcon from "@/components/svgs/PageTextIcon";
 
 export function TextArrowToolPopup() {
   const {
@@ -26,19 +28,13 @@ export function TextArrowToolPopup() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
 
-  const isToolbarLeft = toolbarPosition === "left";
   return (
     <PopupContainer
       position={popupPosition}
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div
-        className={cn(
-          "flex items-center gap-4",
-          isToolbarLeft && "flex-col-reverse items-start"
-        )}
-      >
+      <div className='flex items-center gap-4'>
         {/* Tool Selection - Toggle Switch */}
         <div className={`flex rounded-md overflow-hidden bg-background`}>
           <button
@@ -50,42 +46,7 @@ export function TextArrowToolPopup() {
             )}
             onClick={() => onTextArrowTypeSelect?.("text-arrow")}
           >
-            <div className='relative w-5 h-5'>
-              <svg
-                width='20'
-                height='20'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                className='absolute top-0 left-0'
-              >
-                <rect
-                  x='2'
-                  y='2'
-                  width='12'
-                  height='10'
-                  rx='2'
-                  stroke='currentColor'
-                  strokeWidth='1.5'
-                />
-              </svg>
-              <svg
-                width='20'
-                height='20'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                className='absolute bottom-0 right-0'
-              >
-                <path
-                  d='M12 10L18 16M18 16H14M18 16V12'
-                  stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </div>
+            <TextArrowIcon />
             <span className='text-sm font-medium'>Text Arrow</span>
           </button>
           <button
@@ -97,63 +58,19 @@ export function TextArrowToolPopup() {
             )}
             onClick={() => onTextArrowTypeSelect?.("page-text")}
           >
-            <svg
-              width='20'
-              height='20'
-              viewBox='0 0 20 20'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <rect
-                x='2'
-                y='2'
-                width='16'
-                height='16'
-                rx='2'
-                stroke='currentColor'
-                strokeWidth='1.5'
-              />
-              <path
-                d='M5 6H15'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-              />
-              <path
-                d='M5 10H15'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-              />
-              <path
-                d='M5 14H12'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-              />
-            </svg>
+            <PageTextIcon />
             <span className='text-sm font-medium'>Page Text</span>
           </button>
         </div>
 
         {/* Divider */}
-        <div
-          className={cn(
-            "h-8 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]"
-          )}
-        ></div>
+        <div className='h-8 w-px bg-border'></div>
 
         {/* Color Picker */}
         <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 
         {/* Divider */}
-        <div
-          className={cn(
-            "h-8 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]"
-          )}
-        ></div>
+        <div className='h-8 w-px bg-border'></div>
 
         {/* Stroke Size Selector */}
         <StrokeWidthSelector
@@ -169,27 +86,13 @@ export function TextArrowToolPopup() {
         />
 
         {/* Divider */}
-        <div
-          className={cn(
-            "h-8 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]"
-          )}
-        ></div>
+        <div className='h-8 w-px bg-border'></div>
 
         {/* Font Selector */}
-        <FontSelector
-          value={selectedFont}
-          onChange={setSelectedFont}
-          className={isToolbarLeft ? "w-full" : ""}
-        />
+        <FontSelector value={selectedFont} onChange={setSelectedFont} />
 
         {/* Divider */}
-        <div
-          className={cn(
-            "h-8 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]"
-          )}
-        ></div>
+        <div className='h-8 w-px bg-border'></div>
 
         {/* Text Style Buttons */}
         <TextFormattingControls

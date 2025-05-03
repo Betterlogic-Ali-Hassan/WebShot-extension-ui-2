@@ -21,8 +21,6 @@ export function NumberToolPopup() {
   const [currentNumber, setCurrentNumber] = useState(1);
   const [strokeWidth, setStrokeWidth] = useState(2);
 
-  const isToolbarLeft = toolbarPosition === "left";
-
   // Handle style selection
   const handleStyleSelect = (style: NumberStyle) => {
     setSelectedStyle(style);
@@ -38,12 +36,7 @@ export function NumberToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div
-        className={cn(
-          "flex items-center gap-4",
-          isToolbarLeft && "flex-col-reverse items-start"
-        )}
-      >
+      <div className='flex items-center gap-4'>
         {/* Style section */}
         <div className='flex items-center gap-3 px-1'>
           <span className='text-sm font-medium whitespace-nowrap text-text'>
@@ -106,12 +99,7 @@ export function NumberToolPopup() {
         </div>
 
         {/* Subtle divider */}
-        <div
-          className={cn(
-            "h-10 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]"
-          )}
-        ></div>
+        <div className='h-10 w-px bg-border'></div>
 
         {/* Color picker */}
         <div className='relative'>
@@ -139,19 +127,13 @@ export function NumberToolPopup() {
         <div
           className={cn(
             "h-10 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]",
             selectedStyle === "plain" && "hidden"
           )}
         ></div>
 
         {/* Size controls - only show for non-plain styles */}
         {selectedStyle !== "plain" && (
-          <div
-            className={cn(
-              "flex items-center gap-3 px-1",
-              isToolbarLeft && "flex-col items-start w-full"
-            )}
-          >
+          <div className='flex items-center gap-3 px-1'>
             <span className='text-sm font-medium whitespace-nowrap text-text'>
               Size:
             </span>
@@ -166,26 +148,15 @@ export function NumberToolPopup() {
                 { value: "5", label: "5 px" },
                 { value: "6", label: "6 px" },
               ]}
-              className={isToolbarLeft ? "w-full" : ""}
             />
           </div>
         )}
 
         {/* Subtle divider */}
-        <div
-          className={cn(
-            "h-8 w-px bg-border",
-            isToolbarLeft && "w-full h-[1px]"
-          )}
-        ></div>
+        <div className='h-8 w-px bg-border'></div>
 
         {/* Number controls */}
-        <div
-          className={cn(
-            "flex items-center gap-3 px-1",
-            isToolbarLeft && "mt-6 flex-col items-start"
-          )}
-        >
+        <div className='flex items-center gap-3 px-1'>
           <span className='text-sm font-medium whitespace-nowrap text-text'>
             Number:
           </span>

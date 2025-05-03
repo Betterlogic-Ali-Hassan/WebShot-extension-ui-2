@@ -189,20 +189,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         <div className='space-y-4'>
           <div className='flex items-center'>
             <div className='w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-info text-text-primary'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M5 13l4 4L19 7'
-                />
-              </svg>
+              <Check />
             </div>
             <div>
               <h4 className='font-medium'>Two-Factor Authentication Enabled</h4>
@@ -266,24 +253,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                     : "bg-hover text-foreground"
                 )}
               >
-                {setupStep > step ? (
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='h-3 w-3'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke='currentColor'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M5 13l4 4L19 7'
-                    />
-                  </svg>
-                ) : (
-                  step
-                )}
+                {setupStep > step ? <Check size={16} /> : step}
               </div>
               {step < 4 && (
                 <div

@@ -24,8 +24,6 @@ export function PencilToolPopup() {
   const [selectedColor, setSelectedColor] = useState("#FF3B30");
   const [selectedStrokeSize, setSelectedStrokeSize] = useState("2");
 
-  const isToolbarLeft = toolbarPosition === "left";
-
   // Update the tool selection handler to call the callback
   const handleToolSelect = (tool: PencilTool) => {
     setSelectedTool(tool);
@@ -47,15 +45,8 @@ export function PencilToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div
-        className={cn(
-          "flex items-center justify-between",
-          isToolbarLeft && "flex-col-reverse"
-        )}
-      >
-        <div
-          className={cn("flex items-center gap-2", isToolbarLeft && "flex-col")}
-        >
+      <div className='flex items-center justify-between'>
+        <div className='flex items-center gap-2'>
           {tools.map((tool) => (
             <button
               key={tool.id}
@@ -65,8 +56,7 @@ export function PencilToolPopup() {
                 selectedTool === tool.id
                   ? "bg-hover border-dashed  border-selection-border text-text"
                   : "text-text/60 hover:bg-hover hover:text-text",
-                tool.id === "highlighter" && "mr-4",
-                isToolbarLeft && "min-w-[108px] mt-2"
+                tool.id === "highlighter" && "mr-4"
               )}
             >
               <tool.icon className='h-4 w-4 flex-shrink-0' />
@@ -75,14 +65,9 @@ export function PencilToolPopup() {
           ))}
         </div>
 
-        <div
-          className={cn(
-            "h-10 w-px bg-border hidden",
-            isToolbarLeft && "w-full h-[1px] block my-5"
-          )}
-        ></div>
+        <div className='h-10 w-px bg-border hidden'></div>
 
-        <div className={cn("flex items-center gap-4", isToolbarLeft && "mt-6")}>
+        <div className='flex items-center gap-4'>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 

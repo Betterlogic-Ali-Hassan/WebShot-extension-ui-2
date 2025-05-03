@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { ZoomIn, ZoomOut, RotateCcw, ArrowLeftIcon } from "lucide-react";
 import { useImageEditor } from "@/context/ImageContext";
 
 interface ImageViewerProps {
@@ -159,35 +159,7 @@ export function ImageViewer({
               )}
               aria-label={isHeightExpanded ? "Collapse view" : "Expand view"}
             >
-              {isHeightExpanded ? (
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='18'
-                  height='18'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                >
-                  <path d='M3 14h18m-18 0 6 6m-6-6 6-6'></path>
-                </svg>
-              ) : (
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='18'
-                  height='18'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                >
-                  <path d='M3 10h18m-18 0 6-6m-6 6 6 6'></path>
-                </svg>
-              )}
+              {isHeightExpanded ? <ArrowLeftIcon /> : <ArrowLeftIcon />}
             </button>
             <div
               className={cn(

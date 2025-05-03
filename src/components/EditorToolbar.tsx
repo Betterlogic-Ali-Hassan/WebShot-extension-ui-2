@@ -24,6 +24,12 @@ import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Tooltip from "./ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
+import TextArrowIcon from "./svgs/TextArrowIcon";
+import PageTextIcon from "./svgs/PageTextIcon";
+import DottedLineIcon from "./svgs/DottedLineIcon";
+import CurveLineIcon from "./svgs/CurveLineIcon";
+import LineIcon from "./svgs/LineIcon";
+import DoubleArrowIcon from "./svgs/DoubleArrowIcon";
 
 // Update the EditorToolbar interface to include the logo prop
 interface EditorToolbarProps {
@@ -83,74 +89,13 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
                 <ArrowUpRight className='!h-4 !w-4' />
               );
             case "double-arrow":
-              return wrapWithPremiumIndicator(
-                <svg
-                  width='16'
-                  height='16'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M3 10H17M3 10L7 6M3 10L7 14M17 10L13 6M17 10L13 14'
-                    stroke='currentColor'
-                    strokeWidth='1.5'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-              );
+              return wrapWithPremiumIndicator(<DoubleArrowIcon />);
             case "line":
-              return wrapWithPremiumIndicator(
-                <svg
-                  width='16'
-                  height='16'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M3 10H17'
-                    stroke='currentColor'
-                    strokeWidth='1.5'
-                    strokeLinecap='round'
-                  />
-                </svg>
-              );
+              return wrapWithPremiumIndicator(<LineIcon />);
             case "curve-line":
-              return wrapWithPremiumIndicator(
-                <svg
-                  width='16'
-                  height='16'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M3 14C6 14 7 6 10 6C13 6 14 14 17 14'
-                    stroke='currentColor'
-                    strokeWidth='1.5'
-                    strokeLinecap='round'
-                  />
-                </svg>
-              );
+              return wrapWithPremiumIndicator(<CurveLineIcon />);
             case "dotted-line":
-              return wrapWithPremiumIndicator(
-                <svg
-                  width='16'
-                  height='16'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M3 10H5M8 10H10M13 10H15M18 10H20'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                  />
-                </svg>
-              );
+              return wrapWithPremiumIndicator(<DottedLineIcon />);
             default:
               return wrapWithPremiumIndicator(
                 <ArrowRight className='!h-4 !w-4' />
@@ -179,123 +124,13 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
       case "textarrow":
         if (activeTool === "textarrow") {
           if (selectedTextArrowType === "page-text") {
-            return wrapWithPremiumIndicator(
-              <svg
-                width='16'
-                height='16'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <rect
-                  x='2'
-                  y='2'
-                  width='16'
-                  height='16'
-                  rx='2'
-                  stroke='currentColor'
-                  stroke-width='1.5'
-                ></rect>
-                <path
-                  d='M5 6H15'
-                  stroke='currentColor'
-                  stroke-width='1.5'
-                  stroke-linecap='round'
-                ></path>
-                <path
-                  d='M5 10H15'
-                  stroke='currentColor'
-                  stroke-width='1.5'
-                  stroke-linecap='round'
-                ></path>
-                <path
-                  d='M5 14H12'
-                  stroke='currentColor'
-                  stroke-width='1.5'
-                  stroke-linecap='round'
-                ></path>
-              </svg>
-            );
+            return wrapWithPremiumIndicator(<PageTextIcon />);
           }
           // Text arrow icon - speech bubble with arrow
-          return wrapWithPremiumIndicator(
-            <div className='relative h-4 w-4'>
-              <svg
-                width='20'
-                height='20'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                className='absolute top-0 left-0'
-              >
-                <rect
-                  x='2'
-                  y='2'
-                  width='12'
-                  height='10'
-                  rx='2'
-                  stroke='currentColor'
-                  strokeWidth='1.5'
-                />
-              </svg>
-              <svg
-                width='20'
-                height='20'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                className='absolute -bottom-1 -right-1'
-              >
-                <path
-                  d='M12 10L18 16M18 16H14M18 16V12'
-                  stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </div>
-          );
+          return wrapWithPremiumIndicator(<TextArrowIcon />);
         }
         // Default text arrow icon when not active
-        return wrapWithPremiumIndicator(
-          <div className='relative h-4 w-4'>
-            <svg
-              width='20'
-              height='20'
-              viewBox='0 0 20 20'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              className='absolute top-0 left-0'
-            >
-              <rect
-                x='2'
-                y='2'
-                width='12'
-                height='10'
-                rx='2'
-                stroke='currentColor'
-                strokeWidth='1.5'
-              />
-            </svg>
-            <svg
-              width='20'
-              height='20'
-              viewBox='0 0 20 20'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              className='absolute -bottom-1 -right-1'
-            >
-              <path
-                d='M12 10L18 16M18 16H14M18 16V12'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </div>
-        );
+        return wrapWithPremiumIndicator(<TextArrowIcon />);
       default: {
         // For other tools, use the default icon mapping
         const iconMap: Record<string, React.ElementType> = {

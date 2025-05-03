@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+
 import { useImageEditor } from "@/context/ImageContext";
 
 import {
@@ -31,8 +31,6 @@ export function TextToolPopup() {
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [textAlignment, setTextAlignment] = useState<TextAlignment>("left");
 
-  const isToolbarLeft = toolbarPosition === "left";
-
   return (
     <PopupContainer
       position={popupPosition}
@@ -40,18 +38,9 @@ export function TextToolPopup() {
       toolbarPosition={toolbarPosition}
       className='min-w-[600px]'
     >
-      <div
-        className={cn(
-          "flex items-center gap-4",
-          isToolbarLeft && "flex-col items-start"
-        )}
-      >
+      <div className='flex items-center gap-4'>
         {/* Font Selector */}
-        <FontSelector
-          value={selectedFont}
-          onChange={setSelectedFont}
-          className={isToolbarLeft ? "w-full" : ""}
-        />
+        <FontSelector value={selectedFont} onChange={setSelectedFont} />
 
         {/* Font Size Selector */}
         <FontSizeSelector value={fontSize} onChange={setFontSize} />

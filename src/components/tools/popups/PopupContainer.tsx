@@ -55,13 +55,11 @@ export function PopupContainer({
         className
       )}
       style={{
-        top: `${isToolbarLeft ? "50%" : position.top + "px"}`,
-        transform: `${
-          isToolbarLeft ? "translate(0,-50%)" : "translateX(-50%)"
-        }`,
-        left: `${isToolbarLeft ? "0" : "50%"}`,
-        minWidth: `${isToolbarLeft ? "66px" : "320px"}`,
-        maxWidth: `${isToolbarLeft ? "" : "calc(100% - 32px)"}`,
+        top: `${position.top + "px"}`,
+        transform: "translateX(-50%)",
+        left: "50%",
+        minWidth: "320px",
+        maxWidth: "calc(100% - 32px)",
       }}
     >
       <div className='p-3 relative flex items-center'>

@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 
 // Define the context type
 type ImageEditorContextType = {
-  isDarkMode: boolean;
   activeTool: string | null;
   isEditing: boolean;
   popupPosition: { top: number; left: number; width: number };
@@ -30,7 +29,7 @@ type ImageEditorContextType = {
     | "dotted-line";
   selectedPencilTool: "pencil" | "brush" | "highlighter";
   selectedTextArrowType: "text-arrow" | "page-text";
-  toolbarPosition: "top" | "left" | "bottom";
+  toolbarPosition: "top" | "bottom";
   toolVisibility: Record<string, boolean>;
   showPremiumPopup: boolean;
   premiumFeatureName: string;
@@ -46,7 +45,6 @@ type ImageEditorContextType = {
     isPremium?: boolean
   ) => void;
   handlePremiumPopupsToggle: (enabled: boolean) => void;
-  handleThemeToggle: () => void;
   handleExitEditMode: () => void;
   handleClosePopup: () => void;
   handleCapture: () => void;
@@ -80,9 +78,7 @@ type ImageEditorContextType = {
   setSelectedTextArrowType: React.Dispatch<
     React.SetStateAction<"text-arrow" | "page-text">
   >;
-  setToolbarPosition: React.Dispatch<
-    React.SetStateAction<"top" | "left" | "bottom">
-  >;
+  setToolbarPosition: React.Dispatch<React.SetStateAction<"top" | "bottom">>;
 };
 
 // Create the context with a default undefined value
@@ -94,7 +90,6 @@ const ImageEditorContext = createContext<ImageEditorContextType | undefined>(
 export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [activeTool, setActiveTool] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [popupPosition, setPopupPosition] = useState({
@@ -129,9 +124,9 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   >("text-arrow");
 
   // Add a new state variable for toolbar position after the existing state declarations
-  const [toolbarPosition, setToolbarPosition] = useState<
-    "top" | "left" | "bottom"
-  >("top");
+  const [toolbarPosition, setToolbarPosition] = useState<"top" | "bottom">(
+    "top"
+  );
 
   // Tool visibility state
   const [toolVisibility, setToolVisibility] = useState<Record<string, boolean>>(
@@ -298,13 +293,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
           left: buttonRect.left,
           width: buttonRect.width,
         });
-      } else if (toolbarPosition === "left") {
-        // Left toolbar - popup appears to the right
-        setPopupPosition({
-          top: buttonRect.top,
-          left: 72, // Width of left toolbar + margin
-          width: buttonRect.width,
-        });
       } else {
         // Bottom toolbar - popup appears above
         const viewportHeight = window.innerHeight;
@@ -322,10 +310,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   // Add a function to toggle premium popups
   const handlePremiumPopupsToggle = (enabled: boolean) => {
     setPremiumPopupsEnabled(enabled);
-  };
-
-  const handleThemeToggle = () => {
-    setIsDarkMode(!isDarkMode);
   };
 
   const handleExitEditMode = () => {
@@ -414,7 +398,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   // Create the context value object
   const contextValue: ImageEditorContextType = {
     setUploadedImage,
-    isDarkMode,
     activeTool,
     isEditing,
     popupPosition,
@@ -436,7 +419,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
     handleFileUpload,
     handleToolChange,
     handlePremiumPopupsToggle,
-    handleThemeToggle,
     handleExitEditMode,
     handleClosePopup,
     handleCapture,

@@ -15,7 +15,6 @@ export function BlurToolPopup() {
   } = useImageEditor();
   const [blurIntensity, setBlurIntensity] = useState(5);
   const popupRef = useRef<HTMLDivElement>(null);
-  const isToolbarLeft = toolbarPosition === "left";
   const isToolbarBottom = toolbarPosition === "bottom";
   // Adjust position to stay within container bounds
   useEffect(() => {
@@ -23,7 +22,7 @@ export function BlurToolPopup() {
       if (!popupRef.current) return;
 
       // Apply the adjusted position
-      popupRef.current.style.left = `${isToolbarLeft ? "0" : "50%"}`;
+      popupRef.current.style.left = "50%";
     };
 
     // Adjust position on initial render and window resize
@@ -44,35 +43,23 @@ export function BlurToolPopup() {
       ref={popupRef}
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 max-h-[68px] min-h-[68px] flex items-center  bg-card border border-border text-text",
-        isToolbarBottom && "-mt-6",
-        isToolbarLeft && "ml-[100px]"
+        isToolbarBottom && "-mt-6"
       )}
       style={{
-        top: `${isToolbarLeft ? "50%" : position.top + "px"}`,
-        transform: `${
-          isToolbarLeft ? "translate(0,-50%)" : "translateX(-50%)"
-        }`,
-        left: `${isToolbarLeft ? "0" : "50%"}`,
-        minWidth: `${isToolbarLeft ? "66px" : "400px"}`,
-        maxWidth: `${isToolbarLeft ? "" : "calc(100% - 32px)"}`,
+        top: `${position.top + "px"}`,
+        transform: "translateX(-50%)",
+        left: "50%",
+        minWidth: "400px",
+        maxWidth: "calc(100% - 32px)",
       }}
     >
       <div className='p-3 w-full'>
-        <div
-          className={cn("flex items-center gap-4", isToolbarLeft && "flex-col")}
-        >
+        <div className='flex items-center gap-4'>
           {/* Blur Intensity Label */}
-          <div className={cn("text-sm", isToolbarLeft && "mt-4")}>
-            Blur Intensity
-          </div>
+          <div className='text-sm'>Blur Intensity</div>
 
           {/* Blur Intensity Slider */}
-          <div
-            className={cn(
-              "flex items-center gap-2.5 flex-1 h-8",
-              isToolbarLeft && "flex-col"
-            )}
-          >
+          <div className='flex items-center gap-2.5 flex-1 h-8'>
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded h-6 flex items-center",
@@ -87,7 +74,7 @@ export function BlurToolPopup() {
                 min={1}
                 max={20}
                 step={1}
-                orientation={isToolbarLeft ? "vertical" : "horizontal"}
+                orientation='horizontal'
                 onValueChange={handleBlurChange}
                 className='py-1'
               />
@@ -116,8 +103,7 @@ export function BlurToolPopup() {
           <Button
             className={cn(
               "h-8 w-8 rounded-full transition-colors duration-200 justify-center",
-              "hover:bg-hover hover:text-text",
-              isToolbarLeft && "absolute top-0 right-0.5"
+              "hover:bg-hover hover:text-text"
             )}
             onClick={onClose}
           >

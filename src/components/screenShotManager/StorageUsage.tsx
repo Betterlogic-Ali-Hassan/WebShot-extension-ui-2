@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import Button from "../ui/button";
 import { useNavigate } from "react-router-dom";
+import ArrowUpIcon from "../svgs/ArrowUpIcon";
+import WarningIcon from "../svgs/WarningIcon";
 const storageData = {
   used: 2.4,
   total: 10,
@@ -28,20 +30,7 @@ const StorageUsage = () => {
         </div>
         {storageData.percentage > 80 && (
           <p className='text-sm text-error flex items-center'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-4 w-4 mr-1'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
-              />
-            </svg>
+            <WarningIcon />
             You're running out of storage. Consider upgrading your plan.
           </p>
         )}
@@ -55,20 +44,7 @@ const StorageUsage = () => {
           "flex items-center space-x-2"
         )}
       >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-5 w-5'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={2}
-            d='M5 10l7-7m0 0l7 7m-7-7v18'
-          />
-        </svg>
+        <ArrowUpIcon />
         <span>Upgrade Plan</span>
       </Button>
     </div>

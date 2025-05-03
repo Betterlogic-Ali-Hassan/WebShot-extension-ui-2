@@ -41,7 +41,7 @@ export function WatermarkToolPopup() {
   const popupRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const positionDropdownRef = useRef<HTMLDivElement>(null);
-  const isToolbarLeft = toolbarPosition === "left";
+
   const isToolbarBottom = toolbarPosition === "bottom";
   // Position options
   const positionOptions: WatermarkPosition[] = [
@@ -140,9 +140,9 @@ export function WatermarkToolPopup() {
       )}
       style={{
         top: ` ${position.top}px`,
-        left: `${isToolbarLeft ? "0" : position.left}px`,
-        transform: `${isToolbarLeft ? "translateX(0)" : "translateX(-50%)"}`,
-        maxWidth: isToolbarLeft ? "200px" : "250px",
+        left: `${position.left}px`,
+        transform: "translateX(-50%)",
+        maxWidth: "250px",
         width: "100%",
       }}
     >

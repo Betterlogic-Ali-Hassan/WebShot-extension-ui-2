@@ -24,8 +24,6 @@ export function ShapeToolPopup() {
   const [selectedColor, setSelectedColor] = useState("#FF3B30");
   const [selectedStrokeSize, setSelectedStrokeSize] = useState("2");
 
-  const isToolbarLeft = toolbarPosition === "left";
-
   // Shape options
   const shapes = [
     { id: "square", label: "Square" },
@@ -48,16 +46,9 @@ export function ShapeToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div
-        className={cn(
-          "flex items-center gap-4",
-          isToolbarLeft && "flex-col-reverse"
-        )}
-      >
+      <div className='flex items-center gap-4'>
         {/* Shape Selection */}
-        <div
-          className={cn("flex items-center gap-2", isToolbarLeft && "flex-col")}
-        >
+        <div className='flex items-center gap-2'>
           {shapes.map((shape) => (
             <button
               key={shape.id}
@@ -66,8 +57,7 @@ export function ShapeToolPopup() {
                 "flex flex-row items-center gap-2 p-2 rounded-lg transition-all max-h-[38px] cursor-pointer border border-transparent duration-200",
                 selectedShape === shape.id
                   ? "bg-hover border-dashed  border-selection-border text-text"
-                  : "text-text/60 hover:bg-hover hover:text-text",
-                isToolbarLeft && "min-w-[108px] mt-2"
+                  : "text-text/60 hover:bg-hover hover:text-text"
               )}
             >
               <div className='w-6 h-6 flex items-center justify-center flex-shrink-0'>
@@ -118,7 +108,7 @@ export function ShapeToolPopup() {
         {/* Divider */}
         <div className='h-10 w-px bg-border'></div>
 
-        <div className={cn("flex gap-2", isToolbarLeft && "mt-6")}>
+        <div className='flex gap-2'>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 

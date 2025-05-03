@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { X, Download } from "lucide-react";
+import { X, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
@@ -18,7 +18,6 @@ export function BorderToolPopup() {
     "gradient"
   );
   const [selectedPreset, setSelectedPreset] = useState(0);
-  const isToolbarLeft = toolbarPosition === "left";
   const isToolbarBottom = toolbarPosition === "bottom";
   // Refs for positioning and dropdowns
   const popupRef = useRef<HTMLDivElement>(null);
@@ -178,13 +177,11 @@ export function BorderToolPopup() {
         isToolbarBottom && "-mt-[405px] "
       )}
       style={{
-        top: `${isToolbarLeft ? "50%" : position.top + "px"}`,
-        transform: `${
-          isToolbarLeft ? "translate(0,-50%)" : "translateX(-50%)"
-        }`,
+        top: `${position.top + "px"}`,
+        transform: "translateX(-50%)",
         maxWidth: "300px",
         width: "100%",
-        left: `${isToolbarLeft ? "0" : position.left}px`,
+        left: `  ${position.left}px`,
       }}
     >
       <div className='p-3 max-h-[470px] overflow-y-auto no-scrollbar'>
@@ -292,25 +289,11 @@ export function BorderToolPopup() {
                 }}
                 className={cn(
                   "h-6 w-6 flex items-center justify-center rounded-full mr-1",
-                  "bg-border hover:bg-hover text-text"
+                  "bg-border hover:bg-tool-selected-color text-text"
                 )}
                 disabled={selectedPreset === 0}
               >
-                <svg
-                  width='12'
-                  height='12'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M15 18L9 12L15 6'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
+                <ChevronLeft size={12} />
               </button>
 
               <div className='grid grid-cols-6 gap-1.5 flex-1 overflow-hidden'>
@@ -356,28 +339,14 @@ export function BorderToolPopup() {
                 }}
                 className={cn(
                   "h-6 w-6 flex items-center justify-center rounded-full ml-1",
-                  "bg-border hover:bg-hover text-text"
+                  "bg-border hover:bg-tool-selected-color text-text"
                 )}
                 disabled={
                   Math.floor(selectedPreset / 6) >=
                   Math.floor((getAllPresets().length - 1) / 6)
                 }
               >
-                <svg
-                  width='12'
-                  height='12'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M9 6L15 12L9 18'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
+                <ChevronRight size={12} />
               </button>
             </div>
 

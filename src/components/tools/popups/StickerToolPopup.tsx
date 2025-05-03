@@ -61,7 +61,6 @@ export function StickersToolPopup() {
     null
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const isToolbarLeft = toolbarPosition === "left";
   const isToolbarBottom = toolbarPosition === "bottom";
   // Stickers by category with names for better search
   const stickers: Record<string, TextSticker[]> = {
@@ -160,7 +159,7 @@ export function StickersToolPopup() {
       if (!popupRef.current) return;
 
       // Apply the adjusted position
-      popupRef.current.style.left = isToolbarLeft ? "0" : "50%";
+      popupRef.current.style.left = "50%";
     };
 
     // Adjust position on initial render and window resize
@@ -347,10 +346,9 @@ export function StickersToolPopup() {
         !isToolbarBottom && "mt-2.5"
       )}
       style={{
-        top: `${isToolbarLeft ? "50%" : position.top + "px"}`,
-        transform: `${isToolbarLeft ? "translate(0,-50%)" : ""}`,
+        top: `${position.top + "px"}`,
         width: "300px",
-        left: `${isToolbarLeft ? "0" : position.left + "px"}`,
+        left: `${position.left + "px"}`,
       }}
     >
       <div>
