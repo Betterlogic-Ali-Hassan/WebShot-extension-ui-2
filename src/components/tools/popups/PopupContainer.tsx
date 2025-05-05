@@ -49,7 +49,7 @@ export function PopupContainer({
       ref={popupRef}
       className={cn(
         "fixed z-40 rounded-xl shadow-lg transition-all duration-200 max-h-[68px] min-h-[68px] flex items-center justify-center",
-        "bg-card border border-border min-w-[600px]  max-[850px]:max-w-[300px] max-[850px]:overflow-x-auto max-[850px]:no-scrollbar max-[850px]:whitespace-nowrap ",
+        "bg-card border border-border min-[850px]:min-w-[600px]  max-[850px]:max-w-[300px] max-[850px]:overflow-x-auto max-[850px]:no-scrollbar max-[850px]:whitespace-nowrap ",
         !isToolbarBottom && "mt-2.5",
         className
       )}
