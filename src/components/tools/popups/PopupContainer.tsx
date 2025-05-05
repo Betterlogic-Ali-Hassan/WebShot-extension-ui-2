@@ -56,7 +56,7 @@ export function PopupContainer({
       style={{
         top: position.top + "px",
         transform: isLessWidth ? "" : "translateX(-50%)",
-        left: isLessWidth ? position.left + "px" : "50%",
+        left: isLessWidth ? `${(position.left ?? 0) - 30}px` : "50%",
       }}
     >
       <div className='p-3 relative flex items-center max-[850px]:flex-col'>

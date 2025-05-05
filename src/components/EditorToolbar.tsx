@@ -219,7 +219,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
         </div>
 
         {/* Right section - settings and theme toggle */}
-        <div className='flex items-center gap-3 min-w-[100px] px-2 justify-end'>
+        <div className='flex items-center gap-3 min-[850px]:min-w-[100px] px-2 justify-end'>
           {settingsButton && settingsButton}
         </div>
       </div>
