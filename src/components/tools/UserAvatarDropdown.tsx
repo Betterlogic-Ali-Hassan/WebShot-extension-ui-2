@@ -118,8 +118,6 @@ export function UserAvatarDropdown({
   // Get dropdown position based on toolbar position
   const getDropdownPosition = () => {
     switch (toolbarPosition) {
-      case "left":
-        return "left-0 ml-[100px]";
       case "bottom":
         return "mb-[80px] bottom-0 right-12";
       default:

@@ -15,7 +15,7 @@ interface SettingsPanelProps {
   toolVisibility: Record<string, boolean>;
   onToolVisibilityChange: (toolId: string, isVisible: boolean) => void;
   toolbarPosition: "top" | "left" | "bottom";
-  onToolbarPositionChange: (position: "top" | "left" | "bottom") => void;
+  onToolbarPositionChange: (position: "top" | "bottom") => void;
   premiumPopupsEnabled?: boolean;
   onPremiumPopupsToggle?: (enabled: boolean) => void;
   setIsOpen: (isOpen: boolean) => void;
@@ -48,7 +48,7 @@ export function SettingsPanel({
   // Handle toolbar position change with event prevention
   const handleToolbarPositionChange = (
     e: React.MouseEvent,
-    position: "top" | "left" | "bottom"
+    position: "top" | "bottom"
   ) => {
     e.preventDefault();
     e.stopPropagation();
