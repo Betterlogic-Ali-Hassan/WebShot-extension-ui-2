@@ -70,7 +70,7 @@ export function PremiumFeaturePopup() {
                 )}
               >
                 {plan.popular && (
-                  <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white text-xs font-bold py-1 px-3 rounded-full'>
+                  <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white text-xs font-bold py-1 px-3 rounded-full whitespace-nowrap'>
                     Best Value
                   </div>
                 )}

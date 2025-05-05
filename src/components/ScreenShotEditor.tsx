@@ -77,7 +77,7 @@ export function ScreenshotEditor() {
       className={cn(
         "w-full max-w-6xl transition-colors duration-300 relative min-h-[80vh] mt-16 ",
         "rounded-3xl overflow-hidden shadow-2xl bg-background text-text",
-        uploadedImage && "mt-[145px] min-h-[70vh]",
+        uploadedImage && "sm:mt-[145px] mt-0 sm:min-h-[70vh] min-h-[50vh]",
         uploadedImage && toolbarPosition === "bottom" && "mt-0 ",
         !uploadedImage && toolbarPosition === "bottom" && "mt-2 "
       )}
@@ -126,7 +126,7 @@ export function ScreenshotEditor() {
           <div
             className={cn(
               "flex items-center justify-center h-[calc(100vh-130px)] overflow-hidden",
-              uploadedImage && "h-[calc(100vh-190px)]"
+              uploadedImage && "sm:h-[calc(100vh-190px)] h-[calc(100vh-410px)]"
             )}
           >
             <ImageViewer
