@@ -195,7 +195,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
         <div className='flex items-center min-w-24'>{logo}</div>
 
         {/* Center section - tools */}
-        <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text min-[850px]:absolute min-[850px]:left-1/2 min-[850px]:-translate-x-1/2'>
+        <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text min-[1200px]:absolute min-[1200px]:left-1/2 min-[1200px]:-translate-x-1/2'>
           {visibleTools.map((tool) => (
             <Tooltip
               key={tool.id}
@@ -219,7 +219,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
         </div>
 
         {/* Right section - settings and theme toggle */}
-        <div className='flex items-center gap-3 min-[850px]:min-w-[100px] px-2 justify-end'>
+        <div className='flex items-center gap-3 min-[1200px]:min-w-[100px] px-2 justify-end'>
           {settingsButton && settingsButton}
         </div>
       </div>

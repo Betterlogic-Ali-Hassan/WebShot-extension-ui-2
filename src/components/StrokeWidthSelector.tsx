@@ -1,9 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useImageEditor } from "@/context/ImageContext";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export interface StrokeWidthSelectorProps {
   value: string;
@@ -25,98 +30,71 @@ export function StrokeWidthSelector({
   ],
   className,
 }: StrokeWidthSelectorProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { toolbarPosition } = useImageEditor();
+  const isToolbarBottom = toolbarPosition === "bottom";
 
   // Function to safely parse integers with fallback
   const safeParseInt = (value: string, fallback = 0): number => {
     const parsed = Number.parseInt(value, 10);
     return isNaN(parsed) ? fallback : parsed;
   };
-  const { toolbarPosition } = useImageEditor();
-  const isToolbarBottom = toolbarPosition === "bottom";
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
-    <div className={cn("relative", className)} ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
+    <Select value={value} onValueChange={onChange}>
+      <SelectTrigger
         className={cn(
-          "flex items-center justify-between gap-2 px-3 py-1.5 min-w-[120px] cursor-pointer rounded-md border transition-all duration-200",
-          "bg-border border-tool-selected-color text-text hover:bg-border/80"
+          "min-w-[120px] bg-border border-tool-selected-color text-text hover:bg-border/80",
+          className
         )}
       >
-        <div className='flex items-center gap-1.5'>
-          <span className='text-sm'>
-            {options.find((s) => s.value === value)?.label || `${value} px`}
-          </span>
-          <div
-            className='w-6 transition-all duration-200'
-            style={{
-              height: `${safeParseInt(value, 1)}px`,
-              backgroundColor: "currentColor",
-              borderRadius:
-                safeParseInt(value, 1) > 1 ? safeParseInt(value, 1) / 2 : 0,
-            }}
-          />
-        </div>
-        <ChevronDown className='h-3.5 w-3.5 opacity-70' />
-      </button>
-
-      {isOpen && (
-        <div
-          className={cn(
-            "absolute  left-0 mt-1 w-36 rounded-md shadow-lg z-50 py-1",
-            "bg-card border border-border",
-            isToolbarBottom ? "bottom-full mb-2" : "top-full"
-          )}
-        >
-          {options.map((size) => (
+        <SelectValue placeholder='Select width'>
+          <div className='flex items-center gap-1.5'>
+            <span className='text-sm'>
+              {options.find((s) => s.value === value)?.label || `${value} px`}
+            </span>
             <div
-              key={size.value}
-              onClick={() => {
-                onChange(size.value);
-                setIsOpen(false);
+              className='w-6 transition-all duration-200'
+              style={{
+                height: `${safeParseInt(value, 1)}px`,
+                backgroundColor: "currentColor",
+                borderRadius:
+                  safeParseInt(value, 1) > 1 ? safeParseInt(value, 1) / 2 : 0,
               }}
-              className={cn(
-                "px-3 py-2 cursor-pointer transition-all duration-200",
-                "hover:bg-hover",
-                value === size.value && "bg-hover"
-              )}
-            >
-              <div className='flex flex-col gap-1'>
-                <span className='text-sm'>{size.label}</span>
-                <div
-                  className='w-full transition-all duration-200'
-                  style={{
-                    height: `${safeParseInt(size.value, 1)}px`,
-                    backgroundColor: "currentColor",
-                    borderRadius:
-                      safeParseInt(size.value, 1) > 1
-                        ? safeParseInt(size.value, 1) / 2
-                        : 0,
-                  }}
-                />
-              </div>
+            />
+          </div>
+        </SelectValue>
+      </SelectTrigger>
+      <SelectContent
+        className='w-36 bg-card border border-border '
+        side={isToolbarBottom ? "top" : "bottom"}
+      >
+        {options.map((size) => (
+          <SelectItem
+            key={size.value}
+            value={size.value}
+            className={cn(
+              "px-3 py-2 cursor-pointer transition-all duration-200",
+              "focus:bg-hover",
+              value === size.value && "bg-hover"
+            )}
+          >
+            <div className='flex flex-col gap-1 w-full'>
+              <span className='text-sm'>{size.label}</span>
+              <div
+                className='w-[80px] transition-all duration-200'
+                style={{
+                  height: `${safeParseInt(size.value, 2)}px`,
+                  backgroundColor: "currentColor",
+                  borderRadius:
+                    safeParseInt(size.value, 1) > 1
+                      ? safeParseInt(size.value, 1) / 2
+                      : 0,
+                }}
+              />
             </div>
-          ))}
-        </div>
-      )}
-    </div>
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }

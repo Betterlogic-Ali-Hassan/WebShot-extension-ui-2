@@ -159,7 +159,7 @@ export function StickersToolPopup() {
       if (!popupRef.current) return;
 
       // Apply the adjusted position
-      popupRef.current.style.left = window.innerWidth <= 850 ? "" : "50%";
+      popupRef.current.style.left = "50%";
     };
 
     // Adjust position on initial render and window resize
@@ -341,8 +341,8 @@ export function StickersToolPopup() {
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 bg-background border border-border text-text",
-        isToolbarBottom && "-mt-[405px] ",
+        "fixed z-40 rounded-xl shadow-lg transition-all max-[850px]:-translate-x-[50%] duration-200 right-1/2  bg-background border border-border text-text",
+        isToolbarBottom && "-mt-[405px]   ",
         !isToolbarBottom && "mt-2.5"
       )}
       style={{

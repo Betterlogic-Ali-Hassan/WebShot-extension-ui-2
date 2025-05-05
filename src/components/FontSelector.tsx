@@ -53,8 +53,8 @@ export function FontSelector({
             value={font}
             className={cn(
               "!px-3 !py-3 cursor-pointer transition-all  duration-200",
-              "hover:bg-border",
-              value === font && "bg-border"
+              "focus:bg-hover",
+              value === font && "bg-hover"
             )}
           >
             <span className='text-sm text-text' style={{ fontFamily: font }}>

@@ -43,12 +43,11 @@ export function BlurToolPopup() {
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 min-[850px]:max-h-[68px] min-h-[68px]  flex items-center  bg-card border border-border text-text min-[850px]:min-w-[400px] min-[850px]:max-w-[calc(100% - 32px)] ",
-        isToolbarBottom && "-mt-6"
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 min-[850px]:max-h-[68px] min-h-[68px]  flex items-center  bg-card border border-border text-text min-[850px]:-translate-x-[50%] min-[850px]:min-w-[400px] min-[850px]:max-w-[calc(100% - 32px)] ",
+        isToolbarBottom && "-mt-6 max-sm:-mt-[308px]"
       )}
       style={{
         top: `${position.top + "px"}`,
-        transform: "translateX(-50%)",
         left: "50%",
       }}
     >

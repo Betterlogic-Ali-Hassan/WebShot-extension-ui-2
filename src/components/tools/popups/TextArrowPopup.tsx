@@ -35,9 +35,9 @@ export function TextArrowToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center gap-4 max-[850px]:ml-12'>
+      <div className='flex items-center gap-4  max-[850px]:overflow-x-auto max-[850px]:max-w-[250px] max-[850px]:whitespace-nowrap no-scrollbar'>
         {/* Tool Selection - Toggle Switch */}
-        <div className='flex rounded-md overflow-hidden bg-background'>
+        <div className='flex rounded-md min-[850px]:overflow-hidden bg-background'>
           <button
             className={cn(
               "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap   hover:bg-border",

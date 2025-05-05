@@ -7,7 +7,6 @@ import { useImageEditor } from "@/context/ImageContext";
 import { PopupContainer } from "./PopupContainer";
 import { ColorPicker } from "@/components/ColorPicker";
 import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
-import Separator from "@/components/ui/Separator";
 
 export type PencilTool = "pencil" | "brush" | "highlighter";
 
@@ -65,8 +64,6 @@ export function PencilToolPopup() {
             </button>
           ))}
         </div>
-
-        <Separator />
 
         <div className='flex min-[850px]:items-center gap-4 '>
           {/* Color Picker */}
