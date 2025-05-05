@@ -4,6 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useImageEditor } from "@/context/ImageContext";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export interface ColorPickerProps {
   color: string;
@@ -17,7 +22,6 @@ export interface ColorPickerProps {
 export function ColorPicker({
   color,
   onChange,
-  className,
   buttonClassName,
   showAlpha = true,
   recentColors = [
@@ -30,7 +34,7 @@ export function ColorPicker({
   ],
 }: ColorPickerProps) {
   const { toolbarPosition } = useImageEditor();
-  const [isOpen, setIsOpen] = useState(false);
+
   const [hue, setHue] = useState(0);
   const [saturation, setSaturation] = useState(100);
   const [brightness, setBrightness] = useState(100);
@@ -87,25 +91,6 @@ export function ColorPicker({
       onChange(hex);
     }
   }, [rgbValues, alpha, onChange, showAlpha]);
-
-  // Close color picker when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        pickerRef.current &&
-        !pickerRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   // Event handlers for saturation box
   const handleSaturationMove = (e: MouseEvent) => {
@@ -202,130 +187,46 @@ export function ColorPicker({
   };
 
   return (
-    <div className={cn("relative", className)}>
-      <button
-        ref={buttonRef}
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          "w-8 h-8  rounded-md flex items-center justify-center border cursor-pointer border-border shadow-sm relative transition-colors duration-200 hover:border-text/60",
-          buttonClassName
-        )}
-        style={{ backgroundColor: color }}
-        aria-label='Select color'
-      >
-        <ChevronDown className='h-3 w-3 absolute right-0 bottom-0 text-white bg-black bg-opacity-30 rounded-full p-0.5' />
-      </button>
-
-      {isOpen && (
-        <div
-          ref={pickerRef}
-          className={cn(
-            "absolute  left-0 mt-2 z-50",
-            isToolbarBottom ? "bottom-full mb-2" : "top-full"
-          )}
-        >
-          <div className='p-3 rounded-2xl shadow-lg border w-[300px] transition-all duration-200 bg-background border-border text-text'>
-            {/* Saturation/Value box */}
-            <div
-              ref={saturationBoxRef}
-              className='w-full h-[180px] rounded-xl mb-3 relative cursor-crosshair touch-none'
-              style={{ backgroundColor: `hsl(${hue}, 100%, 50%)` }}
-              onMouseDown={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = Math.max(
-                  0,
-                  Math.min(1, (e.clientX - rect.left) / rect.width)
-                );
-                const y = Math.max(
-                  0,
-                  Math.min(1, (e.clientY - rect.top) / rect.height)
-                );
-                setSaturation(x * 100);
-                setBrightness(100 - y * 100);
-                document.addEventListener("mousemove", handleSaturationMove);
-                document.addEventListener("mouseup", handleSaturationEnd);
-              }}
-              onTouchStart={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const touch = e.touches[0];
-                const x = Math.max(
-                  0,
-                  Math.min(1, (touch.clientX - rect.left) / rect.width)
-                );
-                const y = Math.max(
-                  0,
-                  Math.min(1, (touch.clientY - rect.top) / rect.height)
-                );
-                setSaturation(x * 100);
-                setBrightness(100 - y * 100);
-                document.addEventListener(
-                  "touchmove",
-                  handleSaturationTouchMove
-                );
-                document.addEventListener("touchend", handleSaturationEnd);
-              }}
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-white to-transparent rounded-xl'></div>
-              <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black rounded-xl'></div>
+    <>
+      <Popover>
+        <PopoverTrigger asChild>
+          <button
+            ref={buttonRef}
+            className={cn(
+              "w-8 h-8  rounded-md flex relative items-center justify-center border cursor-pointer border-border shadow-sm  transition-colors duration-200 hover:border-text/60",
+              buttonClassName
+            )}
+            style={{ backgroundColor: color }}
+            aria-label='Select color'
+          >
+            <ChevronDown className='h-3 w-3 absolute right-0 bottom-0 text-white bg-black bg-opacity-30 rounded-full p-0.5' />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className='border-0 bg-transparent p-0'>
+          <div
+            ref={pickerRef}
+            className={cn("mt-6", isToolbarBottom && " mb-6")}
+          >
+            <div className='p-3 rounded-2xl shadow-lg border w-[300px] transition-all duration-200 bg-background border-border text-text'>
+              {/* Saturation/Value box */}
               <div
-                className='absolute w-5 h-5 rounded-full border-2 border-white shadow-md transform -translate-x-1/2 -translate-y-1/2'
-                style={{
-                  left: `${saturation}%`,
-                  top: `${100 - brightness}%`,
-                }}
-              ></div>
-            </div>
-
-            {/* Hue slider */}
-            <div
-              ref={hueSliderRef}
-              className='w-full h-4 rounded-full mb-3 relative cursor-pointer touch-none'
-              style={{
-                background:
-                  "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
-              }}
-              onMouseDown={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = Math.max(
-                  0,
-                  Math.min(1, (e.clientX - rect.left) / rect.width)
-                );
-                setHue(x * 360);
-                document.addEventListener("mousemove", handleHueMove);
-                document.addEventListener("mouseup", handleHueEnd);
-              }}
-              onTouchStart={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const touch = e.touches[0];
-                const x = Math.max(
-                  0,
-                  Math.min(1, (touch.clientX - rect.left) / rect.width)
-                );
-                setHue(x * 360);
-                document.addEventListener("touchmove", handleHueTouchMove);
-                document.addEventListener("touchend", handleHueEnd);
-              }}
-            >
-              <div
-                className='absolute w-4 h-4 rounded-full border-2 border-white shadow-md transform -translate-x-1/2 -translate-y-1/2 top-1/2'
-                style={{ left: `${(hue / 360) * 100}%` }}
-              ></div>
-            </div>
-
-            {/* Alpha slider */}
-            {showAlpha && (
-              <div
-                ref={alphaSliderRef}
-                className='w-full h-4 rounded-full mb-4 relative cursor-pointer touch-none bg-checkered'
+                ref={saturationBoxRef}
+                className='w-full h-[180px] rounded-xl mb-3 relative cursor-crosshair touch-none'
+                style={{ backgroundColor: `hsl(${hue}, 100%, 50%)` }}
                 onMouseDown={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = Math.max(
                     0,
                     Math.min(1, (e.clientX - rect.left) / rect.width)
                   );
-                  setAlpha(x * 100);
-                  document.addEventListener("mousemove", handleAlphaMove);
-                  document.addEventListener("mouseup", handleAlphaEnd);
+                  const y = Math.max(
+                    0,
+                    Math.min(1, (e.clientY - rect.top) / rect.height)
+                  );
+                  setSaturation(x * 100);
+                  setBrightness(100 - y * 100);
+                  document.addEventListener("mousemove", handleSaturationMove);
+                  document.addEventListener("mouseup", handleSaturationEnd);
                 }}
                 onTouchStart={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -334,188 +235,283 @@ export function ColorPicker({
                     0,
                     Math.min(1, (touch.clientX - rect.left) / rect.width)
                   );
-                  setAlpha(x * 100);
-                  document.addEventListener("touchmove", handleAlphaTouchMove);
-                  document.addEventListener("touchend", handleAlphaEnd);
+                  const y = Math.max(
+                    0,
+                    Math.min(1, (touch.clientY - rect.top) / rect.height)
+                  );
+                  setSaturation(x * 100);
+                  setBrightness(100 - y * 100);
+                  document.addEventListener(
+                    "touchmove",
+                    handleSaturationTouchMove
+                  );
+                  document.addEventListener("touchend", handleSaturationEnd);
+                }}
+              >
+                <div className='absolute inset-0 bg-gradient-to-r from-white to-transparent rounded-xl'></div>
+                <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black rounded-xl'></div>
+                <div
+                  className='absolute w-5 h-5 rounded-full border-2 border-white shadow-md transform -translate-x-1/2 -translate-y-1/2'
+                  style={{
+                    left: `${saturation}%`,
+                    top: `${100 - brightness}%`,
+                  }}
+                ></div>
+              </div>
+
+              {/* Hue slider */}
+              <div
+                ref={hueSliderRef}
+                className='w-full h-4 rounded-full mb-3 relative cursor-pointer touch-none'
+                style={{
+                  background:
+                    "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
+                }}
+                onMouseDown={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = Math.max(
+                    0,
+                    Math.min(1, (e.clientX - rect.left) / rect.width)
+                  );
+                  setHue(x * 360);
+                  document.addEventListener("mousemove", handleHueMove);
+                  document.addEventListener("mouseup", handleHueEnd);
+                }}
+                onTouchStart={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const touch = e.touches[0];
+                  const x = Math.max(
+                    0,
+                    Math.min(1, (touch.clientX - rect.left) / rect.width)
+                  );
+                  setHue(x * 360);
+                  document.addEventListener("touchmove", handleHueTouchMove);
+                  document.addEventListener("touchend", handleHueEnd);
                 }}
               >
                 <div
-                  className='absolute inset-0 rounded-full'
-                  style={{
-                    background: `linear-gradient(to right, transparent, hsl(${hue}, 100%, 50%))`,
-                  }}
-                ></div>
-                <div
                   className='absolute w-4 h-4 rounded-full border-2 border-white shadow-md transform -translate-x-1/2 -translate-y-1/2 top-1/2'
-                  style={{ left: `${alpha}%` }}
+                  style={{ left: `${(hue / 360) * 100}%` }}
                 ></div>
               </div>
-            )}
 
-            {/* Color preview and hex input */}
-            <div className='flex items-center gap-3 mb-4'>
-              <div className='w-8 h-8 rounded-lg shadow-sm border border-border bg-checkered flex-shrink-0'>
+              {/* Alpha slider */}
+              {showAlpha && (
                 <div
-                  className='w-full h-full rounded-lg'
-                  style={{
-                    backgroundColor: `rgba(${rgbValues.r}, ${rgbValues.g}, ${
-                      rgbValues.b
-                    }, ${alpha / 100})`,
+                  ref={alphaSliderRef}
+                  className='w-full h-4 rounded-full mb-4 relative cursor-pointer touch-none bg-checkered'
+                  onMouseDown={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = Math.max(
+                      0,
+                      Math.min(1, (e.clientX - rect.left) / rect.width)
+                    );
+                    setAlpha(x * 100);
+                    document.addEventListener("mousemove", handleAlphaMove);
+                    document.addEventListener("mouseup", handleAlphaEnd);
                   }}
-                ></div>
-              </div>
-
-              <div className='flex-1'>
-                <div className='flex items-center'>
-                  <span className='text-xs mr-1'>#</span>
-                  <input
-                    type='text'
-                    value={hexValue}
-                    onChange={(e) => {
-                      const value = e.target.value
-                        .replace(/[^0-9A-Fa-f]/g, "")
-                        .substring(0, 6);
-                      setHexValue(value);
-                      if (value.length === 6) {
-                        try {
-                          const r = Number.parseInt(value.substring(0, 2), 16);
-                          const g = Number.parseInt(value.substring(2, 4), 16);
-                          const b = Number.parseInt(value.substring(4, 6), 16);
-                          setRgbValues({ r, g, b });
-                          const hsv = rgbToHsv(r, g, b);
-                          setHue(hsv.h);
-                          setSaturation(hsv.s);
-                          setBrightness(hsv.v);
-                        } catch (error) {
-                          console.error("Invalid hex color", error);
-                        }
-                      }
+                  onTouchStart={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const touch = e.touches[0];
+                    const x = Math.max(
+                      0,
+                      Math.min(1, (touch.clientX - rect.left) / rect.width)
+                    );
+                    setAlpha(x * 100);
+                    document.addEventListener(
+                      "touchmove",
+                      handleAlphaTouchMove
+                    );
+                    document.addEventListener("touchend", handleAlphaEnd);
+                  }}
+                >
+                  <div
+                    className='absolute inset-0 rounded-full'
+                    style={{
+                      background: `linear-gradient(to right, transparent, hsl(${hue}, 100%, 50%))`,
                     }}
-                    className='w-full text-sm py-1.5 px-2 rounded-md focus:outline-none transition-all bg-background border  text-text'
-                  />
+                  ></div>
+                  <div
+                    className='absolute w-4 h-4 rounded-full border-2 border-white shadow-md transform -translate-x-1/2 -translate-y-1/2 top-1/2'
+                    style={{ left: `${alpha}%` }}
+                  ></div>
+                </div>
+              )}
+
+              {/* Color preview and hex input */}
+              <div className='flex items-center gap-3 mb-4'>
+                <div className='w-8 h-8 rounded-lg shadow-sm border border-border bg-checkered flex-shrink-0'>
+                  <div
+                    className='w-full h-full rounded-lg'
+                    style={{
+                      backgroundColor: `rgba(${rgbValues.r}, ${rgbValues.g}, ${
+                        rgbValues.b
+                      }, ${alpha / 100})`,
+                    }}
+                  ></div>
+                </div>
+
+                <div className='flex-1'>
+                  <div className='flex items-center'>
+                    <span className='text-xs mr-1'>#</span>
+                    <input
+                      type='text'
+                      value={hexValue}
+                      onChange={(e) => {
+                        const value = e.target.value
+                          .replace(/[^0-9A-Fa-f]/g, "")
+                          .substring(0, 6);
+                        setHexValue(value);
+                        if (value.length === 6) {
+                          try {
+                            const r = Number.parseInt(
+                              value.substring(0, 2),
+                              16
+                            );
+                            const g = Number.parseInt(
+                              value.substring(2, 4),
+                              16
+                            );
+                            const b = Number.parseInt(
+                              value.substring(4, 6),
+                              16
+                            );
+                            setRgbValues({ r, g, b });
+                            const hsv = rgbToHsv(r, g, b);
+                            setHue(hsv.h);
+                            setSaturation(hsv.s);
+                            setBrightness(hsv.v);
+                          } catch (error) {
+                            console.error("Invalid hex color", error);
+                          }
+                        }
+                      }}
+                      className='w-full text-sm py-1.5 px-2 rounded-md focus:outline-none transition-all bg-background border  text-text'
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* RGB and Alpha inputs */}
-            <div className='grid grid-cols-4 gap-1.5 mb-4'>
-              <div>
-                <label className='block text-xs mb-1 opacity-70'>R</label>
-                <input
-                  type='number'
-                  min='0'
-                  max='255'
-                  value={rgbValues.r}
-                  onChange={(e) => {
-                    const value = Math.max(
-                      0,
-                      Math.min(255, Number.parseInt(e.target.value) || 0)
-                    );
-                    const newRgb = { ...rgbValues, r: value };
-                    setRgbValues(newRgb);
-                    const hsv = rgbToHsv(newRgb.r, newRgb.g, newRgb.b);
-                    setHue(hsv.h);
-                    setSaturation(hsv.s);
-                    setBrightness(hsv.v);
-                  }}
-                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
-                />
-              </div>
-              <div>
-                <label className='block text-xs mb-1 opacity-70'>G</label>
-                <input
-                  type='number'
-                  min='0'
-                  max='255'
-                  value={rgbValues.g}
-                  onChange={(e) => {
-                    const value = Math.max(
-                      0,
-                      Math.min(255, Number.parseInt(e.target.value) || 0)
-                    );
-                    const newRgb = { ...rgbValues, g: value };
-                    setRgbValues(newRgb);
-                    const hsv = rgbToHsv(newRgb.r, newRgb.g, newRgb.b);
-                    setHue(hsv.h);
-                    setSaturation(hsv.s);
-                    setBrightness(hsv.v);
-                  }}
-                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
-                />
-              </div>
-              <div>
-                <label className='block text-xs mb-1 opacity-70'>B</label>
-                <input
-                  type='number'
-                  min='0'
-                  max='255'
-                  value={rgbValues.b}
-                  onChange={(e) => {
-                    const value = Math.max(
-                      0,
-                      Math.min(255, Number.parseInt(e.target.value) || 0)
-                    );
-                    const newRgb = { ...rgbValues, b: value };
-                    setRgbValues(newRgb);
-                    const hsv = rgbToHsv(newRgb.r, newRgb.g, newRgb.b);
-                    setHue(hsv.h);
-                    setSaturation(hsv.s);
-                    setBrightness(hsv.v);
-                  }}
-                  className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
-                />
-              </div>
-              {showAlpha && (
+              {/* RGB and Alpha inputs */}
+              <div className='grid grid-cols-4 gap-1.5 mb-4'>
                 <div>
-                  <label className='block text-xs mb-1 opacity-70'>A</label>
+                  <label className='block text-xs mb-1 opacity-70'>R</label>
                   <input
                     type='number'
                     min='0'
-                    max='100'
-                    value={Math.round(alpha)}
+                    max='255'
+                    value={rgbValues.r}
                     onChange={(e) => {
-                      setAlpha(
-                        Math.max(
-                          0,
-                          Math.min(100, Number.parseInt(e.target.value) || 0)
-                        )
+                      const value = Math.max(
+                        0,
+                        Math.min(255, Number.parseInt(e.target.value) || 0)
                       );
+                      const newRgb = { ...rgbValues, r: value };
+                      setRgbValues(newRgb);
+                      const hsv = rgbToHsv(newRgb.r, newRgb.g, newRgb.b);
+                      setHue(hsv.h);
+                      setSaturation(hsv.s);
+                      setBrightness(hsv.v);
                     }}
                     className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
                   />
                 </div>
-              )}
-            </div>
-
-            {/* Recent Colors */}
-            <div>
-              <label className='block text-xs mb-2 opacity-70'>
-                Recent Colors
-              </label>
-              <div className='flex flex-wrap gap-2'>
-                {recentColors.map((recentColor) => (
-                  <button
-                    key={recentColor}
-                    className='w-7 h-7 rounded-full border border-border shadow-sm transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white'
-                    style={{ backgroundColor: recentColor }}
-                    onClick={() => {
-                      const { h, s, v, r, g, b } = parseColor(recentColor);
-                      setHue(h);
-                      setSaturation(s);
-                      setBrightness(v);
-                      setRgbValues({ r, g, b });
-                      setHexValue(recentColor.replace("#", ""));
-                      setAlpha(100);
+                <div>
+                  <label className='block text-xs mb-1 opacity-70'>G</label>
+                  <input
+                    type='number'
+                    min='0'
+                    max='255'
+                    value={rgbValues.g}
+                    onChange={(e) => {
+                      const value = Math.max(
+                        0,
+                        Math.min(255, Number.parseInt(e.target.value) || 0)
+                      );
+                      const newRgb = { ...rgbValues, g: value };
+                      setRgbValues(newRgb);
+                      const hsv = rgbToHsv(newRgb.r, newRgb.g, newRgb.b);
+                      setHue(hsv.h);
+                      setSaturation(hsv.s);
+                      setBrightness(hsv.v);
                     }}
-                    aria-label={`Select color ${recentColor}`}
+                    className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
                   />
-                ))}
+                </div>
+                <div>
+                  <label className='block text-xs mb-1 opacity-70'>B</label>
+                  <input
+                    type='number'
+                    min='0'
+                    max='255'
+                    value={rgbValues.b}
+                    onChange={(e) => {
+                      const value = Math.max(
+                        0,
+                        Math.min(255, Number.parseInt(e.target.value) || 0)
+                      );
+                      const newRgb = { ...rgbValues, b: value };
+                      setRgbValues(newRgb);
+                      const hsv = rgbToHsv(newRgb.r, newRgb.g, newRgb.b);
+                      setHue(hsv.h);
+                      setSaturation(hsv.s);
+                      setBrightness(hsv.v);
+                    }}
+                    className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
+                  />
+                </div>
+                {showAlpha && (
+                  <div>
+                    <label className='block text-xs mb-1 opacity-70'>A</label>
+                    <input
+                      type='number'
+                      min='0'
+                      max='100'
+                      value={Math.round(alpha)}
+                      onChange={(e) => {
+                        setAlpha(
+                          Math.max(
+                            0,
+                            Math.min(100, Number.parseInt(e.target.value) || 0)
+                          )
+                        );
+                      }}
+                      className='w-full h-8 text-sm py-1 px-1.5 rounded-md focus:outline-none transition-all bg-background border text-text'
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Recent Colors */}
+              <div>
+                <label className='block text-xs mb-2 opacity-70'>
+                  Recent Colors
+                </label>
+                <div className='flex flex-wrap gap-2'>
+                  {recentColors.map((recentColor) => (
+                    <button
+                      key={recentColor}
+                      className='w-7 h-7 rounded-full border border-border shadow-sm transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white'
+                      style={{ backgroundColor: recentColor }}
+                      onClick={() => {
+                        const { h, s, v, r, g, b } = parseColor(recentColor);
+                        setHue(h);
+                        setSaturation(s);
+                        setBrightness(v);
+                        setRgbValues({ r, g, b });
+                        setHexValue(recentColor.replace("#", ""));
+                        setAlpha(100);
+                      }}
+                      aria-label={`Select color ${recentColor}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        </PopoverContent>
+      </Popover>
+    </>
   );
 }
 

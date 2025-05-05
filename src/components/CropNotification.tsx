@@ -17,8 +17,8 @@ export function CropNotification() {
       )}
     >
       <div className='flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition-all duration-300 bg-background border border-border text-text'>
-        <Scissors className='h-4 w-4' />
-        <p className='text-sm'>
+        <Scissors className='h-4 w-4 flex-shrink-0' />
+        <p className='sm:text-sm text-xs'>
           Crop is active — Drag to select the area you want to crop.
         </p>
         <button

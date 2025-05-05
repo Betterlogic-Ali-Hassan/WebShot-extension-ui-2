@@ -65,7 +65,7 @@ export function PencilToolPopup() {
           ))}
         </div>
 
-        <div className='flex min-[850px]:items-center gap-4 '>
+        <div className='flex min-[850px]:items-center gap-4  '>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 
