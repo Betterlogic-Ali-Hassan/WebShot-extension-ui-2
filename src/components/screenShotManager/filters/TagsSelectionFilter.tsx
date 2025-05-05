@@ -15,20 +15,22 @@ const TagsSelectionFilter = () => {
     screenshots,
   } = useScreenShot();
   return (
-    <div className='relative' ref={tagDropdownRef}>
+    <div className='relative w-full' ref={tagDropdownRef}>
       <button
         onClick={() => setIsTagDropdownOpen(!isTagDropdownOpen)}
         className={cn(
-          "flex items-center space-x-1 px-3 py-2 rounded-full",
+          "flex items-center space-x-1 px-3 py-2 rounded-full max-sm:w-full max-sm:justify-between",
           "border transition-all duration-200 bg-background border-border hover:bg-hover",
           isTagDropdownOpen && "bg-hover",
           selectedTags.length > 0 && "border-info"
         )}
       >
-        <Tag size={16} />
-        <span>
-          {selectedTags.length > 0 ? `Tags (${selectedTags.length})` : "Tags"}
-        </span>
+        <div className='flex items-center gap-2'>
+          <Tag size={16} />
+          <span>
+            {selectedTags.length > 0 ? `Tags (${selectedTags.length})` : "Tags"}
+          </span>
+        </div>
         <ChevronDown
           size={16}
           className={cn(
@@ -38,7 +40,7 @@ const TagsSelectionFilter = () => {
         />
       </button>
       {isTagDropdownOpen && (
-        <div className='absolute right-0 mt-2 w-64 rounded-xl shadow-lg z-10border transition-all duration-200 animate-in fade-in bg-background '>
+        <div className='absolute right-0 mt-2 w-64 rounded-xl shadow-lg z-10  transition-all duration-200 animate-in fade-in bg-background border max-[450px]:left-0 '>
           {/* Search field */}
           <div className='p-3 border-b border-border'>
             <div className='relative'>

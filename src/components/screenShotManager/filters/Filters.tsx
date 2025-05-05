@@ -6,12 +6,12 @@ import TagsSelectionFilter from "./TagsSelectionFilter";
 
 const Filters = () => {
   return (
-    <div className='flex items-center justify-between max-sm:flex-col'>
+    <div className='flex sm:items-center justify-between max-sm:flex-col'>
       <div className='max-sm:flex items-center justify-between w-full max-sm:mb-4 flex-wrap '>
         <BreadCrumb />
         <UploadBtn className='sm:hidden' />
       </div>
-      <div className='flex items-center gap-4 max-sm:flex-wrap'>
+      <div className='flex sm:items-center items-start gap-4 max-sm:flex-col'>
         <Searchbar />
         <TagsSelectionFilter />
         <DateFilter />

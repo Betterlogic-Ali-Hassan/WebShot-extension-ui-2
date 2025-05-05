@@ -15,28 +15,32 @@ const DateFilter = () => {
     setCalendarView,
   } = useScreenShot();
   return (
-    <div className='relative' ref={dateDropdownRef}>
+    <div className='relative max-sm:w-full' ref={dateDropdownRef}>
       <button
         onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
         className={cn(
-          "flex items-center space-x-1 px-3 py-2 rounded-full",
+          "flex items-center space-x-1 px-3 py-2 rounded-full max-sm:w-full max-sm:justify-between",
           "border transition-all duration-200 bg-background border-border hover:bg-hover",
           isDateDropdownOpen && "bg-hover",
           (dateRange.start || dateRange.end) && "border-info"
         )}
       >
-        <Calendar size={16} />
-        <span>
-          {dateRange.start && dateRange.end
-            ? `${
-                new Date(dateRange.start).toLocaleDateString().split(",")[0]
-              } - ${new Date(dateRange.end).toLocaleDateString().split(",")[0]}`
-            : dateRange.start
-            ? `From ${
-                new Date(dateRange.start).toLocaleDateString().split(",")[0]
-              }`
-            : "Date"}
-        </span>
+        <div className='flex items-center gap-2'>
+          <Calendar size={16} />
+          <span>
+            {dateRange.start && dateRange.end
+              ? `${
+                  new Date(dateRange.start).toLocaleDateString().split(",")[0]
+                } - ${
+                  new Date(dateRange.end).toLocaleDateString().split(",")[0]
+                }`
+              : dateRange.start
+              ? `From ${
+                  new Date(dateRange.start).toLocaleDateString().split(",")[0]
+                }`
+              : "Date"}
+          </span>
+        </div>
         <ChevronDown
           size={16}
           className={cn(
@@ -46,7 +50,7 @@ const DateFilter = () => {
         />
       </button>
       {isDateDropdownOpen && (
-        <div className='absolute right-0 mt-2 w-[600px] rounded-xl shadow-lg z-10 border transition-all duration-200 animate-in fade-in bg-card border-border'>
+        <div className='absolute right-0 mt-2 sm:w-[600px] w-[320px] rounded-xl shadow-lg z-10 border transition-all duration-200 animate-in fade-in bg-card border-border'>
           <div className='p-4 space-y-4'>
             {/* Header with clear button */}
             <div className='flex items-center justify-between'>
@@ -60,8 +64,8 @@ const DateFilter = () => {
             </div>
 
             {/* Date input fields */}
-            <div className='flex justify-center gap-4 mb-2'>
-              <div className='w-[200px]'>
+            <div className='flex justify-center gap-4 max-sm:flex-col mb-2'>
+              <div className='max-sm:w-[280px] w-[200px]'>
                 <label className='block text-xs mb-1 text-foreground'>
                   Start Date
                 </label>
@@ -71,7 +75,7 @@ const DateFilter = () => {
                     : "Not set"}
                 </div>
               </div>
-              <div className='w-[200px]'>
+              <div className='max-sm:w-[280px] w-[200px]'>
                 <label className='block text-xs mb-1 text-foreground'>
                   End Date
                 </label>
@@ -84,7 +88,7 @@ const DateFilter = () => {
             </div>
 
             {/* Calendar container */}
-            <div className='flex justify-between gap-6 p-2'>
+            <div className='flex justify-between max-sm:flex-col  gap-6 p-2'>
               <CalendarMonth
                 month={calendarView.leftMonth}
                 year={calendarView.leftYear}
