@@ -1,8 +1,13 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
-import { Dropdown, type DropdownOption } from "./PopupDropdown";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export interface FontSelectorProps {
   value: string;
@@ -27,45 +32,37 @@ export function FontSelector({
   ],
   className,
 }: FontSelectorProps) {
-  const options: DropdownOption[] = fonts.map((font) => ({
-    value: font,
-    label: font,
-  }));
-
-  const renderOption = (option: DropdownOption, isSelected: boolean) => (
-    <div
-      className={cn(
-        "px-3 py-2 cursor-pointer transition-all duration-200 ",
-        "hover:bg-hover",
-        isSelected && "bg-hover"
-      )}
-      style={{ fontFamily: option.value }}
-    >
-      <span className='text-sm'>{option.label}</span>
-    </div>
-  );
-
-  const renderValue = (option: DropdownOption | undefined) => (
-    <div className='flex items-center justify-between w-full '>
-      <span className='text-sm truncate' style={{ fontFamily: option?.value }}>
-        {option?.label || "Select font"}
-      </span>
-      <span className=' opacity-70 flex-shrink-0 ml-1'>
-        <ChevronDown className='h-4 w-4' />
-      </span>
-    </div>
-  );
-
   return (
-    <Dropdown
-      options={options}
-      value={value}
-      onChange={onChange}
-      renderOption={renderOption}
-      renderValue={renderValue}
-      className={className}
-      buttonClassName='w-[155px]'
-      dropdownClassName='w-[155px] max-h-60'
-    />
+    <Select value={value} onValueChange={onChange}>
+      <SelectTrigger
+        className={cn(
+          "min-w-[155px] max-h-8 bg-border border-tool-selected-color text-text hover:bg-border/80",
+          className
+        )}
+      >
+        <SelectValue placeholder='Select font'>
+          <span className='text-sm truncate' style={{ fontFamily: value }}>
+            {value || "Select font"}
+          </span>
+        </SelectValue>
+      </SelectTrigger>
+      <SelectContent className='w-full max-h-60 bg-card border border-border'>
+        {fonts.map((font) => (
+          <SelectItem
+            key={font}
+            value={font}
+            className={cn(
+              "!px-3 !py-3 cursor-pointer transition-all  duration-200",
+              "hover:bg-border",
+              value === font && "bg-border"
+            )}
+          >
+            <span className='text-sm text-text' style={{ fontFamily: font }}>
+              {font}
+            </span>
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }

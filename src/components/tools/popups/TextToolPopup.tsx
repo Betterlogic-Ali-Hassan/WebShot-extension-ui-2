@@ -36,9 +36,9 @@ export function TextToolPopup() {
       position={popupPosition}
       onClose={onClose}
       toolbarPosition={toolbarPosition}
-      className='min-[850px]:min-w-[600px] overflow-x-auto max-w-[600px] whitespace-nowrap'
+      className='min-[850px]:min-w-[600px] overflow-hidden'
     >
-      <div className='flex items-center gap-4 overflow-x-auto max-w-[200px] whitespace-nowrap '>
+      <div className='flex items-center gap-4 max-[850px]:overflow-x-auto max-[850px]:max-w-[230px] no-scrollbar max-[850px]:whitespace-nowrap '>
         {/* Font Selector */}
         <FontSelector value={selectedFont} onChange={setSelectedFont} />
 

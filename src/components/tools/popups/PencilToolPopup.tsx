@@ -46,7 +46,7 @@ export function PencilToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center justify-between w-full  gap-4 overflow-x-auto max-w-[200px] whitespace-nowrap '>
+      <div className='flex items-center justify-between w-full  gap-4 max-[850px]:overflow-x-auto max-[850px]:max-w-[230px] max-[850px]:whitespace-nowrap no-scrollbar '>
         <div className='flex items-center gap-2 '>
           {tools.map((tool) => (
             <button

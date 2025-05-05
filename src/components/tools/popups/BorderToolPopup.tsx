@@ -20,7 +20,7 @@ export function BorderToolPopup() {
   const [selectedPreset, setSelectedPreset] = useState(0);
   const isToolbarBottom = toolbarPosition === "bottom";
   // Refs for positioning and dropdowns
-  const leftPosition = window.innerWidth <= 850 ? "50%" : position.top + "px";
+  const leftPosition = window.innerWidth <= 850 ? "50%" : position.left + "px";
   const popupRef = useRef<HTMLDivElement>(null);
 
   const getAllPresets = () => {
