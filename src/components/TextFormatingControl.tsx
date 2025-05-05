@@ -43,12 +43,7 @@ export function TextFormattingControls({
   className,
 }: TextFormattingControlsProps) {
   return (
-    <div
-      className={cn(
-        "flex min-[850px]:items-center gap-4 max-[850px]:flex-col",
-        className
-      )}
-    >
+    <div className={cn("flex min-[850px]:items-center gap-4", className)}>
       {/* Text Style Buttons */}
       <div className='flex items-center border rounded-md overflow-hidden border-tool-selected-color max-w-max'>
         <Button

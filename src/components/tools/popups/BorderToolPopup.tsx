@@ -20,6 +20,7 @@ export function BorderToolPopup() {
   const [selectedPreset, setSelectedPreset] = useState(0);
   const isToolbarBottom = toolbarPosition === "bottom";
   // Refs for positioning and dropdowns
+  const leftPosition = window.innerWidth <= 850 ? "50%" : position.top + "px";
   const popupRef = useRef<HTMLDivElement>(null);
 
   const getAllPresets = () => {
@@ -181,7 +182,7 @@ export function BorderToolPopup() {
         transform: "translateX(-50%)",
         maxWidth: "300px",
         width: "100%",
-        left: `  ${position.left}px`,
+        left: leftPosition,
       }}
     >
       <div className='p-3 max-h-[470px] overflow-y-auto no-scrollbar'>

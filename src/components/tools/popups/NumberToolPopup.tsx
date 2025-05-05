@@ -37,7 +37,7 @@ export function NumberToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex min-[850px]:items-center gap-4 max-[850px]:flex-col-reverse max-[850px]:mt-6'>
+      <div className='flex items-center gap-4 max-[850px]:overflow-x-auto max-[850px]:max-w-[200px] max-[850px]:whitespace-nowrap max-[850px]:h-[60px]'>
         {/* Style section */}
         <div className='flex items-center gap-3 px-1'>
           <span className='text-sm font-medium whitespace-nowrap text-text'>

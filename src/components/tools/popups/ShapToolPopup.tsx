@@ -47,9 +47,9 @@ export function ShapeToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center gap-4 max-[850px]:flex-col-reverse '>
+      <div className='flex items-center gap-4  overflow-x-auto max-w-[200px] whitespace-nowrap'>
         {/* Shape Selection */}
-        <div className='flex items-center gap-2 max-[850px]:flex-col'>
+        <div className='flex items-center gap-2  '>
           {shapes.map((shape) => (
             <button
               key={shape.id}
@@ -109,7 +109,7 @@ export function ShapeToolPopup() {
         {/* Divider */}
         <Separator />
 
-        <div className='flex gap-2 max-[850px]:flex-col'>
+        <div className='flex gap-2 '>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 

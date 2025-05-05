@@ -27,12 +27,12 @@ export function PopupContainer({
 }: PopupContainerProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   const isToolbarBottom = toolbarPosition === "bottom";
-  const isLessWidth = window.innerWidth <= 850;
+  // const isLessWidth = window.innerWidth <= 850;
   // Adjust position to stay within container bounds
   useEffect(() => {
     const adjustPosition = () => {
       if (!popupRef.current) return;
-      if (!isLessWidth) popupRef.current.style.left = "50%";
+      popupRef.current.style.left = "50%";
     };
 
     // Adjust position on initial render and window resize
@@ -48,22 +48,23 @@ export function PopupContainer({
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 min-[850px]:max-h-[68px] min-h-[68px] flex items-center justify-center",
-        "bg-card border border-border min-[850px]:min-w-[320px] min-[850px]:max-w-[calc(100% - 32px)] ",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 max-h-[68px] min-h-[68px] flex items-center justify-center",
+        "bg-card border border-border min-[850px]:min-w-[320px] max-w-[300px] overflow-x-auto whitespace-nowrap ",
         !isToolbarBottom && "mt-2.5",
         className
       )}
       style={{
         top: position.top + "px",
-        transform: isLessWidth ? "" : "translateX(-50%)",
-        left: isLessWidth ? `${(position.left ?? 0) - 30}px` : "50%",
+        transform: "translateX(-50%)",
+        left: "50%",
+        overflowX: "auto",
       }}
     >
-      <div className='p-3 relative flex items-center max-[850px]:flex-col'>
+      <div className='p-3 relative flex items-center'>
         {children}
         <Button
           className={cn(
-            "h-8 w-8 rounded-full transition-colors duration-200 justify-center ml-4 max-[850px]:absolute top-0 right-2 ",
+            "h-8 w-8 rounded-full transition-colors duration-200 justify-center ml-4  ",
             "hover:bg-hover hover:text-text"
           )}
           onClick={onClose}

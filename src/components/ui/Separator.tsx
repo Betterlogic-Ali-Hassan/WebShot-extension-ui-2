@@ -7,7 +7,7 @@ const Separator = ({ className, orientation }: Props) => {
   return (
     <div
       className={cn(
-        "shrink-0 max-[850px]:h-[1px] h-10 w-px bg-border max-[850px]:w-full  ",
+        "shrink-0 h-10 w-px bg-border   ",
         orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
         className
       )}

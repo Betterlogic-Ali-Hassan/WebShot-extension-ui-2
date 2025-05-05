@@ -46,14 +46,14 @@ export function PencilToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center justify-between max-[850px]:flex-col-reverse gap-4 '>
-        <div className='flex min-[850px]:items-center gap-2 max-[850px]:flex-col'>
+      <div className='flex items-center justify-between w-full  gap-4 overflow-x-auto max-w-[200px] whitespace-nowrap '>
+        <div className='flex items-center gap-2 '>
           {tools.map((tool) => (
             <button
               key={tool.id}
               onClick={() => handleToolSelect(tool.id as PencilTool)}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 cursor-pointer rounded-lg max-h-[38px] max-[850px]:w-full transition-all duration-200 border border-transparent",
+                "flex items-center gap-2 px-3 py-2 cursor-pointer rounded-lg max-h-[38px] w-full transition-all duration-200 border border-transparent",
                 selectedTool === tool.id
                   ? "bg-hover border-dashed  border-selection-border text-text"
                   : "text-text/60 hover:bg-hover hover:text-text",
@@ -68,7 +68,7 @@ export function PencilToolPopup() {
 
         <Separator />
 
-        <div className='flex min-[850px]:items-center gap-4 max-[850px]:flex-col max-[850px]:'>
+        <div className='flex min-[850px]:items-center gap-4 '>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 

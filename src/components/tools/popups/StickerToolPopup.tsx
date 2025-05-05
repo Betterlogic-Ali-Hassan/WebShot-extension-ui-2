@@ -159,7 +159,7 @@ export function StickersToolPopup() {
       if (!popupRef.current) return;
 
       // Apply the adjusted position
-      popupRef.current.style.left = "50%";
+      popupRef.current.style.left = window.innerWidth <= 850 ? "" : "50%";
     };
 
     // Adjust position on initial render and window resize

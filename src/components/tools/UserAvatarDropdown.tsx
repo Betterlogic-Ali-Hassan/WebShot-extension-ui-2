@@ -121,7 +121,7 @@ export function UserAvatarDropdown({
       case "bottom":
         return "mb-[80px] bottom-0 right-12";
       default:
-        return "right-1/2 min-[1600px]:translate-x-[150%] translate-x-[115%] left-1/2";
+        return "right-1/2 max-[1000px]:right-0 min-[1600px]:translate-x-[150%] min-[1000px]:translate-x-[115%] min-[1000px]:left-1/2";
     }
   };
 

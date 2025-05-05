@@ -77,15 +77,15 @@ export function ArrowToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center gap-4 max-[850px]:flex-col-reverse'>
+      <div className='flex items-center gap-4 overflow-x-auto max-w-[200px] whitespace-nowrap'>
         {/* Arrow Style Selection */}
-        <div className='flex items-center gap-2 max-[850px]:flex-col'>
+        <div className='flex items-center gap-2 l'>
           {arrowStyles.map((style) => (
             <button
               key={style.id}
               onClick={() => handleStyleSelect(style.id as ArrowStyle)}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px] max-[850px]:w-full duration-200 cursor-pointer border border-transparent ring-0 outline-none  focus:outline-none",
+                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px]  duration-200 cursor-pointer border border-transparent ring-0 outline-none  focus:outline-none",
                 selectedArrowStyle === style.id
                   ? "bg-hover border-dashed  border-selection-border text-text "
                   : "text-text/60 hover:bg-hover hover:text-text"
@@ -108,7 +108,7 @@ export function ArrowToolPopup() {
         {/* Divider */}
         <Separator />
 
-        <div className='flex gap-2 max-[850px]:flex-col'>
+        <div className='flex gap-2 '>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 
