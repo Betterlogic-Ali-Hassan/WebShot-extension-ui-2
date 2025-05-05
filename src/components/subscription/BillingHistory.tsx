@@ -197,33 +197,6 @@ export function BillingHistorySection({
           </table>
         </div>
 
-        {/* Mobile view for billing history */}
-        <div className='md:hidden'>
-          {getCurrentItems().map((item, index) => (
-            <div
-              key={index}
-              className='p-4 border-b last:border-b-0 border-border'
-            >
-              <div className='flex justify-between items-center mb-2'>
-                <span className='font-medium text-text'>{item.date}</span>
-                <span className='px-2.5 py-0.5 text-xs rounded-full font-semibold text-text border border-border'>
-                  {item.status}
-                </span>
-              </div>
-              <div className='flex justify-between items-center'>
-                <span className='text-text'>{item.amount}</span>
-                <button
-                  className='flex items-center text-info hover:underline'
-                  onClick={() => handleDownloadInvoice(item.invoice)}
-                >
-                  {item.invoice}
-                  <Download className='w-3 h-3 ml-1' />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* Pagination */}
         {totalPages > 1 && (
           <div className='flex items-center justify-center py-4 border-t border-border'>

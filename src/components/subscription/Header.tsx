@@ -18,7 +18,7 @@ const Header = () => {
         </div>
         <div>
           <button
-            className='hidden sm:flex px-4 py-2 text-sm font-medium rounded-md border border-border hover:bg-hover'
+            className='flex px-4 py-2 text-sm font-medium rounded-md border border-border hover:bg-hover'
             onClick={() => navigate("/support")}
           >
             Need Help?

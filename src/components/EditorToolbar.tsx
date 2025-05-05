@@ -190,12 +190,12 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
         toolbarPosition === "bottom" ? "bottom-0" : "top-0"
       )}
     >
-      <div className='max-w-screen-2xl mx-auto px-4 h-[72px] py-2 flex items-center justify-between'>
+      <div className='max-w-screen-2xl mx-auto px-4 h-[72px] py-2 flex items-center justify-between gap-10 overflow-x-auto'>
         {/* Left section - logo */}
         <div className='flex items-center min-w-24'>{logo}</div>
 
         {/* Center section - tools */}
-        <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text absolute left-1/2 -translate-x-1/2'>
+        <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text min-[850px]:absolute min-[850px]:left-1/2 min-[850px]:-translate-x-1/2'>
           {visibleTools.map((tool) => (
             <Tooltip
               key={tool.id}

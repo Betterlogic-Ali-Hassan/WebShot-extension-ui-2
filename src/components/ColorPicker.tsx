@@ -207,7 +207,7 @@ export function ColorPicker({
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "w-8 h-8 rounded-md flex items-center justify-center border cursor-pointer border-border shadow-sm relative transition-colors duration-200 hover:border-text/60",
+          "w-8 h-8  rounded-md flex items-center justify-center border cursor-pointer border-border shadow-sm relative transition-colors duration-200 hover:border-text/60",
           buttonClassName
         )}
         style={{ backgroundColor: color }}

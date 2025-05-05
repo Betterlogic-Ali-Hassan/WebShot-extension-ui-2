@@ -16,14 +16,16 @@ export const EmptyState = () => {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center py-16 rounded-2xl",
+        "flex flex-col items-center justify-center py-16 rounded-2xl px-6",
         "border transition-all duration-200 bg-card border-border"
       )}
     >
       {activeTab === "recycle-bin" ? (
         <>
           <Trash2 size={48} className='text-foreground mb-4' />
-          <h3 className='text-lg font-medium mb-1'>Recycle Bin is Empty</h3>
+          <h3 className='text-lg font-medium mb-1 text-center'>
+            Recycle Bin is Empty
+          </h3>
           <p className='text-foreground text-center max-w-md'>
             Deleted screenshots will appear here for 30 days before being
             permanently removed

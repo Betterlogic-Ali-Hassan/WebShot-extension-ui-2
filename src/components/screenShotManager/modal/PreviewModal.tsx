@@ -48,7 +48,7 @@ const PreviewModal = () => {
         </div>
 
         {/* Modal footer */}
-        <div className='flex items-center justify-between p-4 border-t no-scrollbar'>
+        <div className='flex items-center justify-between p-4 border-t no-scrollbar flex-wrap gap-4'>
           <div className='flex items-center space-x-2'>
             <span className='text-sm text-foreground'>
               {previewImage?.date}

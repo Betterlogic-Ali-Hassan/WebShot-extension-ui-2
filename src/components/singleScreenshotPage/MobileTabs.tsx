@@ -5,7 +5,7 @@ interface Props {
 }
 const MobileTabs = ({ activeTab, setActiveTab }: Props) => {
   return (
-    <div className='md:hidden mb-6 flex rounded-lg overflow-hidden'>
+    <div className='md:hidden mb-6 flex rounded-lg overflow-hidden bg-card'>
       <button
         onClick={() => setActiveTab("actions")}
         className={cn(

@@ -30,7 +30,7 @@ const Header = ({ screenshot, liked, likeCount, handleLike }: Props) => {
   };
   return (
     <header className='sticky top-0 z-10 py-4 backdrop-blur-lg bg-background'>
-      <div className='max-w-screen-2xl mx-auto px-4 sm:px-6 flex items-center justify-between'>
+      <div className='max-w-screen-2xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-5 flex-wrap'>
         <div className='flex items-center'>
           <Link
             to='/'

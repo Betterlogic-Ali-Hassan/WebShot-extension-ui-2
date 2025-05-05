@@ -1,25 +1,13 @@
-import {
-  ArrowLeft,
-  CheckSquare,
-  Grid,
-  List,
-  Square,
-  Upload,
-} from "lucide-react";
+import { ArrowLeft, CheckSquare, Grid, List, Square } from "lucide-react";
 import { UserAvatarDropdown } from "../tools/UserAvatarDropdown";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { useScreenShot } from "@/context/ScreenShotContext";
+import UploadBtn from "./UploadBtn";
 
 const Header = () => {
-  const {
-    handleUpload,
-    fileInputRef,
-    viewMode,
-    setIsMultiSelectMode,
-    setViewMode,
-    isMultiSelectMode,
-  } = useScreenShot();
+  const { viewMode, setIsMultiSelectMode, setViewMode, isMultiSelectMode } =
+    useScreenShot();
   const navigate = useNavigate();
   return (
     <header className='sticky top-0 z-10 py-4 px-6 backdrop-blur-md bg-background shadow-sm border-b'>
@@ -32,7 +20,9 @@ const Header = () => {
             >
               <ArrowLeft size={20} />
             </button>
-            <h1 className='text-2xl font-bold'>Screenshot Manager</h1>
+            <h1 className='sm:text-2xl text-lg font-bold'>
+              Screenshot Manager
+            </h1>
           </div>
           <div className='flex items-center space-x-4'>
             <button
@@ -41,21 +31,7 @@ const Header = () => {
             >
               {viewMode === "grid" ? <List size={20} /> : <Grid size={20} />}
             </button>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className='flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:bg-info-hover bg-info text-text-primary '
-            >
-              <Upload size={16} />
-              <span>Upload</span>
-            </button>
-            <input
-              type='file'
-              ref={fileInputRef}
-              onChange={handleUpload}
-              accept='image/*'
-              multiple
-              className='hidden'
-            />
+            <UploadBtn className='max-sm:hidden' />
             <div className='flex items-center space-x-3'>
               <button
                 onClick={() => setIsMultiSelectMode(!isMultiSelectMode)}

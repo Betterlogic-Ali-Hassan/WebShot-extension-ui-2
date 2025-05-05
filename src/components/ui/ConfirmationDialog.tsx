@@ -82,7 +82,7 @@ export function ConfirmationDialog({
 
   const getConfirmButtonClasses = () => {
     const baseClasses =
-      "px-4 py-2 rounded-lg text-sm font-medium transition-colors";
+      "px-4 py-2 rounded-lg text-sm font-medium transition-colors ";
 
     switch (confirmVariant) {
       case "danger":
@@ -102,7 +102,7 @@ export function ConfirmationDialog({
         aria-modal='true'
         aria-labelledby='dialog-title'
         aria-describedby='dialog-description'
-        className='w-full max-w-md rounded-xl border shadow-lg bg-card border-border animate-in fade-in-50 zoom-in-95 duration-200'
+        className='w-full max-w-md rounded-xl border shadow-lg bg-card border-border animate-in fade-in-50 zoom-in-95 duration-200 max-sm:mx-4'
       >
         <div className='flex items-center justify-between p-4 border-b border-border'>
           <h2 id='dialog-title' className='text-lg font-medium'>

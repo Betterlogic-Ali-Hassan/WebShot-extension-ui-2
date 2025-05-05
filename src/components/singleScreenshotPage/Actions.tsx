@@ -156,7 +156,6 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
 
   return (
     <div className='w-full grid grid-cols-1 md:grid-cols-3 gap-6'>
-      {/* Metadata Section with improved styling */}
       <div
         className={cn(
           "p-6 rounded-2xl transition-all duration-300 bg-background border",
@@ -171,7 +170,6 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
           Screenshot Details
         </h3>
 
-        {/* Folder with improved styling */}
         <div className='mb-5'>
           <div className='text-sm mb-2 flex items-center'>
             <Folder size={14} className='mr-1 text-foreground' />
@@ -185,7 +183,6 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
           </div>
         </div>
 
-        {/* Upload Date with improved styling */}
         <div className='mb-5'>
           <div className='text-sm mb-2 flex items-center'>
             <Calendar size={14} className='mr-1 text-foreground' />
@@ -197,7 +194,6 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
           </div>
         </div>
 
-        {/* Tags with improved styling */}
         <div>
           <div className='text-sm mb-2 flex items-center'>
             <Tag size={14} className='mr-1 text-foreground' />

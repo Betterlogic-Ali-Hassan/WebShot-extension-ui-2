@@ -12,6 +12,7 @@ import { TextFormattingControls } from "@/components/TextFormatingControl";
 import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
 import TextArrowIcon from "@/components/svgs/TextArrowIcon";
 import PageTextIcon from "@/components/svgs/PageTextIcon";
+import Separator from "@/components/ui/Separator";
 
 export function TextArrowToolPopup() {
   const {
@@ -34,7 +35,7 @@ export function TextArrowToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center gap-4'>
+      <div className='flex min-[850px]:items-center gap-4 max-[850px]:flex-col max-[850px]:mt-6'>
         {/* Tool Selection - Toggle Switch */}
         <div className={`flex rounded-md overflow-hidden bg-background`}>
           <button
@@ -64,13 +65,13 @@ export function TextArrowToolPopup() {
         </div>
 
         {/* Divider */}
-        <div className='h-8 w-px bg-border'></div>
+        <Separator />
 
         {/* Color Picker */}
         <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 
         {/* Divider */}
-        <div className='h-8 w-px bg-border'></div>
+        <Separator />
 
         {/* Stroke Size Selector */}
         <StrokeWidthSelector
@@ -86,13 +87,13 @@ export function TextArrowToolPopup() {
         />
 
         {/* Divider */}
-        <div className='h-8 w-px bg-border'></div>
+        <Separator />
 
         {/* Font Selector */}
         <FontSelector value={selectedFont} onChange={setSelectedFont} />
 
         {/* Divider */}
-        <div className='h-8 w-px bg-border'></div>
+        <Separator />
 
         {/* Text Style Buttons */}
         <TextFormattingControls

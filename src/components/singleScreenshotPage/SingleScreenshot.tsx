@@ -100,7 +100,7 @@ const SingleScreenshot = () => {
       />
       <main className='flex-1 py-8 pb-0 px-4 sm:px-6 flex flex-col items-center'>
         <div className='max-w-screen-xl w-full'>
-          <div className='relative rounded-2xl min-h-[400px] overflow-hidden mb-8 shadow-lg transition-all duration-300 bg-card hover:bg-hover'>
+          <div className='relative rounded-2xl max-[400px]:min-h-[300px] min-h-[400px] overflow-hidden mb-8 shadow-lg transition-all duration-300 bg-card hover:bg-hover'>
             <ImageViewer
               disableWheelZoom={false}
               showZoomControls={true}

@@ -5,11 +5,11 @@ const TabNavigation = () => {
   const { screenshots, activeTab, setActiveTab } = useScreenShot();
   return (
     <div className='mb-8 mt-4'>
-      <div className='flex items-center gap-1 p-1 rounded-lg max-w-md transition-all duration-300  bg-hover/25 text-text'>
+      <div className='flex items-center gap-1 p-1 max-sm:flex-col rounded-lg max-w-md transition-all duration-300  bg-hover/25 text-text'>
         <button
           onClick={() => setActiveTab("all")}
           className={cn(
-            "flex-1 px-4 py-2.5 font-medium text-sm rounded-md transition-all duration-200 relative flex items-center justify-center hover:bg-background/50 text-foreground/80 hover:text-text",
+            "flex-1 px-4 py-2.5 font-medium text-sm rounded-md transition-all duration-200 relative flex items-center justify-center hover:bg-background/50 text-foreground/80 hover:text-text max-sm:w-full",
             activeTab === "all" && "bg-background text-text"
           )}
         >
@@ -24,7 +24,7 @@ const TabNavigation = () => {
         <button
           onClick={() => setActiveTab("recycle-bin")}
           className={cn(
-            "flex-1 px-4 py-2.5 font-medium text-sm rounded-md transition-all duration-200 relative flex items-center justify-center hover:bg-background/50 text-foreground/80 hover:text-text",
+            "flex-1 px-4 py-2.5 font-medium text-sm rounded-md transition-all duration-200 relative flex items-center justify-center hover:bg-background/50 text-foreground/80 hover:text-text max-sm:w-full",
             activeTab === "recycle-bin" && "bg-background text-text"
           )}
         >

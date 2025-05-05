@@ -8,6 +8,7 @@ import { NumberPreview, NumberStyle } from "@/components/NumberPreview";
 import { PopupContainer } from "./PopupContainer";
 import { ColorPicker } from "@/components/ColorPicker";
 import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
+import Separator from "@/components/ui/Separator";
 
 export function NumberToolPopup() {
   const {
@@ -36,7 +37,7 @@ export function NumberToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center gap-4'>
+      <div className='flex min-[850px]:items-center gap-4 max-[850px]:flex-col-reverse max-[850px]:mt-6'>
         {/* Style section */}
         <div className='flex items-center gap-3 px-1'>
           <span className='text-sm font-medium whitespace-nowrap text-text'>
@@ -99,7 +100,7 @@ export function NumberToolPopup() {
         </div>
 
         {/* Subtle divider */}
-        <div className='h-10 w-px bg-border'></div>
+        <Separator />
 
         {/* Color picker */}
         <div className='relative'>
@@ -124,12 +125,12 @@ export function NumberToolPopup() {
         </div>
 
         {/* Subtle divider */}
-        <div
+        <Separator
           className={cn(
             "h-10 w-px bg-border",
             selectedStyle === "plain" && "hidden"
           )}
-        ></div>
+        />
 
         {/* Size controls - only show for non-plain styles */}
         {selectedStyle !== "plain" && (
@@ -153,7 +154,7 @@ export function NumberToolPopup() {
         )}
 
         {/* Subtle divider */}
-        <div className='h-8 w-px bg-border'></div>
+        <Separator />
 
         {/* Number controls */}
         <div className='flex items-center gap-3 px-1'>

@@ -9,6 +9,7 @@ import { ColorPicker } from "@/components/ColorPicker";
 import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
 import DottedLineIcon from "@/components/svgs/DottedLineIcon";
 import CurveLineIcon from "@/components/svgs/CurveLineIcon";
+import Separator from "@/components/ui/Separator";
 
 export type ArrowStyle =
   | "arrow-line"
@@ -76,15 +77,15 @@ export function ArrowToolPopup() {
       onClose={onClose}
       toolbarPosition={toolbarPosition}
     >
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-4 max-[850px]:flex-col-reverse'>
         {/* Arrow Style Selection */}
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-2 max-[850px]:flex-col'>
           {arrowStyles.map((style) => (
             <button
               key={style.id}
               onClick={() => handleStyleSelect(style.id as ArrowStyle)}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px] duration-200 cursor-pointer border border-transparent ring-0 outline-none  focus:outline-none",
+                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px] max-[850px]:w-full duration-200 cursor-pointer border border-transparent ring-0 outline-none  focus:outline-none",
                 selectedArrowStyle === style.id
                   ? "bg-hover border-dashed  border-selection-border text-text "
                   : "text-text/60 hover:bg-hover hover:text-text"
@@ -105,9 +106,9 @@ export function ArrowToolPopup() {
         </div>
 
         {/* Divider */}
-        <div className='h-10 w-px bg-border'></div>
+        <Separator />
 
-        <div className='flex gap-2'>
+        <div className='flex gap-2 max-[850px]:flex-col'>
           {/* Color Picker */}
           <ColorPicker color={selectedColor} onChange={setSelectedColor} />
 

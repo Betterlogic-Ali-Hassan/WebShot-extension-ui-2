@@ -62,16 +62,16 @@ export function CancelPlanModal({
           </ul>
         </div>
       </div>
-      <div className='p-6 pt-0 flex justify-end space-x-3'>
+      <div className='p-6 pt-0 flex justify-end sm:space-x-3 max-sm:flex-col max-sm:gap-3'>
         <Button
           onClick={onClose}
-          className=' hover:bg-hover bg-card border border-border'
+          className=' hover:bg-hover bg-card border border-border w-full justify-center'
         >
           Keep Subscription
         </Button>
         <Button
           onClick={handleCancel}
-          className='bg-error hover:bg-error/40  text-text-primary'
+          className='bg-error hover:bg-error/40  text-text-primary w-full justify-center'
         >
           Cancel Subscription
         </Button>

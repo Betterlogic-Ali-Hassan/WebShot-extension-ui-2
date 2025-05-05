@@ -77,13 +77,13 @@ export function CurrentPlanCard({
             <div className='mt-4 md:mt-0 flex flex-col sm:flex-row gap-3 '>
               <Button
                 onClick={onCancelClick}
-                className='border-border bg-background border hover:bg-hover'
+                className='border-border bg-background border hover:bg-hover justify-center'
               >
                 Cancel Plan
               </Button>
               <Button
                 onClick={onUpgradeClick}
-                className='bg-text hover:bg-text/80 text-card'
+                className='bg-text hover:bg-text/80 text-card text-center justify-center'
               >
                 Upgrade Plan
               </Button>

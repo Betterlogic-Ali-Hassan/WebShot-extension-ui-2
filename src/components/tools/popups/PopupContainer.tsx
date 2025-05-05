@@ -14,7 +14,7 @@ export interface PopupContainerProps {
   position: PopupPosition;
   onClose: () => void;
   children: ReactNode;
-  toolbarPosition?: "top" | "bottom" | "left" | "right";
+  toolbarPosition?: "top" | "bottom" | "right";
   className?: string;
 }
 
@@ -26,14 +26,13 @@ export function PopupContainer({
   className,
 }: PopupContainerProps) {
   const popupRef = useRef<HTMLDivElement>(null);
-  const isToolbarLeft = toolbarPosition === "left";
   const isToolbarBottom = toolbarPosition === "bottom";
-
+  const isLessWidth = window.innerWidth <= 850;
   // Adjust position to stay within container bounds
   useEffect(() => {
     const adjustPosition = () => {
       if (!popupRef.current) return;
-      popupRef.current.style.left = `${isToolbarLeft ? "0" : "50%"}`;
+      if (!isLessWidth) popupRef.current.style.left = "50%";
     };
 
     // Adjust position on initial render and window resize
@@ -43,32 +42,29 @@ export function PopupContainer({
     return () => {
       window.removeEventListener("resize", adjustPosition);
     };
-  }, [position, isToolbarLeft]);
+  }, [position]);
 
   return (
     <div
       ref={popupRef}
       className={cn(
-        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 max-h-[68px] min-h-[68px] flex items-center justify-center",
-        "bg-card border border-border",
+        "fixed z-40 rounded-xl shadow-lg transition-all duration-200 min-[850px]:max-h-[68px] min-h-[68px] flex items-center justify-center",
+        "bg-card border border-border min-[850px]:min-w-[320px] min-[850px]:max-w-[calc(100% - 32px)] ",
         !isToolbarBottom && "mt-2.5",
         className
       )}
       style={{
-        top: `${position.top + "px"}`,
-        transform: "translateX(-50%)",
-        left: "50%",
-        minWidth: "320px",
-        maxWidth: "calc(100% - 32px)",
+        top: position.top + "px",
+        transform: isLessWidth ? "" : "translateX(-50%)",
+        left: isLessWidth ? position.left + "px" : "50%",
       }}
     >
-      <div className='p-3 relative flex items-center'>
+      <div className='p-3 relative flex items-center max-[850px]:flex-col'>
         {children}
         <Button
           className={cn(
-            "h-8 w-8 rounded-full transition-colors duration-200 justify-center ml-4",
-            "hover:bg-hover hover:text-text",
-            isToolbarLeft && "absolute top-0 right-0.5"
+            "h-8 w-8 rounded-full transition-colors duration-200 justify-center ml-4 max-[850px]:absolute top-0 right-2 ",
+            "hover:bg-hover hover:text-text"
           )}
           onClick={onClose}
         >

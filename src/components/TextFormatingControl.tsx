@@ -43,9 +43,14 @@ export function TextFormattingControls({
   className,
 }: TextFormattingControlsProps) {
   return (
-    <div className={cn("flex items-center gap-4", className)}>
+    <div
+      className={cn(
+        "flex min-[850px]:items-center gap-4 max-[850px]:flex-col",
+        className
+      )}
+    >
       {/* Text Style Buttons */}
-      <div className='flex items-center border rounded-md overflow-hidden border-tool-selected-color'>
+      <div className='flex items-center border rounded-md overflow-hidden border-tool-selected-color max-w-max'>
         <Button
           onClick={() => onBoldChange(!isBold)}
           className={cn(
@@ -94,7 +99,7 @@ export function TextFormattingControls({
         )}
       </div>
       {option && onAlignmentChange && (
-        <div className='flex items-center border rounded-md overflow-hidden border-tool-selected-color'>
+        <div className='flex items-center border rounded-md overflow-hidden border-tool-selected-color max-w-max'>
           <Button
             onClick={() => onAlignmentChange("left")}
             className={cn(

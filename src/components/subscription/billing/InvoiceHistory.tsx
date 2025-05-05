@@ -105,10 +105,12 @@ const InvoiceHistory = () => {
                       key={invoice.id}
                       className='border-b transition-colors hover:bg-hover/50 cursor-pointer '
                     >
-                      <td className='p-4 align-middle font-medium'>
+                      <td className='p-4 align-middle font-medium whitespace-nowrap'>
                         {invoice.id}
                       </td>
-                      <td className='p-4 align-middle'>{invoice.date}</td>
+                      <td className='p-4 align-middle whitespace-nowrap'>
+                        {invoice.date}
+                      </td>
                       <td className='p-4 align-middle'>{invoice.amount}</td>
                       <td className='p-4 align-middle'>
                         <div
