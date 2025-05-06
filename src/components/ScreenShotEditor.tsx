@@ -42,7 +42,6 @@ export function ScreenshotEditor() {
     // Refs
     fileInputRef,
     toolbarRef,
-
     // Handlers
     handleFileUpload,
     handleCapture,
@@ -79,7 +78,8 @@ export function ScreenshotEditor() {
         "rounded-3xl  shadow-2xl bg-background text-text h-screen",
         uploadedImage && "sm:mt-[350px] mt-0 ",
         uploadedImage && toolbarPosition === "bottom" && "mt-0 ",
-        !uploadedImage && toolbarPosition === "bottom" && "mt-2 "
+        !uploadedImage && toolbarPosition === "bottom" && "mt-2 ",
+        !uploadedImage && "mt-[120px] h-[80vh] "
       )}
     >
       {/* Hidden file input for image uploads */}
@@ -123,7 +123,12 @@ export function ScreenshotEditor() {
           </div>
 
           {/* Image viewer */}
-          <div className={cn("flex items-center justify-center")}>
+          <div
+            className={cn(
+              "flex items-center justify-center ",
+              !uploadedImage && "h-full"
+            )}
+          >
             <ImageViewer
               disableWheelZoom={false}
               showZoomControls={true}
