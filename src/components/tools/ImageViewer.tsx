@@ -21,7 +21,7 @@ export function ImageViewer({
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [initialScale, setInitialScale] = useState(1);
   const [isImageSmall, setIsImageSmall] = useState(false);
-  const [isHeightExpanded, setIsHeightExpanded] = useState(false);
+  const { isHeightExpanded, setIsHeightExpanded } = useImageEditor();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -41,7 +41,8 @@ export function ImageViewer({
 
   // This is the function that handles the expand/collapse functionality
   const toggleHeightExpand = () => {
-    setIsHeightExpanded((prev) => !prev);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setIsHeightExpanded((prev: any) => !prev);
   };
 
   // Update container and image size on load and resize
@@ -121,7 +122,7 @@ export function ImageViewer({
         ref={containerRef}
         className={cn(
           "overflow-auto rounded-xl p-0 w-full transition-all duration-500 ease-in-out",
-          isHeightExpanded ? "h-[calc(100vh-100px)]" : "h-full",
+          isHeightExpanded ? "h-[80vh]" : "h-full",
           isImageSmall ? "flex items-center justify-center" : "block",
           "bg-card"
         )}

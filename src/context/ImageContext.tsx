@@ -18,6 +18,9 @@ type ImageEditorContextType = {
   isEditing: boolean;
   popupPosition: { top: number; left: number; width: number };
   isCropActive: boolean;
+  isHeightExpanded: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setIsHeightExpanded: (isHeight: any) => void;
   uploadedImage: string | null | undefined;
   selectedShape: "square" | "rounded" | "circle" | "star";
   selectedArrowStyle:
@@ -92,6 +95,7 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [activeTool, setActiveTool] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isHeightExpanded, setIsHeightExpanded] = useState(false);
   const [popupPosition, setPopupPosition] = useState({
     top: 0,
     left: 0,
@@ -397,6 +401,8 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Create the context value object
   const contextValue: ImageEditorContextType = {
+    isHeightExpanded,
+    setIsHeightExpanded,
     setUploadedImage,
     activeTool,
     isEditing,
