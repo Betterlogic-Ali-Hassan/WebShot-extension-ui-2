@@ -8,7 +8,7 @@ const HomePage = () => {
     <main
       className={cn(
         "max-h-screen bg-background overflow-y-auto text-text flex flex-col items-center justify-center p-4",
-        toolbarPosition === "bottom" && "justify-start",
+        toolbarPosition === "bottom" && "justify-start max-h-[90vh]",
         isHeightExpanded && "overflow-hidden"
       )}
     >
