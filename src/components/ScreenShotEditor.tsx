@@ -77,8 +77,10 @@ export function ScreenshotEditor() {
       className={cn(
         "w-full max-w-6xl transition-colors duration-300 relative  ",
         "rounded-3xl  shadow-2xl bg-background text-text h-screen",
-        uploadedImage && "sm:mt-[150px] mt-0 ",
-        uploadedImage && toolbarPosition === "bottom" && " h-[82vh] ",
+        uploadedImage && "sm:mt-[140px] mt-0 ",
+        uploadedImage &&
+          toolbarPosition === "bottom" &&
+          "sm:mt-[100px]  h-[82vh] ",
         !uploadedImage && toolbarPosition === "bottom" && "!mt-[40px]  ",
         !uploadedImage && "mt-[100px] h-[82vh] ",
         !isHeightExpanded &&

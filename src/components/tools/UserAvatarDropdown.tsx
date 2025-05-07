@@ -139,11 +139,7 @@ export function UserAvatarDropdown({
   return (
     <div ref={dropdownRef}>
       {/* Avatar Button */}
-      <Tooltip
-        id='user-avatar'
-        content='Profile'
-        place={isOpen ? "left" : "bottom"}
-      >
+      <Tooltip id='user-avatar' content='Profile'>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className='flex items-center justify-center rounded-full w-9 h-9 transition-colors bg-card hover:bg-hover'
