@@ -1,5 +1,6 @@
 "use client";
 
+import { Toast } from "@/components/ui/toast";
 import type React from "react";
 import {
   createContext,
@@ -10,7 +11,6 @@ import {
   RefObject,
   Ref,
 } from "react";
-import { toast } from "react-toastify";
 
 // Define the context type
 type ImageEditorContextType = {
@@ -380,23 +380,23 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Handle user avatar dropdown actions
   const handleProfileClick = () => {
-    toast.success("Profile settings clicked");
+    Toast.success("Profile settings clicked");
   };
 
   const handleManageUploadsClick = () => {
-    toast.success("Manage uploads clicked");
+    Toast.success("Manage uploads clicked");
   };
 
   const handleHelpClick = () => {
-    toast.success("Help & Support clicked");
+    Toast.success("Help & Support clicked");
   };
 
   const handleLogoutClick = () => {
-    toast.success("Logged out successfully");
+    Toast.success("Logged out successfully");
   };
 
   const handleManagePlanClick = () => {
-    toast.success("Manage subscription plan clicked");
+    Toast.success("Manage subscription plan clicked");
   };
 
   // Create the context value object

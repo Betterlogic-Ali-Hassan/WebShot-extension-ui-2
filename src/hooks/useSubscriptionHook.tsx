@@ -1,5 +1,6 @@
 "use client";
 
+import { Toast } from "@/components/ui/toast";
 import { billingHistory } from "@/constant/BillingHistoryData";
 import { projectPlans as plans } from "@/constant/PlansData";
 import { usageData } from "@/constant/UsageData";
@@ -10,7 +11,6 @@ import {
   PlanName,
   ReceiptData,
 } from "@/types/Plan";
-import { toast } from "react-toastify";
 
 // Define types for better type safety
 export const currentPlan: PlanName = "Pro";
@@ -57,7 +57,7 @@ export function useSubscriptionData() {
     if (plan.action === "Downgrade") {
       const usageLimitations = checkDowngradeRestrictions(plan);
       if (usageLimitations.hasRestrictions) {
-        toast.error("Cannot Downgrade Plan");
+        Toast.error("Cannot Downgrade Plan");
         return null;
       }
     }
@@ -73,7 +73,7 @@ export function useSubscriptionData() {
     // Update payment method state (in a real app, this would be done via API)
     const last4 = formData.cardNumber.slice(-4);
 
-    toast.success("Payment Method Updated");
+    Toast.success("Payment Method Updated");
 
     return { success: true, last4 };
   };
@@ -105,7 +105,7 @@ export function useSubscriptionData() {
       ).toLocaleDateString(),
     };
 
-    toast.success(
+    Toast.success(
       `Plan ${selectedPlan.action === "Upgrade" ? "Upgraded" : "Downgraded"}`
     );
 

@@ -2,7 +2,7 @@ import { NotificationsSection } from "@/components/profile/Notification";
 import { PersonalInfoSection } from "@/components/profile/PersonalInfo";
 import { ProfileLayout } from "@/components/profile/ProfileLayout";
 import { SecuritySection } from "@/components/profile/Security";
-import { toast } from "react-toastify";
+import { Toast } from "@/components/ui/toast";
 
 export default function ProfilePage() {
   // Handle form submissions
@@ -12,7 +12,7 @@ export default function ProfilePage() {
     avatar: string;
   }) => {
     console.log("Saving personal info:", data);
-    toast.success("Personal information saved!");
+    Toast.success("Personal information saved!");
   };
 
   const handleSecuritySave = (data: {
@@ -22,7 +22,7 @@ export default function ProfilePage() {
   }) => {
     console.log("Saving security settings:", data);
     // API call would go here
-    toast.success("Security settings saved!");
+    Toast.success("Security settings saved!");
   };
 
   const handleNotificationsSave = (data: {
@@ -30,7 +30,7 @@ export default function ProfilePage() {
     inAppNotifications: boolean;
   }) => {
     console.log("Saving notification preferences:", data);
-    toast.success("Notification preferences saved!");
+    Toast.success("Notification preferences saved!");
   };
 
   return (

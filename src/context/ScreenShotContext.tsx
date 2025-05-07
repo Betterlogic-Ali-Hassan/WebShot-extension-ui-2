@@ -1,5 +1,5 @@
 "use client";
-
+import { Toast } from "@/components/ui/toast";
 import { initialFolders } from "@/constant/Folders";
 import { initialScreenshots } from "@/constant/ScreenShots";
 import { getAllTags } from "@/helper/getAllTags";
@@ -15,7 +15,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { toast } from "react-toastify";
+
 type Tag = {
   name: string;
   count: number;
@@ -240,7 +240,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
       fileInputRef.current.value = "";
     }
 
-    toast.success("Upload complete");
+    Toast.success("Upload complete");
   };
 
   const handleSelectDate = (date: string) => {
@@ -273,7 +273,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
     setMovingScreenshot(null);
     setIsMoveFolderOpen(false);
 
-    toast.success("Screenshot moved");
+    Toast.success("Screenshot moved");
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>, folderId: string) => {
@@ -302,7 +302,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setFolders(folders.filter((folder) => folder.id !== folderId));
 
-    toast.success("Folder deleted");
+    Toast.success("Folder deleted");
   };
   const handleFolderClick = (folderId: string) => {
     setCurrentFolder(folderId);
@@ -315,7 +315,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
     );
     setEditingFolder(null);
 
-    toast.success("Folder renamed");
+    Toast.success("Folder renamed");
   };
   const filteredScreenshots = screenshots.filter((screenshot) => {
     // If we're in recycle bin tab, only show trashed items
@@ -388,7 +388,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
 
     // Copy to clipboard
     navigator.clipboard.writeText(fakeLink).then(() => {
-      toast.success("Link copied!");
+      Toast.success("Link copied!");
     });
   };
   const handleRestore = (id: string) => {
@@ -398,12 +398,12 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
       )
     );
 
-    toast.success("Screenshot restored");
+    Toast.success("Screenshot restored");
   };
   const handlePermanentDelete = (id: string) => {
     setScreenshots(screenshots.filter((screenshot) => screenshot.id !== id));
 
-    toast.success("Screenshot permanently deleted");
+    Toast.success("Screenshot permanently deleted");
   };
   const handleDelete = (id: string) => {
     setScreenshots(
@@ -412,7 +412,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
       )
     );
 
-    toast.success("Screenshot moved to trash");
+    Toast.success("Screenshot moved to trash");
   };
   const handleRename = (id: string | null, newName: string) => {
     setScreenshots(
@@ -422,7 +422,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
     );
     setEditingScreenshot(null);
 
-    toast.success("Screenshot renamed");
+    Toast.success("Screenshot renamed");
   };
   const handleTagManagement = (target: string) => {
     setTagManagementTarget(target);
@@ -485,7 +485,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
   };
   const handleDownload = (screenshot: screenShot | null) => {
     if (!screenshot || !screenshot.url || !screenshot.name) {
-      toast.error("Download failed: Missing data");
+      Toast.error("Download failed: Missing data");
       return;
     }
     const link = document.createElement("a");
@@ -495,7 +495,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
     link.click();
     document.body.removeChild(link);
 
-    toast.success("Download started");
+    Toast.success("Download started");
   };
   const handleCreateFolder = () => {
     if (!newFolderName.trim()) return;
@@ -510,7 +510,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
     setNewFolderName("");
     setIsCreateFolderOpen(false);
 
-    toast.success("Folder created");
+    Toast.success("Folder created");
   };
   const handleBulkMove = (targetFolder: string) => {
     setScreenshots(
@@ -521,7 +521,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
       )
     );
 
-    toast.success("Screenshots moved");
+    Toast.success("Screenshots moved");
 
     setIsMoveFolderOpen(false);
     setSelectedScreenshots([]);
@@ -650,7 +650,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
           (screenshot) => !selectedScreenshots.includes(screenshot.id)
         )
       );
-      toast.success("Screenshots permanently deleted");
+      Toast.success("Screenshots permanently deleted");
     } else {
       // Move to trash
       setScreenshots(
@@ -660,7 +660,7 @@ export const ScreenShotProvider: React.FC<{ children: React.ReactNode }> = ({
             : screenshot
         )
       );
-      toast.success("Screenshots moved to trash");
+      Toast.success("Screenshots moved to trash");
     }
 
     setSelectedScreenshots([]);
