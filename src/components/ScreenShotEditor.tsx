@@ -47,6 +47,7 @@ export function ScreenshotEditor() {
     handleCapture,
     handleUpload,
     uploadedImage,
+    isHeightExpanded,
   } = useImageEditor();
 
   /**
@@ -77,9 +78,10 @@ export function ScreenshotEditor() {
         "w-full max-w-6xl transition-colors duration-300 relative  ",
         "rounded-3xl  shadow-2xl bg-background text-text h-screen",
         uploadedImage && "sm:mt-[150px] mt-0 ",
-        uploadedImage && toolbarPosition === "bottom" && "sm:mt-0 ",
-        !uploadedImage && toolbarPosition === "bottom" && "mt-2 h-[80vh] ",
-        !uploadedImage && "mt-[120px] h-[80vh] "
+        uploadedImage && toolbarPosition === "bottom" && "sm:mt-0 h-[82vh] ",
+        !uploadedImage && toolbarPosition === "bottom" && "mt-2 h-[82vh] ",
+        !uploadedImage && "mt-[120px] h-[82vh] ",
+        !isHeightExpanded && toolbarPosition !== "bottom" && "sm:mt-[335px]"
       )}
     >
       {/* Hidden file input for image uploads */}
@@ -138,7 +140,7 @@ export function ScreenshotEditor() {
 
           {/* Conditional UI elements */}
           {isCropActive && <CropNotification />}
-          <FooterControls />
+          {toolbarPosition !== "bottom" && <FooterControls />}
         </div>
       )}
 

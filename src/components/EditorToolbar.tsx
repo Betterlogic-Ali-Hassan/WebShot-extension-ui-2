@@ -30,6 +30,7 @@ import DottedLineIcon from "./svgs/DottedLineIcon";
 import CurveLineIcon from "./svgs/CurveLineIcon";
 import LineIcon from "./svgs/LineIcon";
 import DoubleArrowIcon from "./svgs/DoubleArrowIcon";
+import { FooterControls } from "./FooterControl";
 
 // Update the EditorToolbar interface to include the logo prop
 interface EditorToolbarProps {
@@ -192,7 +193,10 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
     >
       <div className='max-w-screen-2xl mx-auto px-4 h-[72px] py-2 flex items-center justify-between gap-10 overflow-x-auto'>
         {/* Left section - logo */}
-        <div className='flex items-center min-w-24'>{logo}</div>
+        <div className='flex items-center gap-20'>
+          <div className='flex items-center min-w-24'>{logo}</div>
+          {toolbarPosition === "bottom" && <FooterControls />}
+        </div>
 
         {/* Center section - tools */}
         <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text min-[1200px]:absolute min-[1200px]:left-1/2 min-[1200px]:-translate-x-1/2'>

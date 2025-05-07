@@ -25,8 +25,8 @@ export function FooterControls() {
     <>
       <div
         className={cn(
-          "flex items-center gap-2 p-2 max-w-max rounded-full transition-all duration-300 fixed w-full bg-border  left-1/2 -translate-x-1/2",
-          isToolbarBottom ? "top-2" : " bottom-2"
+          "flex items-center gap-2 p-2 max-w-max rounded-full transition-all duration-300  w-full bg-border  ",
+          !isToolbarBottom && "left-1/2 -translate-x-1/2 fixed bottom-2"
         )}
       >
         <Tooltip id='undo' content='Undo'>
