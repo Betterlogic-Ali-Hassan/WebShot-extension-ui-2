@@ -201,12 +201,7 @@ export function EditorToolbar({ settingsButton, logo }: EditorToolbarProps) {
         {/* Center section - tools */}
         <div className='flex items-center justify-center gap-1 ml-2 rounded-[20px] px-3 py-2 transition-all duration-300 bg-card text-text min-[1200px]:absolute min-[1200px]:left-1/2 min-[1200px]:-translate-x-1/2'>
           {visibleTools.map((tool) => (
-            <Tooltip
-              key={tool.id}
-              id={tool.id}
-              place={activeTool ? "left" : "bottom"}
-              content={tool.label}
-            >
+            <Tooltip key={tool.id} id={tool.id} content={tool.label}>
               <Button
                 ref={(el) => (buttonRefs.current[tool.id] = el)}
                 className={cn(

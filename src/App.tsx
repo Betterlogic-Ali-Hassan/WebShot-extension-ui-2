@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ImageEditorProvider } from "./context/ImageContext";
 import HomePage from "./pages/HomePage"; // Assume ye path sahi hai
 import ProfilePage from "./pages/ProfilePage"; // Assume ye path sahi hai
-import { ToastContainer } from "react-toastify";
+
 import SubscriptionPage from "./pages/SubscriptionPage";
 import SupportPage from "./pages/SupportPage";
 import Billing from "./components/subscription/billing/Billing";
@@ -10,22 +10,11 @@ import { ModalProvider } from "./context/ModalsContext";
 import { ScreenShotProvider } from "./context/ScreenShotContext";
 import ScreenShotManager from "./components/screenShotManager/ScreenShotManager";
 import "react-toastify/dist/ReactToastify.css";
-import { useTheme } from "./components/ThemeProvider";
 
 import SingleScreenshot from "./components/singleScreenshotPage/SingleScreenshot";
 function App() {
-  const { theme } = useTheme();
   return (
     <>
-      <ToastContainer
-        position='bottom-center'
-        autoClose={3000}
-        hideProgressBar={false}
-        closeOnClick={false}
-        pauseOnHover={true}
-        draggable={true}
-        theme={theme === "light" ? "light" : "dark"}
-      />
       <ImageEditorProvider>
         <ModalProvider>
           <ScreenShotProvider>

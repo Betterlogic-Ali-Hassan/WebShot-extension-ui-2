@@ -1,20 +1,19 @@
-// components/Tooltip.tsx
 import React, { ReactNode } from "react";
-import { Tooltip as ReactTooltip } from "react-tooltip";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 import { useTheme } from "../ThemeProvider";
 import { cn } from "@/lib/utils";
-
+import "tippy.js/themes/light.css";
 interface TooltipProps {
-  id: string; // unique id for tooltip
   content: string;
   children: ReactNode;
-  place?: "top" | "right" | "bottom" | "left";
-  effect?: boolean | undefined;
+  place?: "top" | "bottom";
+  effect?: boolean;
   className?: string;
+  id?: string;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
-  id,
   content,
   children,
   place = "top",
@@ -24,18 +23,18 @@ const Tooltip: React.FC<TooltipProps> = ({
   const { theme } = useTheme();
 
   return (
-    <>
-      <div data-tooltip-id={id} data-tooltip-content={content}>
-        {children}
-      </div>
-      <ReactTooltip
-        id={id}
-        place={place}
-        variant={theme === "light" ? "dark" : "light"}
-        float={effect}
-        className={cn("z-50", className)}
-      />
-    </>
+    <Tippy
+      content={content}
+      placement={place}
+      animation={effect ? "shift-away" : "fade"}
+      theme={theme === "light" ? "dark" : "light"}
+      className={cn(
+        "z-50 !h-[44px] !px-2 flex items-center justify-center !text-[15px] font-medium",
+        className
+      )}
+    >
+      <span>{children}</span>
+    </Tippy>
   );
 };
 
