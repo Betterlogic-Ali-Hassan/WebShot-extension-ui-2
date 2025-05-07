@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Lock, Save, Shield } from "lucide-react";
 import { TwoFactorSetup } from "./TwoFactor";
 import { Switch } from "../ui/switch";
-import { toast } from "react-toastify";
+import { Toast } from "../ui/toast";
 
 interface SecuritySectionProps {
   onSave?: (data: {
@@ -31,7 +31,7 @@ export function SecuritySection({ onSave }: SecuritySectionProps) {
     if (onSave) {
       onSave(security);
     } else {
-      toast.success("Security settings saved!");
+      Toast.success("Security settings saved!");
     }
   };
 

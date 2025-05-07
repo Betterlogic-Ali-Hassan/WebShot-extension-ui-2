@@ -1,9 +1,9 @@
 import Modal from "@/components/ui/Modal";
+import { Toast } from "@/components/ui/toast";
 import { useScreenShot } from "@/context/ScreenShotContext";
 import { screenShot } from "@/types/ScreenShot";
 import { ArrowUpRight, Download, Edit, Share, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const PreviewModal = () => {
   const {
@@ -16,7 +16,7 @@ const PreviewModal = () => {
   const navigate = useNavigate();
   const handleEdit = (screenshot: screenShot | null) => {
     if (!screenshot?.url) {
-      toast.error("No URL found for editing");
+      Toast.error("No URL found for editing");
       return;
     }
 

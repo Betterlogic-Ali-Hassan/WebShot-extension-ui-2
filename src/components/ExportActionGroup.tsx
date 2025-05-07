@@ -18,9 +18,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import UploadSeverImageModal from "./UploadSeverImageModal";
+import { Toast } from "./ui/toast";
 
 const ExportActionGroup = () => {
   const [isUploading, setIsUploading] = useState(false);
@@ -29,12 +29,12 @@ const ExportActionGroup = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleCopyToClipboard = () => {
-    toast.success("Copied to clipboard!");
+    Toast.success("Copied to clipboard!");
   };
   const handleSaveAs = (format: string) => {
     const timestamp = new Date().getTime();
     const filename = `screenshot-${timestamp}.${format.toLowerCase()}`;
-    toast.success(`Saving as ${filename}`);
+    Toast.success(`Saving as ${filename}`);
   };
   const handleUpload = async () => {
     setIsUploading(true);
@@ -50,7 +50,7 @@ const ExportActionGroup = () => {
     setIsUploading(false);
     setUploadSuccess(true);
     setShareableLink("https://yourserver.com/view/abc123");
-    toast.success("Uploaded successfully!");
+    Toast.success("Uploaded successfully!");
   };
 
   return (

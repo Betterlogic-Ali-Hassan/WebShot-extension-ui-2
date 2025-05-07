@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { CopyButton } from "./CopyButton";
-import { toast } from "react-toastify";
+import { Toast } from "./ui/toast";
+
 interface Props {
   isUploading: boolean;
   shareableLink: string;
@@ -34,7 +35,7 @@ const ShareLinkInput = ({ isUploading, shareableLink, className }: Props) => {
           {!isUploading && (
             <CopyButton
               textToCopy={shareableLink}
-              onCopy={() => toast.success("Link copied to clipboard!")}
+              onCopy={() => Toast.success("Link copied to clipboard!")}
             />
           )}
         </div>

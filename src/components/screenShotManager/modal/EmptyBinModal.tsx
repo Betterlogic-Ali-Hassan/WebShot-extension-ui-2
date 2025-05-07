@@ -2,8 +2,8 @@
 
 import { Trash2, X } from "lucide-react";
 import Modal from "@/components/ui/Modal";
-import { toast } from "react-toastify";
 import { useScreenShot } from "@/context/ScreenShotContext";
+import { Toast } from "@/components/ui/toast";
 
 const EmptyBinModal = () => {
   const { setIsEmptyBinConfirmationOpen, screenshots, setScreenshots } =
@@ -55,7 +55,7 @@ const EmptyBinModal = () => {
             onClick={() => {
               setScreenshots(screenshots.filter((s) => !s.trash));
               setIsEmptyBinConfirmationOpen(false);
-              toast("Recycle Bin emptied");
+              Toast.error("Recycle Bin emptied");
             }}
             className='px-4 py-2 rounded-full transition-all duration-200 bg-error hover:bg-error/80 text-primary'
           >

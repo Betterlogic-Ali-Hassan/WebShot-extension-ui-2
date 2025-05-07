@@ -15,9 +15,9 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-import { toast } from "react-toastify";
 import { screenShot } from "@/types/ScreenShot";
 import { cn } from "@/lib/utils";
+import { Toast } from "../ui/toast";
 
 interface ActionsProps {
   screenshot: screenShot | null;
@@ -62,28 +62,28 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
               }),
             ]);
 
-            toast.success("Screenshot copied to clipboard successfully");
+            Toast.success("Screenshot copied to clipboard successfully");
           } catch (err) {
             console.error("Failed to copy image: ", err);
-            toast.error("Could not copy image to clipboard");
+            Toast.error("Could not copy image to clipboard");
           }
         }
       });
     } catch (error) {
       console.error("Error copying to clipboard:", error);
-      toast.error("Could not copy image to clipboard");
+      Toast.error("Could not copy image to clipboard");
     }
   };
 
   const handleDownloadPDF = () => {
     if (!screenshot) return;
 
-    toast.info("Your PDF is being prepared for download");
+    Toast.success("Your PDF is being prepared for download");
 
     // In a real app, this would generate a PDF
     // For now, we'll simulate with a timeout
     setTimeout(() => {
-      toast.success(`"${screenshot.name}.pdf" has been downloaded`);
+      Toast.success(`"${screenshot.name}.pdf" has been downloaded`);
     }, 1500);
   };
 
@@ -136,9 +136,9 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
     const isLoggedIn = false;
 
     if (isLoggedIn) {
-      toast.success("Screenshot has been added to your collection");
+      Toast.success("Screenshot has been added to your collection");
     } else {
-      toast.error("Please log in to add this screenshot to your account");
+      Toast.error("Please log in to add this screenshot to your account");
     }
   };
 
@@ -146,11 +146,11 @@ export const ScreenshotActions: React.FC<ActionsProps> = ({
     if (!screenshot) return;
 
     // In a real app, this would redirect to the editor
-    toast.info("Preparing screenshot for annotation");
+    Toast.success("Preparing screenshot for annotation");
 
     // Simulate redirect with a timeout
     setTimeout(() => {
-      toast.success("You can now annotate this screenshot");
+      Toast.success("You can now annotate this screenshot");
     }, 1000);
   };
 

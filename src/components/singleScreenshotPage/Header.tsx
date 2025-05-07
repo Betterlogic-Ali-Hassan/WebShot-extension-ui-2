@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { screenShot } from "@/types/ScreenShot";
 import { ChevronLeft, Clock, Download, Eye, Heart, Share } from "lucide-react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Toast } from "../ui/toast";
 interface Props {
   screenshot: screenShot | null;
   handleLike: () => void;
@@ -13,7 +13,7 @@ const Header = ({ screenshot, liked, likeCount, handleLike }: Props) => {
   const handleCopyLink = () => {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
-    toast.success("Link copied!");
+    Toast.success("Link copied!");
   };
   const handleDownload = () => {
     if (!screenshot) return;
@@ -26,7 +26,7 @@ const Header = ({ screenshot, liked, likeCount, handleLike }: Props) => {
     link.click();
     document.body.removeChild(link);
 
-    toast.success("Download started");
+    Toast.success("Download started");
   };
   return (
     <header className='sticky top-0 z-10 py-4 backdrop-blur-lg bg-background'>

@@ -3,8 +3,8 @@
 import { AlertCircle, X } from "lucide-react";
 
 import Button from "@/components/ui/button";
-import { toast } from "react-toastify";
 import Modal from "@/components/ui/Modal";
+import { Toast } from "@/components/ui/toast";
 
 interface CancelPlanModalProps {
   currentPlan: string;
@@ -18,7 +18,7 @@ export function CancelPlanModal({
   onClose,
 }: CancelPlanModalProps) {
   const handleCancel = () => {
-    toast.error("Subscription Cancelled");
+    Toast.error("Subscription Cancelled");
     onClose();
   };
 

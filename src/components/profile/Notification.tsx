@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Bell, Mail, Save } from "lucide-react";
 import { Switch } from "../ui/switch";
-import { toast } from "react-toastify";
+import { Toast } from "../ui/toast";
 
 interface NotificationsSectionProps {
   onSave?: (data: {
@@ -20,7 +20,7 @@ export function NotificationsSection({ onSave }: NotificationsSectionProps) {
     if (onSave) {
       onSave(notifications);
     } else {
-      toast.success("Notification preferences saved!");
+      Toast.success("Notification preferences saved!");
     }
   };
 

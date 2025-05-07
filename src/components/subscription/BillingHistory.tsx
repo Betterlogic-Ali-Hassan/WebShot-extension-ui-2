@@ -6,7 +6,7 @@ import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { toast } from "react-toastify";
+import { Toast } from "../ui/toast";
 
 interface BillingHistoryItem {
   date: string;
@@ -85,7 +85,7 @@ export function BillingHistorySection({
     const item = billingHistory.find((item) => item.invoice === invoice);
     if (item) {
       generateReceipt(item);
-      toast.success("Invoice Downloaded");
+      Toast.success("Invoice Downloaded");
     }
   };
 
@@ -133,7 +133,7 @@ export function BillingHistorySection({
 
     // Save the PDF
     doc.save(`all-receipts.pdf`);
-    toast.success("All Invoices Downloaded");
+    Toast.success("All Invoices Downloaded");
   };
 
   return (

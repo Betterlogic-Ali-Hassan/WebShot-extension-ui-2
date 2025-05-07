@@ -4,7 +4,7 @@ import type React from "react";
 
 import { useState } from "react";
 import { User, Save, Camera } from "lucide-react";
-import { toast } from "react-toastify";
+import { Toast } from "../ui/toast";
 
 interface PersonalInfoProps {
   initialData?: {
@@ -44,7 +44,7 @@ export function PersonalInfoSection({
     if (onSave) {
       onSave(personalInfo);
     } else {
-      toast.success("Personal information saved!");
+      Toast.success("Personal information saved!");
     }
   };
 

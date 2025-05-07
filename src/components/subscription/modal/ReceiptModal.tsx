@@ -3,11 +3,11 @@
 import { X, Download } from "lucide-react";
 import Button from "@/components/ui/button";
 import type { ReceiptData } from "@/types/Plan";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import Modal from "@/components/ui/Modal";
+import { Toast } from "@/components/ui/toast";
 
 interface ReceiptModalProps {
   receiptData: ReceiptData;
@@ -79,10 +79,10 @@ export function ReceiptModal({
       // Save the PDF
       doc.save(`Receipt-${receiptData.invoiceNumber}.pdf`);
 
-      toast.success("Receipt Downloaded Successfully");
+      Toast.success("Receipt Downloaded Successfully");
     } catch (error) {
       console.error("Error generating receipt:", error);
-      toast.error("Failed to download receipt. Please try again.");
+      Toast.error("Failed to download receipt. Please try again.");
     } finally {
       setIsGenerating(false);
     }

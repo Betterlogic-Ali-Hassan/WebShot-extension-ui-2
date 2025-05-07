@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { ConfirmationDialog } from "../ui/ConfirmationDialog";
-import { toast } from "react-toastify";
+import { Toast } from "../ui/toast";
 
 interface TwoFactorSetupProps {
   onComplete: () => void;
@@ -81,7 +81,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
       // In a real app, you would validate this code against the server
       setSetupStep(4);
     } else {
-      toast.success("Please enter a valid 6-digit code");
+      Toast.success("Please enter a valid 6-digit code");
     }
   };
 
@@ -89,7 +89,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
   const complete2FASetup = () => {
     setSetupComplete(true);
     // In a real app, you would save this preference to the server
-    toast.success("2FA has been successfully set up!");
+    Toast.success("2FA has been successfully set up!");
     onComplete();
   };
 
@@ -114,7 +114,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    toast.success("Backup codes downloaded successfully!");
+    Toast.success("Backup codes downloaded successfully!");
   };
 
   // Function to print backup codes
@@ -178,7 +178,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         setCopySuccess(false);
       }, 2000);
     } catch (err) {
-      toast.error("Failed to copy codes. Please try again.");
+      Toast.error("Failed to copy codes. Please try again.");
       console.error("Failed to copy: ", err);
     }
   };

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { MapPinIcon as MapPinHouse } from "lucide-react";
-import { toast } from "react-toastify";
 
 import Button from "@/components/ui/button";
 import Modal from "@/components/ui/Modal";
 import { Address } from "./Billing";
+import { Toast } from "@/components/ui/toast";
 
 interface AddressFormModalProps {
   onClose: () => void;
@@ -99,25 +99,25 @@ export function AddressForm({
       if (onSave) {
         try {
           onSave(address);
-          toast.success("Address updated successfully");
+          Toast.success("Address updated successfully");
           onClose();
         } catch (error) {
-          toast.error("Failed to save address. Please try again.");
+          Toast.error("Failed to save address. Please try again.");
           console.log(error);
         }
       } else {
-        toast.success("Address updated successfully");
+        Toast.success("Address updated successfully");
         onClose();
       }
     } else {
-      toast.error("Please fix the errors in the form");
+      Toast.error("Please fix the errors in the form");
       setIsSubmitting(false);
     }
   };
 
   const handleCancel = () => {
     onClose();
-    toast.error("Your Address has been not Updated");
+    Toast.error("Your Address has been not Updated");
   };
 
   return (
