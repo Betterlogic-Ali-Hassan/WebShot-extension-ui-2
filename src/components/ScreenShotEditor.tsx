@@ -81,7 +81,11 @@ export function ScreenshotEditor() {
         uploadedImage && toolbarPosition === "bottom" && "sm:mt-0 h-[82vh] ",
         !uploadedImage && toolbarPosition === "bottom" && "mt-2 h-[82vh] ",
         !uploadedImage && "mt-[120px] h-[82vh] ",
-        !isHeightExpanded && toolbarPosition !== "bottom" && "sm:mt-[335px]"
+        !isHeightExpanded &&
+          toolbarPosition !== "bottom" &&
+          uploadedImage &&
+          "sm:mt-[335px]",
+        isHeightExpanded && "sm:mt-[100px] h-[70vh]"
       )}
     >
       {/* Hidden file input for image uploads */}

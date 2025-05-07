@@ -122,7 +122,7 @@ export function ImageViewer({
         ref={containerRef}
         className={cn(
           "overflow-auto rounded-xl p-0 w-full transition-all duration-500 ease-in-out",
-          isHeightExpanded ? "h-[82vh]" : "h-full",
+          isHeightExpanded ? "h-[70vh]" : "h-full",
           isImageSmall ? "flex items-center justify-center" : "block",
           "bg-card"
         )}
