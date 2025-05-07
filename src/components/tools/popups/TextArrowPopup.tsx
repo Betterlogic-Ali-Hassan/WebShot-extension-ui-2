@@ -37,13 +37,13 @@ export function TextArrowToolPopup() {
     >
       <div className='flex items-center gap-4  max-[850px]:overflow-x-auto max-[850px]:max-w-[250px] max-[850px]:whitespace-nowrap no-scrollbar'>
         {/* Tool Selection - Toggle Switch */}
-        <div className='flex rounded-md min-[850px]:overflow-hidden bg-background'>
+        <div className='flex  gap-2 rounded-md min-[850px]:overflow-hidden '>
           <button
             className={cn(
-              "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap   hover:bg-border",
+              "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px]  duration-200 cursor-pointer border border-transparent ring-0 outline-none  focus:outline-none",
               selectedTextArrowType === "text-arrow"
-                ? "bg-border text-text"
-                : "text-text"
+                ? "bg-hover border-dashed  border-selection-border text-text "
+                : "text-text/60 hover:bg-hover hover:text-text"
             )}
             onClick={() => onTextArrowTypeSelect?.("text-arrow")}
           >
@@ -52,10 +52,10 @@ export function TextArrowToolPopup() {
           </button>
           <button
             className={cn(
-              "px-3 py-2 flex items-center gap-1.5 transition-colors whitespace-nowrap  hover:bg-border",
+              "flex items-center gap-2 px-3 py-2 rounded-lg transition-all max-h-[38px]  duration-200 cursor-pointer border border-transparent ring-0 outline-none  focus:outline-none",
               selectedTextArrowType === "page-text"
-                ? "bg-border text-text"
-                : "text-text"
+                ? "bg-hover border-dashed  border-selection-border text-text "
+                : "text-text/60 hover:bg-hover hover:text-text"
             )}
             onClick={() => onTextArrowTypeSelect?.("page-text")}
           >

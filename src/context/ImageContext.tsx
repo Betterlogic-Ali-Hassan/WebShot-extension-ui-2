@@ -18,6 +18,7 @@ type ImageEditorContextType = {
   isEditing: boolean;
   popupPosition: { top: number; left: number; width: number };
   isCropActive: boolean;
+  setIsCropActive: (cropActive: boolean) => void;
   isHeightExpanded: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setIsHeightExpanded: (isHeight: any) => void;
@@ -357,7 +358,6 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
   // Restore default tool visibility
   const handleRestoreDefaults = () => {
     setToolVisibility({
-      zoom: false, // Keep zoom disabled by default
       crop: true,
       pencil: true,
       square: true,
@@ -420,8 +420,8 @@ export const ImageEditorProvider: React.FC<{ children: React.ReactNode }> = ({
     premiumPopupsEnabled,
     toolbarRef,
     fileInputRef,
-
     // Methods
+    setIsCropActive,
     handleFileUpload,
     handleToolChange,
     handlePremiumPopupsToggle,

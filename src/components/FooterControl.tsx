@@ -10,9 +10,8 @@ import Tooltip from "./ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
 
 export function FooterControls() {
-  const { toolbarPosition } = useImageEditor();
+  const { toolbarPosition, isCropActive } = useImageEditor();
   const [isDeleting, setIsDeleting] = useState(false);
-
   // Action bar handlers
   const handleDeleteClick = () => {
     setIsDeleting(true);
@@ -25,8 +24,9 @@ export function FooterControls() {
     <>
       <div
         className={cn(
-          "flex items-center gap-2 p-2 max-w-max rounded-full transition-all duration-300  w-full bg-border  ",
-          !isToolbarBottom && "left-1/2 -translate-x-1/2 fixed bottom-2"
+          " items-center gap-2 p-2 max-w-max rounded-full transition-all duration-300  w-full bg-border   ",
+          !isToolbarBottom && "left-1/2 -translate-x-1/2 fixed bottom-3",
+          isCropActive ? "hidden" : "flex"
         )}
       >
         <Tooltip id='undo' content='Undo'>

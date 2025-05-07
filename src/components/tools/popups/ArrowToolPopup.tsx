@@ -79,7 +79,7 @@ export function ArrowToolPopup() {
     >
       <div className='flex items-center gap-4 max-[850px]:overflow-x-auto max-[850px]:max-w-[230px] max-[850px]:whitespace-nowrap no-scrollbar'>
         {/* Arrow Style Selection */}
-        <div className='flex items-center gap-2 l'>
+        <div className='flex items-center gap-2 '>
           {arrowStyles.map((style) => (
             <button
               key={style.id}
