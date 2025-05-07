@@ -116,12 +116,12 @@ export function ImageViewer({
   }
 
   return (
-    <div className='relative flex flex-col h-full w-full'>
+    <div className='relative flex flex-col h-full w-full '>
       {/* Image container */}
       <div
         ref={containerRef}
         className={cn(
-          "overflow-auto rounded-xl p-0 w-full transition-all duration-500 ease-in-out",
+          "overflow-auto rounded-xl  p-0 w-full transition-all duration-500 ease-in-out",
           isHeightExpanded ? "h-[70vh]" : "h-full",
           isImageSmall ? "flex items-center justify-center" : "block",
           "bg-card"
@@ -132,7 +132,7 @@ export function ImageViewer({
           src={imageUrl || "/placeholder.svg"}
           alt='Uploaded screenshot'
           className={cn(
-            "transition-transform duration-200",
+            "transition-transform duration-200 border border-border ",
             fitToContainer && "!m-0 !w-full  "
           )}
           style={{

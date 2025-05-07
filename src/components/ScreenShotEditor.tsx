@@ -134,8 +134,9 @@ export function ScreenshotEditor() {
           {/* Image viewer */}
           <div
             className={cn(
-              "flex items-center justify-center ",
-              !uploadedImage && "h-full"
+              "flex items-center justify-center  ",
+              !uploadedImage && "h-full",
+              !isHeightExpanded && "pb-[100px]"
             )}
           >
             <ImageViewer

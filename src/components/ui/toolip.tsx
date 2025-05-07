@@ -29,7 +29,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       animation={effect ? "shift-away" : "fade"}
       theme={theme === "light" ? "dark" : "light"}
       className={cn(
-        "z-50 !h-[44px] !px-2 flex items-center justify-center !text-[15px] font-medium",
+        "z-50 !h-[32px] !px-1 flex items-center justify-center !text-[15px] font-medium",
         className
       )}
     >
