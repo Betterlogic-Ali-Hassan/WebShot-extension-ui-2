@@ -80,9 +80,9 @@ export function ScreenshotEditor() {
         uploadedImage && "sm:mt-[140px] mt-0 ",
         uploadedImage &&
           toolbarPosition === "bottom" &&
-          "sm:mt-[100px]  h-[82vh] ",
+          "sm:mt-[100px]  h-[80vh] ",
         !uploadedImage && toolbarPosition === "bottom" && "!mt-[40px]  ",
-        !uploadedImage && "mt-[100px] h-[82vh] ",
+        !uploadedImage && "mt-[100px] h-[80vh] ",
         !isHeightExpanded &&
           toolbarPosition !== "bottom" &&
           uploadedImage &&
