@@ -8,6 +8,7 @@ import Button from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import ThemeCards from "./ThemeCards";
+import { useImageEditor } from "@/context/ImageContext";
 
 interface SettingsPanelProps {
   onDarkModeChange?: (isDark: boolean) => void;
@@ -39,7 +40,7 @@ export function SettingsPanel({
   onPremiumPopupsToggle = () => {},
 }: SettingsPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
-
+  const { handleClosePopup } = useImageEditor();
   // Handle tool visibility change
   const handleToolVisibilityChange = (toolId: string, isChecked: boolean) => {
     onToolVisibilityChange(toolId, isChecked);
@@ -52,6 +53,7 @@ export function SettingsPanel({
   ) => {
     e.preventDefault();
     e.stopPropagation();
+    handleClosePopup();
     onToolbarPositionChange(position);
   };
 

@@ -79,13 +79,13 @@ export function ScreenshotEditor() {
         "rounded-3xl  shadow-2xl bg-background text-text h-screen",
         uploadedImage && "sm:mt-[150px] mt-0 ",
         uploadedImage && toolbarPosition === "bottom" && "sm:mt-0 h-[82vh] ",
-        !uploadedImage && toolbarPosition === "bottom" && "mt-2 h-[82vh] ",
-        !uploadedImage && "mt-[120px] h-[82vh] ",
+        !uploadedImage && toolbarPosition === "bottom" && "!mt-[40px]  ",
+        !uploadedImage && "mt-[100px] h-[82vh] ",
         !isHeightExpanded &&
           toolbarPosition !== "bottom" &&
           uploadedImage &&
           "sm:mt-[335px]",
-        isHeightExpanded && "sm:mt-[100px] h-[70vh]"
+        isHeightExpanded && " h-[70vh]"
       )}
     >
       {/* Hidden file input for image uploads */}

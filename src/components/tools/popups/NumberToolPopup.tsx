@@ -55,12 +55,7 @@ export function NumberToolPopup() {
                 "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10  after:transition-opacity"
               )}
             >
-              <NumberPreview
-                number={1}
-                style='circled'
-                color={selectedColor}
-                useStandardColor={selectedStyle !== "circled"}
-              />
+              <NumberPreview number={1} style='circled' color={selectedColor} />
             </button>
             <button
               onClick={() => handleStyleSelect("squared")}
@@ -72,12 +67,7 @@ export function NumberToolPopup() {
                 "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10  after:transition-opacity"
               )}
             >
-              <NumberPreview
-                number={1}
-                style='squared'
-                color={selectedColor}
-                useStandardColor={selectedStyle !== "squared"}
-              />
+              <NumberPreview number={1} style='squared' color={selectedColor} />
             </button>
             <button
               onClick={() => handleStyleSelect("plain")}
@@ -89,12 +79,7 @@ export function NumberToolPopup() {
                 "after:absolute after:inset-0 after:rounded-md after:opacity-0 hover:after:opacity-10  after:transition-opacity"
               )}
             >
-              <NumberPreview
-                number={1}
-                style='plain'
-                color={selectedColor}
-                useStandardColor={selectedStyle !== "plain"}
-              />
+              <NumberPreview number={1} style='plain' color={selectedColor} />
             </button>
           </div>
         </div>
@@ -125,33 +110,27 @@ export function NumberToolPopup() {
         </div>
 
         {/* Subtle divider */}
-        <Separator
-          className={cn(
-            "h-10 w-px bg-border",
-            selectedStyle === "plain" && "hidden"
-          )}
-        />
+        <Separator />
 
         {/* Size controls - only show for non-plain styles */}
-        {selectedStyle !== "plain" && (
-          <div className='flex items-center gap-3 px-1'>
-            <span className='text-sm font-medium whitespace-nowrap text-text'>
-              Size:
-            </span>
-            <StrokeWidthSelector
-              value={strokeWidth.toString()}
-              onChange={(value) => setStrokeWidth(Number.parseInt(value))}
-              options={[
-                { value: "1", label: "1 px" },
-                { value: "2", label: "2 px" },
-                { value: "3", label: "3 px" },
-                { value: "4", label: "4 px" },
-                { value: "5", label: "5 px" },
-                { value: "6", label: "6 px" },
-              ]}
-            />
-          </div>
-        )}
+
+        <div className='flex items-center gap-3 px-1'>
+          <span className='text-sm font-medium whitespace-nowrap text-text'>
+            Size:
+          </span>
+          <StrokeWidthSelector
+            value={strokeWidth.toString()}
+            onChange={(value) => setStrokeWidth(Number.parseInt(value))}
+            options={[
+              { value: "1", label: "1 px" },
+              { value: "2", label: "2 px" },
+              { value: "3", label: "3 px" },
+              { value: "4", label: "4 px" },
+              { value: "5", label: "5 px" },
+              { value: "6", label: "6 px" },
+            ]}
+          />
+        </div>
 
         {/* Subtle divider */}
         <Separator />
