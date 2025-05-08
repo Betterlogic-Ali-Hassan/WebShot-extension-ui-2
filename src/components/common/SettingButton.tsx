@@ -2,8 +2,8 @@
 
 import { Settings } from "lucide-react";
 
-import { SettingsPanel } from "@/components/SettingsPanel";
-import Tooltip from "./ui/toolip";
+import { SettingsPanel } from "@/components/common/SettingsPanel";
+import Tooltip from "../ui/toolip";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import { useImageEditor } from "@/context/ImageContext";

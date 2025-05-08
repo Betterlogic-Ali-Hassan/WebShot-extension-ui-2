@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { CopyButton } from "./CopyButton";
-import { Toast } from "./ui/toast";
+import { Toast } from "../ui/toast";
 
 interface Props {
   isUploading: boolean;

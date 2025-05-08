@@ -7,28 +7,28 @@ import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { EditorToolbar } from "./EditorToolbar";
 import { CaptureCard } from "./CaptureCard";
-import { ImageViewer } from "./tools/ImageViewer";
+import { ImageViewer } from "../tools/ImageViewer";
 import { FooterControls } from "./FooterControl";
 import { CropNotification } from "./CropNotification";
 
 // Header controls
 
-import { UserAvatarDropdown } from "./tools/UserAvatarDropdown";
+import { UserAvatarDropdown } from "../tools/UserAvatarDropdown";
 import { SettingsButton } from "./SettingButton";
 
 // Tool popups
-import { ToolPopup } from "./tools/popups/ToolPopup";
-import { ShapeToolPopup } from "./tools/popups/ShapToolPopup";
-import { ArrowToolPopup } from "./tools/popups/ArrowToolPopup";
-import { PencilToolPopup } from "./tools/popups/PencilToolPopup";
-import { TextToolPopup } from "./tools/popups/TextToolPopup";
-import { BlurToolPopup } from "./tools/popups/BlurToolPopup";
-import { BorderToolPopup } from "./tools/popups/BorderToolPopup";
-import { StickersToolPopup } from "./tools/popups/StickerToolPopup";
-import { NumberToolPopup } from "./tools/popups/NumberToolPopup";
-import { WatermarkToolPopup } from "./tools/popups/WatermarkToolPopup";
-import { TextArrowToolPopup } from "./tools/popups/TextArrowPopup";
-import { PremiumFeaturePopup } from "./tools/popups/PremiumFeaturePopup";
+import { ToolPopup } from "../tools/popups/ToolPopup";
+import { ShapeToolPopup } from "../tools/popups/ShapToolPopup";
+import { ArrowToolPopup } from "../tools/popups/ArrowToolPopup";
+import { PencilToolPopup } from "../tools/popups/PencilToolPopup";
+import { TextToolPopup } from "../tools/popups/TextToolPopup";
+import { BlurToolPopup } from "../tools/popups/BlurToolPopup";
+import { BorderToolPopup } from "../tools/popups/BorderToolPopup";
+import { StickersToolPopup } from "../tools/popups/StickerToolPopup";
+import { NumberToolPopup } from "../tools/popups/NumberToolPopup";
+import { WatermarkToolPopup } from "../tools/popups/WatermarkToolPopup";
+import { TextArrowToolPopup } from "../tools/popups/TextArrowPopup";
+import { PremiumFeaturePopup } from "../tools/popups/PremiumFeaturePopup";
 import ExportActionGroup from "./ExportActionGroup";
 
 export function ScreenshotEditor() {
@@ -88,7 +88,8 @@ export function ScreenshotEditor() {
           uploadedImage &&
           "sm:mt-[335px]",
         !isHeightExpanded && toolbarPosition === "bottom" && "sm:mt-0",
-        isHeightExpanded && " h-[70vh]"
+        isHeightExpanded && " h-[70vh] shadow-lg ",
+        !isHeightExpanded && " shadow-none "
       )}
     >
       {/* Hidden file input for image uploads */}

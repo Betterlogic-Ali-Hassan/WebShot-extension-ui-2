@@ -4,10 +4,10 @@ import { useState } from "react";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useImageEditor } from "@/context/ImageContext";
-import { NumberPreview, NumberStyle } from "@/components/NumberPreview";
+import { NumberPreview, NumberStyle } from "@/components/common/NumberPreview";
 import { PopupContainer } from "./PopupContainer";
-import { ColorPicker } from "@/components/ColorPicker";
-import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
+import { ColorPicker } from "@/components/common/ColorPicker";
+import { StrokeWidthSelector } from "@/components/common/StrokeWidthSelector";
 import Separator from "@/components/ui/Separator";
 
 export function NumberToolPopup() {

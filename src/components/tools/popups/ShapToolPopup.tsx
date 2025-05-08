@@ -5,8 +5,8 @@ import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useImageEditor } from "@/context/ImageContext";
 import { PopupContainer } from "./PopupContainer";
-import { ColorPicker } from "@/components/ColorPicker";
-import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
+import { ColorPicker } from "@/components/common/ColorPicker";
+import { StrokeWidthSelector } from "@/components/common/StrokeWidthSelector";
 import Separator from "@/components/ui/Separator";
 
 export type ShapeStyle = "square" | "rounded" | "circle" | "star";

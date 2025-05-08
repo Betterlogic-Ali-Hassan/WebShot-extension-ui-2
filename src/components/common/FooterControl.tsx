@@ -6,7 +6,7 @@ import Button from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 
-import Tooltip from "./ui/toolip";
+import Tooltip from "../ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
 
 export function FooterControls() {

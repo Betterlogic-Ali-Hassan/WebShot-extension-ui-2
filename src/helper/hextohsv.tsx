@@ -1,4 +1,4 @@
-import { rgbToHsv } from "@/components/ColorPicker";
+import { rgbToHsv } from "@/components/common/ColorPicker";
 
 export function hexToHsv(hex: string) {
   // Remove # if present

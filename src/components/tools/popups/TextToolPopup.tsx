@@ -7,12 +7,12 @@ import { useImageEditor } from "@/context/ImageContext";
 import {
   TextFormattingControls,
   type TextAlignment,
-} from "@/components/TextFormatingControl";
+} from "@/components/common/TextFormatingControl";
 import { PopupContainer } from "./PopupContainer";
-import { FontSelector } from "@/components/FontSelector";
-import { FontSizeSelector } from "@/components/FontSizeSelector";
-import { ColorPicker } from "@/components/ColorPicker";
-import BackgroundColorPicker from "@/components/BackgroundColorPicker";
+import { FontSelector } from "@/components/common/FontSelector";
+import { FontSizeSelector } from "@/components/common/FontSizeSelector";
+import { ColorPicker } from "@/components/common/ColorPicker";
+import BackgroundColorPicker from "@/components/common/BackgroundColorPicker";
 
 export function TextToolPopup() {
   const {

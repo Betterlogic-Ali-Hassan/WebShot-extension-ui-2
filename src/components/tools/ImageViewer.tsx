@@ -116,7 +116,13 @@ export function ImageViewer({
   }
 
   return (
-    <div className='relative flex flex-col h-full w-full '>
+    <div
+      className='relative flex flex-col h-full w-full '
+      style={{
+        transform: !isHeightExpanded ? `scale(${zoomLevel})` : "",
+        transformOrigin: !isHeightExpanded ? "top center" : "",
+      }}
+    >
       {/* Image container */}
       <div
         ref={containerRef}
@@ -136,8 +142,8 @@ export function ImageViewer({
             fitToContainer && "!m-0 !w-full  "
           )}
           style={{
-            transform: `scale(${zoomLevel})`,
-            transformOrigin: "top center",
+            transform: isHeightExpanded ? `scale(${zoomLevel})` : "",
+            transformOrigin: isHeightExpanded ? "top center" : "",
             height: "auto",
             margin: imageSize.width < containerSize.width ? "0 auto" : "0",
             display: "block",

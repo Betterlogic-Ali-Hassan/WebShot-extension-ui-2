@@ -9,18 +9,18 @@ import {
   Upload,
 } from "lucide-react";
 
-import Button from "./ui/button";
-import Tooltip from "./ui/toolip";
+import Button from "../ui/button";
+import Tooltip from "../ui/toolip";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "../ui/dropdown-menu";
 import { useState } from "react";
 import UploadSeverImageModal from "./UploadSeverImageModal";
-import { Toast } from "./ui/toast";
+import { Toast } from "../ui/toast";
 
 const ExportActionGroup = () => {
   const [isUploading, setIsUploading] = useState(false);

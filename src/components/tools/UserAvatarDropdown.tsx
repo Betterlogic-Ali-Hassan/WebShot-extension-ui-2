@@ -12,7 +12,6 @@ import {
 import { cn } from "@/lib/utils";
 import Tooltip from "../ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
-import { useLocation, useNavigate } from "react-router-dom";
 
 interface UserAvatarDropdownProps {
   userName?: string;
@@ -31,7 +30,6 @@ export function UserAvatarDropdown({
 }: UserAvatarDropdownProps) {
   const { toolbarPosition } = useImageEditor();
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -127,15 +125,12 @@ export function UserAvatarDropdown({
 
   // Menu action handlers
   const handleMenuAction = (action: string) => {
-    navigate(action);
     setIsOpen(false);
-    console.log(`Action: ${action}`);
-    // Implement actual navigation/actions here
+    console.log(action);
   };
 
   const planStyles = getPlanStyles();
-  const location = useLocation();
-  const path = location.pathname;
+
   return (
     <div ref={dropdownRef}>
       {/* Avatar Button */}
@@ -165,8 +160,7 @@ export function UserAvatarDropdown({
           className={cn(
             "fixed mt-2 w-72 rounded-xl shadow-xl py-3 z-50 border ",
             "animate-in fade-in-80 slide-in-from-top-3 zoom-in-98 bg-background border-border text-text",
-            getDropdownPosition(),
-            path === "/screenshot" && "ml-10"
+            getDropdownPosition()
           )}
           role='menu'
           aria-orientation='vertical'
@@ -216,7 +210,7 @@ export function UserAvatarDropdown({
 
                 <div className='flex items-center mt-3 space-x-2'>
                   <button
-                    onClick={() => handleMenuAction("/subscription")}
+                    onClick={() => handleMenuAction("subscription")}
                     className='flex-1 text-sm flex items-center justify-center py-2 px-3 rounded-md transition-all duration-200 bg-info text-text-primary hover:bg-info-hover'
                   >
                     <CreditCard className='h-4 w-4 mr-2' />

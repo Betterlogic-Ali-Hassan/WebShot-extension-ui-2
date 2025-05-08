@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 
 import { useImageEditor } from "@/context/ImageContext";
 import { PopupContainer } from "./PopupContainer";
-import { ColorPicker } from "@/components/ColorPicker";
-import { FontSelector } from "@/components/FontSelector";
-import { TextFormattingControls } from "@/components/TextFormatingControl";
-import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
+import { ColorPicker } from "@/components/common/ColorPicker";
+import { FontSelector } from "@/components/common/FontSelector";
+import { TextFormattingControls } from "@/components/common/TextFormatingControl";
+import { StrokeWidthSelector } from "@/components/common/StrokeWidthSelector";
 import TextArrowIcon from "@/components/svgs/TextArrowIcon";
 import PageTextIcon from "@/components/svgs/PageTextIcon";
 import Separator from "@/components/ui/Separator";

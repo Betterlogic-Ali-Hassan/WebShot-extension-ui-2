@@ -6,7 +6,7 @@ import Button from "@/components/ui/button";
 import { Upload, FileImage, Clipboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import Separator from "./ui/Separator";
+import Separator from "../ui/Separator";
 
 interface CaptureCardProps {
   onCapture: () => void;

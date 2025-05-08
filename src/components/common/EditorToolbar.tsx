@@ -22,14 +22,14 @@ import {
 import Button from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
-import Tooltip from "./ui/toolip";
+import Tooltip from "../ui/toolip";
 import { useImageEditor } from "@/context/ImageContext";
-import TextArrowIcon from "./svgs/TextArrowIcon";
-import PageTextIcon from "./svgs/PageTextIcon";
-import DottedLineIcon from "./svgs/DottedLineIcon";
-import CurveLineIcon from "./svgs/CurveLineIcon";
-import LineIcon from "./svgs/LineIcon";
-import DoubleArrowIcon from "./svgs/DoubleArrowIcon";
+import TextArrowIcon from "../svgs/TextArrowIcon";
+import PageTextIcon from "../svgs/PageTextIcon";
+import DottedLineIcon from "../svgs/DottedLineIcon";
+import CurveLineIcon from "../svgs/CurveLineIcon";
+import LineIcon from "../svgs/LineIcon";
+import DoubleArrowIcon from "../svgs/DoubleArrowIcon";
 import { FooterControls } from "./FooterControl";
 
 // Update the EditorToolbar interface to include the logo prop

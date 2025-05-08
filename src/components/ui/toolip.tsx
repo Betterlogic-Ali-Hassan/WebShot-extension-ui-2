@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "../common/ThemeProvider";
 import { cn } from "@/lib/utils";
 import "tippy.js/themes/light.css";
 interface TooltipProps {

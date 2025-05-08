@@ -5,8 +5,8 @@ import { Pencil, Paintbrush, Highlighter } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useImageEditor } from "@/context/ImageContext";
 import { PopupContainer } from "./PopupContainer";
-import { ColorPicker } from "@/components/ColorPicker";
-import { StrokeWidthSelector } from "@/components/StrokeWidthSelector";
+import { ColorPicker } from "@/components/common/ColorPicker";
+import { StrokeWidthSelector } from "@/components/common/StrokeWidthSelector";
 
 export type PencilTool = "pencil" | "brush" | "highlighter";
 
